@@ -1,0 +1,13 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.sortable.table thead th.not-sortable:hover {
+    background: @headerBackground;
+    color: @headerColor;
+    cursor: default;
+}
+.ui.sortable.table thead th {
+    border-left: none;
+    border-right: none;
+}

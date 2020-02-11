@@ -1,0 +1,23 @@
+@import '../../_styles/colors';
+@import '../../_styles/detail';
+
+.section-status {
+  .status {
+    font-weight: bold;
+    &.ACTIVE {
+      color: $green;
+    }
+    &.INACTIVE {
+      color: $red;
+    }
+    &.REGISTERING {
+      color: $orange;
+    }
+  }
+
+  .description {
+    color: $grey;
+    font-weight: 1.4rem;
+    margin-top: 0.5rem;
+  }
+}

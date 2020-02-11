@@ -1,0 +1,9 @@
+/*******************************
+         Site Overrides
+*******************************/
+@width: 50rem;
+@mobileWidth: @width;
+@tabletWidth: @width;
+@computerWidth: @width;
+@largeMonitorWidth: @width;
+@widescreenMonitorWidth: @width;

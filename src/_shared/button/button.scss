@@ -1,0 +1,8 @@
+@import '../../_styles/colors';
+@import '../../_styles/constants';
+
+.semantic-button-content {
+  :not(:first-child) {
+    margin-left: 0.8rem;
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../_styles/colors';
+
+.error-message {
+  color: $red;
+  display: flex;
+  align-items: center;
+  animation-name: fadeInDown;
+  animation-duration: 0.1s;
+
+  span {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}

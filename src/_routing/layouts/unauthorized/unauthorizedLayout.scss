@@ -1,0 +1,42 @@
+@import '../../../_styles/colors';
+
+$WIDTH: 30rem;
+
+.unauthorized-layout {
+  display: flex;
+  > aside {
+    background: $primary;
+    height: 100vh;
+    width: $WIDTH;
+    padding: 8rem 2rem;
+
+    &,
+    a {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    a {
+      width: 100%;
+    }
+
+    svg {
+      max-height: 10rem;
+    }
+
+    span {
+      display: block;
+      margin-top: 1rem;
+      text-transform: uppercase;
+      color: white;
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+    }
+  }
+
+  form {
+    width: 40rem;
+    max-width: 40rem;
+  }
+}

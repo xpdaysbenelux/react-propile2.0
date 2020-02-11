@@ -1,0 +1,19 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.input{
+  min-width: 30rem;
+
+  input::placeholder {
+    color: #b8bcbf;
+  }
+}
+
+.ui.disabled.input {
+  opacity: 0.8;
+  
+  > input {
+    background: #eee;
+  } 
+}

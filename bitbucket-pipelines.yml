@@ -1,0 +1,76 @@
+image: node:12
+
+clone:
+  depth: full
+
+installDependencies: &installDependencies
+  step:
+    name: Install node modules
+    script:
+      - yarn
+    caches:
+      - node
+
+build: &build
+  step:
+    name: Build project
+    caches:
+      - node
+    script:
+      - yarn build
+
+format: &format
+  step:
+    name: Check for formatting issues
+    caches:
+      - node
+    script:
+      - yarn format:check
+
+lint: &lint
+  step:
+    name: Check linting issues
+    caches:
+      - node
+    script:
+      - yarn lint
+
+runTests: &runTests
+  step:
+    name: Run tests
+    caches:
+      - node
+    script:
+      - yarn test
+
+pipelines:
+  pull-requests:
+    '**': #this runs as default for any branch not elsewhere defined
+      - <<: *installDependencies
+      - <<: *format
+      - <<: *lint
+      - <<: *runTests
+  branches:
+    develop:
+      - <<: *installDependencies
+      - <<: *build
+      - <<: *format
+      - <<: *lint
+      - <<: *runTests
+      - step:
+          name: Deploy to development
+          deployment: test
+          script:
+            - git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_DEVELOP.git HEAD:master
+    release/**:
+      - <<: *installDependencies
+      - <<: *build
+      - <<: *format
+      - <<: *lint
+      - <<: *runTests
+      - step:
+          name: Deploy to staging
+          deployment: staging
+          trigger: manual
+          script:
+            - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_STAGING.git HEAD:master

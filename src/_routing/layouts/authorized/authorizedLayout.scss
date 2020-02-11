@@ -1,0 +1,8 @@
+$DEFAULT_FORM_WIDTH: 100rem;
+
+.authorized-layout {
+  .left-container {
+    width: $DEFAULT_FORM_WIDTH;
+    max-width: $DEFAULT_FORM_WIDTH;
+  }
+}

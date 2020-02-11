@@ -1,0 +1,13 @@
+@import '../../_styles/colors';
+
+.ui.table {
+  td.table-empty {
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.4rem;
+  }
+
+  tr.greyed-out {
+    background-color: $grey-light;
+  }
+}

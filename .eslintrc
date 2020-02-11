@@ -1,0 +1,48 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "ecmaVersion": 2019,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "eslint-config-prettier", "plugin:import/warnings"],
+  "rules": {
+    "import/order": 1,
+    "react-hooks/exhaustive-deps": 1,
+    "react/prop-types": 0,
+    "strict": ["error", "never"]
+  },
+  "env": {
+    "browser": true
+  },
+  "overrides": [
+    {
+      "files": "**/*.+(ts|tsx)",
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["@typescript-eslint/eslint-plugin", "react-hooks", "typescript-sort-keys", "sort-keys-fix"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "eslint-config-prettier/@typescript-eslint"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/interface-name-prefix": 0,
+        "@typescript-eslint/no-empty-function": 0,
+        "typescript-sort-keys/interface": 1,
+        "typescript-sort-keys/string-enum": 1,
+        "react/jsx-sort-props": 1,
+        "sort-keys-fix/sort-keys-fix": 1
+      }
+    }
+  ]
+}

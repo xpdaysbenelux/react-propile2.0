@@ -1,0 +1,75 @@
+/*******************************
+     User Global Variables
+*******************************/
+@heightInput: 4rem;
+@borderRadiusDefault: 8px;
+
+/*-------------------
+    Brand Colors
+--------------------*/
+@primaryColor: #002548;
+
+/*-------------------
+        Page
+--------------------*/
+@pageBackground: white;
+@textColor: #47525A;
+@placeholderColorInput: #b8bcbf;
+@disabledOpacity: 1;
+
+/*-------------------
+       Fonts
+--------------------*/
+@fontName: "Roboto", sans-serif;
+@headerFont: @fontName;
+@pageFont: @fontName;
+
+/*-------------------
+      Base Sizes
+--------------------*/
+@remSize: 10px;
+/* This is the single variable that controls them all */
+@emSize: 1.6*@remSize;
+/* The size of page text  */
+@fontSize: 1.6*@remSize;
+
+/*-------------------
+        Sizes
+--------------------*/
+/*
+  Sizes are all expressed in terms of 10px/em (default em)
+  This ensures these "ratios" remain constant despite changes in EM
+*/
+@miniSize        : (11 / 10);
+@tinySize        : (12 / 10);
+@smallSize       : (14 / 10);
+@mediumSize      : (16 / 10);
+@largeSize       : (18 / 10);
+@bigSize         : (20 / 10);
+@hugeSize        : (22 / 10);
+@massiveSize     : (24 / 10);
+@mini            : unit(@miniSize, rem);
+@tiny            : unit(@tinySize, rem);
+@small           : unit(@smallSize, rem);
+@medium          : unit(@mediumSize, rem);
+@large           : unit(@largeSize, rem);
+@big             : unit(@bigSize, rem);
+@huge            : unit(@hugeSize, rem);
+@massive         : unit(@massiveSize, rem);
+@relativeMini    : unit(@miniSize, rem);
+@relativeTiny    : unit(@tinySize, rem);
+@relativeSmall   : unit(@smallSize, rem);
+@relativeMedium  : unit(@mediumSize, rem);
+@relativeLarge   : unit(@largeSize, rem);
+@relativeBig     : unit(@bigSize, rem);
+@relativeHuge    : unit(@hugeSize, rem);
+@relativeMassive : unit(@massiveSize, rem);
+/* rem */
+@absoluteMini    : unit(@miniSize, rem);
+@absoluteTiny    : unit(@tinySize, rem);
+@absoluteSmall   : unit(@smallSize, rem);
+@absoluteMedium  : unit(@mediumSize, rem);
+@absoluteLarge   : unit(@largeSize, rem);
+@absoluteBig     : unit(@bigSize, rem);
+@absoluteHuge    : unit(@hugeSize, rem);
+@absoluteMassive : unit(@massiveSize, rem);

@@ -1,0 +1,166 @@
+{
+  "AUTH": {
+    "SIDEBAR_TITLE": "Admin portal",
+    "LOGIN": {
+      "FORGOT_PASSWORD": "Forgot your password?",
+      "LOGIN": "Login",
+      "PASSWORD": "Password",
+      "TITLE": "Welcome!",
+      "USERNAME": "Username"
+    },
+    "LOGOUT": "Logout",
+    "REGISTER": {
+      "PASSWORD_GUIDELINES": "Password requirements: min. 8 characters, at least one uppercase letter, one lowercase letter, and one number.",
+      "REGISTER": "Set password",
+      "TITLE": "Welcome!"
+    },
+    "RESET_PASSWORD": {
+      "RESET": "Reset password",
+      "TITLE": "Choose your new password"
+    },
+    "REQUEST_PASSWORD_RESET": {
+      "DESCRIPTION": "Enter the email address you used to register and we'll email you the password reset instructions.",
+      "RESET": "Send reset instructions",
+      "TITLE": "Forgot your password?"
+    },
+    "ERRORS": {
+      "UNAUTHORIZED": "Incorrect username or password",
+      "USER_STATE_NOT_ALLOWED": "This account is not active, hence you cannot login. Contact your administrator.",
+      "RESET_TOKEN_INVALID": "The link you are using is invalid.",
+      "RESET_TOKEN_EXPIRED": "The link you are using is expired."
+    },
+    "TOASTER": {
+      "CHOOSE_PASSWORD": "You can now login with your new password.",
+      "REQUEST_PASSWORD_RESET": "An email with instructions was sent if it is linked to an account."
+    }
+  },
+  "ROLES": {
+    "NAME": "Name",
+    "PERMISSIONS": {
+      "TITLE": "Permissions",
+      "FEATURES": {
+        "ROLES": "Roles",
+        "USERS": "Users"
+      },
+      "RIGHTS": {
+        "EDIT": "Edit",
+        "VIEW": "View"
+      }
+    },
+    "OVERVIEW": {
+      "CREATE_ROLE": "Create role",
+      "CREATED_AT": "Created at",
+      "EMPTY": "No roles found",
+      "TITLE": "Roles",
+      "UPDATED_AT": "Updated at"
+    },
+    "CREATE": {
+      "TITLE": "Create role"
+    },
+    "DETAIL": {
+      "BACK": "Back to roles",
+      "BUTTON_DELETE": "Delete role"
+    },
+    "DELETE": {
+      "CONTENT": "Are you sure you want to delete this role? This may fail if the role is still in use.",
+      "CONFIRM": "Delete role"
+    },
+    "ERRORS": {
+      "ROLE_IN_USE": "This role is still in use, hence it is not possible to delete it.",
+      "ROLE_NAME_ALREADY_IN_USE": "A role with the given name already exists."
+    },
+    "TOASTER": {
+      "ROLE_CREATED": "The role was created successfully.",
+      "ROLE_UPDATED": "Changes saved successfully.",
+      "ROLE_DELETED": "The role was deleted successfully."
+    }
+  },
+  "SHARED": {
+    "BUTTONS": {
+      "CANCEL": "Cancel",
+      "CREATE": "Create",
+      "SAVE": "Save changes"
+    },
+    "NAVIGATION": {
+      "ROLES": "Roles",
+      "USERS": "Users"
+    },
+    "SEARCH_PLACEHOLDER": "Search...",
+    "DETAIL": {
+      "CREATED_AT_BY": "Created at {{date}} by {{name}}",
+      "UPDATED_AT_BY": "Last updated at {{date}} by {{name}}"
+    }
+  },
+  "USERS": {
+    "EMAIL": "Email",
+    "FIRST_NAME": "First name",
+    "LAST_NAME": "Last name",
+    "ROLE": "Roles",
+    "DETAIL": {
+      "BACK": "Back to users",
+      "DETAILS": {
+        "TITLE": "Details"
+      },
+      "STATUS": {
+        "TITLE": "Status",
+        "SUBTITLE": "This user is currently",
+        "DESCRIPTION": {
+          "ACTIVE": "The user is able to login.",
+          "INACTIVE": "The user is not able to login.",
+          "REGISTERING": "An email has been sent to this user to activate his/her accound by choosing a password."
+        },
+        "BUTTON": {
+          "ACTIVATE": "Activate user",
+          "DEACTIVATE": "Deactivate user",
+          "RESEND_REGISTER_MAIL": "Resend email"
+        }
+      }
+    },
+    "OVERVIEW": {
+      "CREATE_USER": "Create user",
+      "EMPTY": "No users found",
+      "TITLE": "Users",
+      "CREATED_AT": "Created at",
+      "CREATED_BY": "Created by",
+      "UPDATED_AT": "Updated at",
+      "UPDATED_BY": "Updated by"
+    },
+    "CREATE": {
+      "TITLE": "Create user"
+    },
+    "DEACTIVATE": {
+      "CONTENT": "Are you sure you want to deactivate this user? By doing this, the user will not be able to login anymore.",
+      "CONFIRM": "Deactivate user"
+    },
+    "STATE": {
+      "TITLE": "State",
+      "OPTIONS": {
+        "ACTIVE": "Active",
+        "INACTIVE": "Inactive",
+        "REGISTERING": "Registering"
+      }
+    },
+    "ERRORS": {
+      "EMAIL_ALREADY_IN_USE": "A user with the given email already exists."
+    },
+    "TOASTER": {
+      "USER_CREATED": "The user was created successfully.",
+      "USER_UPDATED": "Changes saved successfully."
+    }
+  },
+  "ERRORS": {
+    "GENERAL": "Something went wrong. Please try again.",
+    "PERMISSION_DENIED": "You do not have permissions to perform this action. Contact your administrator.",
+    "VALIDATION": {
+      "FORM": "The following input fields are not filled in (correctly): {{fields}}",
+      "REQUIRED": "Required",
+      "INVALID": "Value is not correct",
+      "PASSWORD_TOO_SHORT": "This password is too short",
+      "PASSWORD_UNSAFE": "This password doesn't fit the requirements",
+      "MAX_LENGTH": "Value should have at least {{length}} characters",
+      "MIN_LENGTH": "Value should have maximum {{length}} characters",
+      "NOT_A_NUMBER": "Value is not a number",
+      "EMPTY_ARRAY": "Choose at least one"
+    }
+  }
+}
