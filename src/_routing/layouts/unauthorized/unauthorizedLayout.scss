@@ -5,7 +5,7 @@ $WIDTH: 30rem;
 .unauthorized-layout {
   display: flex;
   > aside {
-    background: $primary;
+    background: #efefef;
     height: 100vh;
     width: $WIDTH;
     padding: 8rem 2rem;
@@ -29,14 +29,14 @@ $WIDTH: 30rem;
       display: block;
       margin-top: 1rem;
       text-transform: uppercase;
-      color: white;
+      color: #343334;
       font-size: 2rem;
       letter-spacing: 0.5rem;
+      text-align: center;
     }
-  }
 
-  form {
-    width: 40rem;
-    max-width: 40rem;
+    img {
+      width: 25rem;
+    }
   }
 }
