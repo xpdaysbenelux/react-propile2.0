@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { Input } from 'semantic-ui-react';
+import { TextArea } from 'semantic-ui-react';
 import classnames from 'classnames';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Icon from '../icon/Icon';
 import { useInputError } from '../../_hooks';
-import './inputField.scss';
+import './inputTextArea.scss';
 
-export interface InputFieldProps {
+export interface TextAreaProps {
   autoComplete?: string;
   autoFocus?: boolean;
   className?: string;
@@ -24,7 +24,7 @@ export interface InputFieldProps {
   value?: string;
 }
 
-const InputField: FC<InputFieldProps> = ({
+const InputTextArea: FC<TextAreaProps> = ({
   autoComplete,
   autoFocus,
   className,
@@ -33,7 +33,6 @@ const InputField: FC<InputFieldProps> = ({
   errorMessage,
   onChange,
   normalize,
-  icon,
   ...props
 }) => {
   const inputWrapperRef = React.createRef<HTMLDivElement>();
@@ -47,27 +46,25 @@ const InputField: FC<InputFieldProps> = ({
           <span>{label}</span>
         </label>
       )}
-      <Input
+      <TextArea
         {...props}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
-        error={showError}
-        icon={icon}
-        id={props?.name}
         onChange={(_, data) => {
-          const normalizedValue = normalize(data?.value);
+          const normalizedValue = normalize(data?.value.toString());
           onChange(normalizedValue, data?.name);
           setDirty();
         }}
+        rows={3}
       />
       <ErrorMessage isVisible={showError}>{errorMessage}</ErrorMessage>
     </div>
   );
 };
 
-InputField.defaultProps = {
+InputTextArea.defaultProps = {
   className: '',
   normalize: (value: string) => value,
 };
 
-export default InputField;
+export default InputTextArea;
