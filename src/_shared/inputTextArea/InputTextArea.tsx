@@ -29,7 +29,6 @@ const InputTextArea: FC<TextAreaProps> = ({
   autoFocus,
   className,
   label,
-  labelIcon,
   errorMessage,
   onChange,
   normalize,
@@ -42,7 +41,6 @@ const InputTextArea: FC<TextAreaProps> = ({
     <div className={classnames('input-wrapper', className)} ref={inputWrapperRef}>
       {!!label && (
         <label htmlFor={props.name}>
-          {!!labelIcon && <Icon name={labelIcon} />}
           <span>{label}</span>
         </label>
       )}
@@ -50,6 +48,7 @@ const InputTextArea: FC<TextAreaProps> = ({
         {...props}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
+        id={props?.name}
         onChange={(_, data) => {
           const normalizedValue = normalize(data?.value.toString());
           onChange(normalizedValue, data?.name);
