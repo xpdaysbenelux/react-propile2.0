@@ -19,6 +19,13 @@ interface Props {
   submitForm: SubmitFormFunction<ISessionForm>;
 }
 
+function errorAsString(error?: ApiError): string {
+  if (error?.error === 'SESSION_TITLE_ALREADY_IN_USE')
+    return translations.getLabel(`SESSIONS.ERRORS.SESSION_TITLE_ALREADY_IN_USE`);
+
+  return null;
+}
+
 const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitting, error, buttons }) => {
   function validateForm(values: ISessionForm): FormValidationErrors<ISessionForm> {
     const errors: FormValidationErrors<ISessionForm> = {};
@@ -95,7 +102,7 @@ const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitti
           value={form.values.xpFactor.toString()}
         />
       </div>
-      <ErrorMessage isVisible>{error?.message}</ErrorMessage>
+      <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">
