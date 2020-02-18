@@ -4,5 +4,6 @@ import * as profileSelectors from '../profile/_store/selectors';
 import * as rolesSelectors from '../roles/_store/selectors';
 import * as routerSelectors from '../_routing/_store/selectors';
 import * as usersSelectors from '../users/_store/selectors';
+import * as sessionsSelectors from '../sessions/_store/selectors';
 
-export { authSelectors, modalSelectors, profileSelectors, rolesSelectors, routerSelectors, usersSelectors };
+export { authSelectors, modalSelectors, profileSelectors, rolesSelectors, routerSelectors, usersSelectors, sessionsSelectors };
