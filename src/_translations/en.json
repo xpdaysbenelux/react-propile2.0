@@ -1,6 +1,6 @@
 {
   "AUTH": {
-    "SIDEBAR_TITLE": "Admin portal",
+    "SIDEBAR_TITLE": "Propile 2.0",
     "LOGIN": {
       "FORGOT_PASSWORD": "Forgot your password?",
       "LOGIN": "Login",
@@ -148,6 +148,23 @@
       "USER_UPDATED": "Changes saved successfully."
     }
   },
+  "SESSIONS": {
+    "TITLE": "Title",
+    "SUB_TITLE": "Subtitle",
+    "FIRST_PRESENTER": "First presenter",
+    "SECOND_PRESENTER": "Second presenter",
+    "DESCRIPTION": "Description",
+    "XP_FACTOR": "XP factor",
+    "CREATE": {
+      "TITLE": "Create a session"
+    },
+    "ERRORS": {
+      "SESSION_TITLE_ALREADY_IN_USE": "A session with the given title already exists."
+    },
+    "TOASTER": {
+      "SESSION_CREATED": "The session was created successfully."
+    }
+  },
   "ERRORS": {
     "GENERAL": "Something went wrong. Please try again.",
     "PERMISSION_DENIED": "You do not have permissions to perform this action. Contact your administrator.",
@@ -155,10 +172,14 @@
       "FORM": "The following input fields are not filled in (correctly): {{fields}}",
       "REQUIRED": "Required",
       "INVALID": "Value is not correct",
+      "INVALID_EMAIL": "The email is invalid.",
+      "XPFACTOR_MUST_BE_BETWEEN": "The Xp factor must be between {{min}} and {{max}}.",
       "PASSWORD_TOO_SHORT": "This password is too short",
       "PASSWORD_UNSAFE": "This password doesn't fit the requirements",
       "MAX_LENGTH": "Value should have at least {{length}} characters",
       "MIN_LENGTH": "Value should have maximum {{length}} characters",
+      "TOO_HIGH": "The value must be lower then or equal to {{max}}.",
+      "TOO_LOW": "The value must be higher then or equal to {{min}}.",
       "NOT_A_NUMBER": "Value is not a number",
       "EMPTY_ARRAY": "Choose at least one"
     }
