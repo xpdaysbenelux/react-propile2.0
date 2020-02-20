@@ -1,5 +1,6 @@
 @import '../../_styles/form';
 @import '../../_styles/constants';
+@import '../../_styles/colors';
 
 .create-session {
   width: 70rem;
@@ -10,10 +11,8 @@
   }
 
   .actions {
-    float: right;
-
     button {
-      background-color: #343334;
+      background-color: $button-color;
       color: white;
     }
   }
@@ -24,6 +23,6 @@
     font-size: 1.4rem;
     border: rgba(34, 36, 38, 0.15) solid 1.1px;
     border-radius: 0.25;
-    padding: 0.58035714em 0.875em;
+    padding: 0.6em 0.85em;
   }
 }

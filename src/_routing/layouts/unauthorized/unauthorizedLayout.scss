@@ -5,7 +5,7 @@ $WIDTH: 30rem;
 .unauthorized-layout {
   display: flex;
   > aside {
-    background: #efefef;
+    background: $primary;
     height: 100vh;
     width: $WIDTH;
     padding: 8rem 2rem;
@@ -29,13 +29,14 @@ $WIDTH: 30rem;
       display: block;
       margin-top: 1rem;
       text-transform: uppercase;
-      color: #343334;
+      color: $button-color;
       font-size: 2rem;
       letter-spacing: 0.5rem;
       text-align: center;
     }
 
     img {
+      max-width: 25rem;
       width: 25rem;
     }
   }

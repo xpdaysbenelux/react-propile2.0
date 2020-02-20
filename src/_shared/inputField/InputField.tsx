@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Input } from 'semantic-ui-react';
+import React, { FC, ChangeEvent } from 'react';
+import { Input, InputOnChangeData } from 'semantic-ui-react';
 import classnames from 'classnames';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Icon from '../icon/Icon';
@@ -54,7 +54,7 @@ const InputField: FC<InputFieldProps> = ({
         error={showError}
         icon={icon}
         id={props?.name}
-        onChange={(_, data) => {
+        onChange={(_: ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => {
           const normalizedValue = normalize(data?.value);
           onChange(normalizedValue, data?.name);
           setDirty();

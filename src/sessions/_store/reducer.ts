@@ -4,13 +4,15 @@ import { SessionsAction, SessionsActionType } from './actions';
 
 export interface SessionsState {
   errorCrudSession?: ApiError;
-  isCreateSessionLoading?: boolean;
+  isCreateSessionLoading: boolean;
   metadata?: HttpMetadataPagingResponse;
   query?: HttpMetadataQuery;
   sessions?: ISession[];
 }
 
-const initialState: SessionsState = {};
+const initialState: SessionsState = {
+  isCreateSessionLoading: false,
+};
 
 export default function reducer(state = initialState, action: SessionsAction): SessionsState {
   switch (action.type) {
@@ -24,7 +26,6 @@ export default function reducer(state = initialState, action: SessionsAction): S
       return {
         ...state,
         isCreateSessionLoading: false,
-        //   sessions: insertUpdatedData(state.sessions || [], [action.payload.createdSession])
       };
     case SessionsActionType.CreateSessionError:
       return {

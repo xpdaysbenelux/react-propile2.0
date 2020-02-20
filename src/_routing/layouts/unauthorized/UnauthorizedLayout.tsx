@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Switch, Redirect, Route, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
 import Auth from '../../../auth/Auth';
 import { translations } from '../../../_translations';
-import './unauthorizedLayout.scss';
 import logo from '../../../_assets/png/xpdaysLogo.png';
+import './unauthorizedLayout.scss';
 
 export const UNAUTHORIZED_ROUTES = ['/auth'];
 
@@ -23,7 +23,7 @@ const UnauthorizedLayout: React.FC = () => {
       <aside>
         <NavLink to="/">
           <div onClick={() => setSession(true)}>
-            <img alt="Xpdays logo" src={logo} />
+            <img alt="Xpdays-logo" src={logo} />
             <span>{translations.getLabel('AUTH.SIDEBAR_TITLE')}</span>
           </div>
         </NavLink>

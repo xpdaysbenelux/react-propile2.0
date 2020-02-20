@@ -7,14 +7,14 @@ import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/
 import { translations } from '../../_translations';
 import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
 import InputTextArea from '../../_shared/inputTextArea/InputTextArea';
-import './sessionForm.scss';
 import { formValidator } from '../../_utils/formValidation';
+import './sessionForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
   error?: ApiError;
   initialForm: ISessionForm;
-  isSubmitting?: boolean;
+  isSubmitting: boolean;
   sessionId?: string;
   submitForm: SubmitFormFunction<ISessionForm>;
 }
@@ -102,7 +102,7 @@ const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitti
           value={form.values.xpFactor.toString()}
         />
       </div>
-      <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
+      {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">
