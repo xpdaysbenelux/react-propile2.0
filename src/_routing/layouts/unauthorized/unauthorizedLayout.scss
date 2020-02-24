@@ -29,14 +29,15 @@ $WIDTH: 30rem;
       display: block;
       margin-top: 1rem;
       text-transform: uppercase;
-      color: white;
+      color: $button-color;
       font-size: 2rem;
       letter-spacing: 0.5rem;
+      text-align: center;
     }
-  }
 
-  form {
-    width: 40rem;
-    max-width: 40rem;
+    img {
+      max-width: 25rem;
+      width: 25rem;
+    }
   }
 }

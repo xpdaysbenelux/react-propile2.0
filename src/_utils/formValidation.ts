@@ -19,12 +19,12 @@ function isRequired(value: unknown): string {
 }
 
 function hasMaxLength(value: string, max: number): string {
-  const isValid = `${value}`.length <= max;
+  const isValid = value.length <= max;
   return !isValid && translations.getLabel('ERRORS.VALIDATION.MAX_LENGTH', { length: max });
 }
 
 function hasMinLength(value: string, min: number): string {
-  const isValid = `${value}`.length >= min;
+  const isValid = value.length >= min;
   return !isValid && translations.getLabel('ERRORS.VALIDATION.MIN_LENGTH', { length: min });
 }
 
@@ -33,9 +33,27 @@ function isNumber(value: string): string {
   return !isValid && translations.getLabel('ERRORS.VALIDATION.NOT_A_NUMBER');
 }
 
+function isMax(value: number, max: number): string {
+  const isValid = value <= max;
+  return !isValid && translations.getLabel('ERRORS.VALIDATION.TOO_HIGH', { max });
+}
+
+function isMin(value: number, min: number): string {
+  const isValid = value >= min;
+  return !isValid && translations.getLabel('ERRORS.VALIDATION.TOO_LOW', { min });
+}
+
+function isBetween(value: any, min: number, max: number): string {
+  if (typeof value === 'string') {
+    value = parseInt(value);
+  }
+  const isValid = value >= min && value <= max;
+  return !isValid && translations.getLabel('ERRORS.VALIDATION.XPFACTOR_MUST_BE_BETWEEN', { max, min });
+}
+
 function isEmail(email: string): string {
   const isValid = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
-  return !isValid && translations.getLabel('ERRORS.VALIDATION.INVALID');
+  return !isValid && translations.getLabel('ERRORS.VALIDATION.INVALID_EMAIL');
 }
 
 function isPassword(password: string): string {
@@ -54,7 +72,10 @@ function isNotEmptyArray(array: unknown[]): string {
 export const formValidator = {
   hasMaxLength,
   hasMinLength,
+  isBetween,
   isEmail,
+  isMax,
+  isMin,
   isNotEmptyArray,
   isNumber,
   isPassword,
