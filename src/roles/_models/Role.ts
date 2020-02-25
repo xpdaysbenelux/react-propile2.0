@@ -7,7 +7,16 @@ export interface IRole {
 }
 
 export interface IPermissions {
+  personas: {
+    edit: boolean;
+    view: boolean;
+  };
   roles: {
+    edit: boolean;
+    view: boolean;
+  };
+  sessions: {
+    admin: boolean;
     edit: boolean;
     view: boolean;
   };

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { translations } from '../../../../_translations';
 import { authActions } from '../../../../_store/actions';
 import { profileSelectors } from '../../../../_store/selectors';
-import { hasUsersPermissions, hasRolesPermissions } from '../../../../profile/_utils';
+import { hasUsersPermissions, hasRolesPermissions, hasSessionsPermissions } from '../../../../profile/_utils';
 import { SvgLogo } from '../../../../_assets/svg';
 import { Icon } from '../../../../_shared';
 import './authorizedLayoutMenu.scss';
@@ -23,6 +23,9 @@ const AuthorizedLayoutMenu: FC = () => {
         <div>
           {hasUsersPermissions(permissions) && <NavLink to="/users">{translations.getLabel('SHARED.NAVIGATION.USERS')}</NavLink>}
           {hasRolesPermissions(permissions) && <NavLink to="/roles">{translations.getLabel('SHARED.NAVIGATION.ROLES')}</NavLink>}
+          {hasSessionsPermissions(permissions) && (
+            <NavLink to="/sessions">{translations.getLabel('SHARED.NAVIGATION.SESSIONS')}</NavLink>
+          )}
         </div>
         <NavLink to="/profile">
           <Icon name="SvgUser" size={2} />
