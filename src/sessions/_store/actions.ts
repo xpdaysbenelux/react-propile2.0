@@ -15,7 +15,6 @@ export class CreateSession implements Action<SessionsActionType> {
 
 export class CreateSessionSuccess implements Action<SessionsActionType> {
   readonly type = SessionsActionType.CreateSessionSuccess;
-  constructor() {}
 }
 
 export class CreateSessionError implements Action<SessionsActionType> {
