@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { TextArea } from 'semantic-ui-react';
 import classnames from 'classnames';
 import ErrorMessage from '../errorMessage/ErrorMessage';
-import Icon from '../icon/Icon';
 import { useInputError } from '../../_hooks';
 import './inputTextArea.scss';
 
