@@ -3,6 +3,7 @@ import { History } from 'history';
 import { combineReducers, Reducer, Action } from 'redux';
 import rolesReducer, { RolesState } from '../roles/_store/reducer';
 import usersReducer, { UsersState } from '../users/_store/reducer';
+import sessionsReducer, { SessionsState } from '../sessions/_store/reducer';
 import authReducer, { AuthState } from '../auth/_store/reducer';
 import modalReducer, { ModalState } from '../modal/_store/reducer';
 import profileReducer, { ProfileState } from '../profile/_store/reducer';
@@ -14,6 +15,7 @@ export interface AppState {
   profile: ProfileState;
   roles: RolesState;
   router: RouterState;
+  sessions: SessionsState;
   users: UsersState;
 }
 
@@ -24,6 +26,7 @@ function appReducer(history: History): Reducer {
     profile: profileReducer,
     roles: rolesReducer,
     router: connectRouter(history),
+    sessions: sessionsReducer,
     users: usersReducer,
   });
 }

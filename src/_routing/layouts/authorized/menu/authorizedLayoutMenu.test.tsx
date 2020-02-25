@@ -4,7 +4,7 @@
 
 test('renders Menu', () => {
   // const { getByAltText } = render(<Menu />);
-  // const logo = getByAltText(/silvernext/i);
+  // const logo = getByAltText(/propile2/i);
   // const usersLink = getByText(translations.getLabel('SHARED.NAVIGATION.USERS'));
   // expect(logo).toBeInTheDocument();
   // expect(usersLink).toBeInTheDocument();
