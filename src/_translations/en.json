@@ -162,7 +162,8 @@
       "SESSION_TITLE_ALREADY_IN_USE": "A session with the given title already exists."
     },
     "TOASTER": {
-      "SESSION_CREATED": "The session was created successfully."
+      "SESSION_CREATED": "The session was created successfully.",
+      "SESSION_UPDATED": "The session was updated successfully."
     }
   },
   "ERRORS": {

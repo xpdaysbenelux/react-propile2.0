@@ -26,7 +26,7 @@ const updateSessionEpic$: Epic = action$ =>
   action$.ofType(SessionsActionType.UpdateSession).pipe(
     exhaustMap(({ payload }: sessionsActions.UpdateSession) =>
       from(sessionsApi.updateSession(payload.sessionId, payload.values)).pipe(
-        tap(() => toast.success(translations.getLabel(''))),
+        tap(() => toast.success(translations.getLabel('SESSIONS.TOASTER.SESSION_UPDATED'))),
         map(updatedSession => new sessionsActions.UpdateSessionSuccess({ updatedSession })),
         catchError(error => of(new sessionsActions.UpdateSessionError({ error }))),
       ),
