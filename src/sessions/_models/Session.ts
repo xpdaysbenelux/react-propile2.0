@@ -5,7 +5,7 @@ export interface ISession {
   duration?: SessionDuration;
   emailFirstPresenter: string;
   emailSecondPresenter?: string;
-  expierenceLevel: SessionExpierenceLevel;
+  expierenceLevel?: SessionExpierenceLevel;
   goal?: string;
   id: string;
   intendedAudience?: {
@@ -45,7 +45,7 @@ export interface IUpdateSessionForm {
   duration?: SessionDuration;
   emailFirstPresenter: string;
   emailSecondPresenter?: string;
-  expierenceLevel: SessionExpierenceLevel;
+  expierenceLevel?: SessionExpierenceLevel;
   goal?: string;
   intendedAudience?: {
     description: string;
