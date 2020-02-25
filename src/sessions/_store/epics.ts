@@ -22,4 +22,15 @@ const createSessionEpic$: Epic = action$ =>
 const createSessionSuccessEpic$: Epic = action$ =>
   action$.ofType(SessionsActionType.CreateSessionSuccess).pipe(switchMap(() => of(push('/sessions'))));
 
-export default [createSessionEpic$, createSessionSuccessEpic$];
+const updateSessionEpic$: Epic = action$ =>
+  action$.ofType(SessionsActionType.UpdateSession).pipe(
+    exhaustMap(({ payload }: sessionsActions.UpdateSession) =>
+      from(sessionsApi.updateSession(payload.sessionId, payload.values)).pipe(
+        tap(() => toast.success(translations.getLabel(''))),
+        map(updatedSession => new sessionsActions.UpdateSessionSuccess({ updatedSession })),
+        catchError(error => of(new sessionsActions.UpdateSessionError({ error }))),
+      ),
+    ),
+  );
+
+export default [createSessionEpic$, createSessionSuccessEpic$, updateSessionEpic$];

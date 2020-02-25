@@ -1,10 +1,12 @@
 import { ApiError, HttpMetadataPagingResponse, HttpMetadataQuery } from '../../_http';
 import { ISession } from '../_models';
+import { insertUpdatedData } from '../../_utils/objectHelpers';
 import { SessionsAction, SessionsActionType } from './actions';
 
 export interface SessionsState {
   errorCrudSession?: ApiError;
-  isCreateSessionLoading: boolean;
+  isCreateSessionLoading?: boolean;
+  isUpdateSessionLoading?: boolean;
   metadata?: HttpMetadataPagingResponse;
   query?: HttpMetadataQuery;
   sessions?: ISession[];
@@ -32,6 +34,24 @@ export default function reducer(state = initialState, action: SessionsAction): S
         ...state,
         errorCrudSession: action.payload.error,
         isCreateSessionLoading: false,
+      };
+    case SessionsActionType.UpdateSession:
+      return {
+        ...state,
+        errorCrudSession: null,
+        isUpdateSessionLoading: true,
+      };
+    case SessionsActionType.UpdateSessionSuccess:
+      return {
+        ...state,
+        isUpdateSessionLoading: false,
+        sessions: insertUpdatedData(state.sessions, [action.payload.updatedSession]),
+      };
+    case SessionsActionType.UpdateSessionError:
+      return {
+        ...state,
+        errorCrudSession: action.payload.error,
+        isUpdateSessionLoading: false,
       };
     default:
       return state;

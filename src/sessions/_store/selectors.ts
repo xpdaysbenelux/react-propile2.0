@@ -9,3 +9,4 @@ export const metadata = createSelector(selectNode, (state: SessionsState) => sta
 export const query = createSelector(selectNode, (state: SessionsState) => state.query);
 export const errorCrudSession = createSelector(selectNode, (state: SessionsState) => state.errorCrudSession);
 export const isCreateSessionLoading = createSelector(selectNode, (state: SessionsState) => state.isCreateSessionLoading);
+export const isUpdatingSessionLoading = createSelector(selectNode, (state: SessionsState) => state.isUpdateSessionLoading);
