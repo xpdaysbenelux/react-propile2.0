@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { translations } from '../../_translations';
 import { sessionsSelectors } from '../../_store/selectors';
 import { sessionsActions } from '../../_store/actions';
-import { ISessionForm } from '../_models';
-import SessionForm from '../edit/SessionForm';
+import { ICreateSessionForm } from '../_models';
 import { Button } from '../../_shared';
+import CreateSessionForm from './CreateSessionForm';
 
-const initialForm: ISessionForm = {
+const initialForm: ICreateSessionForm = {
   description: '',
   emailFirstPresenter: '',
   emailSecondPresenter: '',
@@ -22,9 +22,9 @@ const CreateSession: FC = () => {
   const isSubmitting = useSelector(sessionsSelectors.isCreateSessionLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
 
-  const checkOptionalValues = (givenValues: ISessionForm): void => {
+  const checkOptionalValues = (givenValues: ICreateSessionForm): void => {
     const { subTitle, emailSecondPresenter, xpFactor, ...otherValues } = givenValues;
-    const values: ISessionForm = otherValues;
+    const values: ICreateSessionForm = otherValues;
 
     if (typeof xpFactor === 'string') {
       values.xpFactor = parseInt(xpFactor);
@@ -41,7 +41,7 @@ const CreateSession: FC = () => {
   return (
     <Container as="main" className="left-container">
       <h1>{translations.getLabel('SESSIONS.CREATE.TITLE')}</h1>
-      <SessionForm
+      <CreateSessionForm
         buttons={
           <Button href="/sessions" isTextLink>
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
@@ -50,8 +50,8 @@ const CreateSession: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: ISessionForm) => checkOptionalValues(values)}
-      ></SessionForm>
+        submitForm={(values: ICreateSessionForm) => checkOptionalValues(values)}
+      ></CreateSessionForm>
     </Container>
   );
 };

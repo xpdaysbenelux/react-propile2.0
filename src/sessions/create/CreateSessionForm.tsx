@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
-import { ISessionForm } from '../_models';
+import { ICreateSessionForm } from '../_models';
 import { InputField, Button } from '../../_shared';
 import { ApiError } from '../../_http';
 import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/useForm';
@@ -8,15 +8,15 @@ import { translations } from '../../_translations';
 import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
 import InputTextArea from '../../_shared/inputTextArea/InputTextArea';
 import { formValidator } from '../../_utils/formValidation';
-import './sessionForm.scss';
+import './createSessionForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
   error?: ApiError;
-  initialForm: ISessionForm;
+  initialForm: ICreateSessionForm;
   isSubmitting: boolean;
   sessionId?: string;
-  submitForm: SubmitFormFunction<ISessionForm>;
+  submitForm: SubmitFormFunction<ICreateSessionForm>;
 }
 
 function errorAsString(error?: ApiError): string {
@@ -26,9 +26,9 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
-const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitting, error, buttons }) => {
-  function validateForm(values: ISessionForm): FormValidationErrors<ISessionForm> {
-    const errors: FormValidationErrors<ISessionForm> = {};
+const CreateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitting, error, buttons }) => {
+  function validateForm(values: ICreateSessionForm): FormValidationErrors<ICreateSessionForm> {
+    const errors: FormValidationErrors<ICreateSessionForm> = {};
     errors.title = formValidator.isRequired(values.title);
     errors.emailFirstPresenter = formValidator.isEmail(values.emailFirstPresenter);
     if (values.emailSecondPresenter !== '') errors.emailSecondPresenter = formValidator.isEmail(values.emailSecondPresenter);
@@ -38,7 +38,7 @@ const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitti
     return errors;
   }
 
-  const form = useForm<ISessionForm>({ error, initialForm, submitForm, validateForm });
+  const form = useForm<ICreateSessionForm>({ error, initialForm, submitForm, validateForm });
 
   return (
     <form className={classnames('create-session')} onSubmit={form.submit}>
@@ -113,4 +113,4 @@ const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitti
   );
 };
 
-export default SessionForm;
+export default CreateSessionForm;

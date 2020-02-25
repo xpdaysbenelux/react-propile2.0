@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { ApiError } from '../../_http';
-import { ISessionForm } from '../_models';
+import { ICreateSessionForm } from '../_models';
 
 export enum SessionsActionType {
   CreateSession = '[Sessions] CreateSession',
@@ -10,7 +10,7 @@ export enum SessionsActionType {
 
 export class CreateSession implements Action<SessionsActionType> {
   readonly type = SessionsActionType.CreateSession;
-  constructor(public payload: { values: ISessionForm }) {}
+  constructor(public payload: { values: ICreateSessionForm }) {}
 }
 
 export class CreateSessionSuccess implements Action<SessionsActionType> {

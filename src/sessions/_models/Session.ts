@@ -10,7 +10,7 @@ export interface ISession {
   xpFactor?: number;
 }
 
-export interface ISessionForm {
+export interface ICreateSessionForm {
   description: string;
   emailFirstPresenter: string;
   emailSecondPresenter?: string;
