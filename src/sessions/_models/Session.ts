@@ -81,6 +81,7 @@ export enum SessionType {
   ExperientelLearning = 'EXPERIENTAL_LEARNING',
   HandsOn = 'HANDS_ON',
   Other = 'OTHER',
+  ShortExperience = 'SHORT_EXPRIENCE',
 }
 
 export enum SessionTopic {
