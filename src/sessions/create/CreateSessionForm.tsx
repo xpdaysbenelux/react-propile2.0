@@ -40,7 +40,7 @@ const CreateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
   const form = useForm<ICreateSessionForm>({ error, initialForm, submitForm, validateForm });
 
   return (
-    <form className={classnames('create-session')} onSubmit={form.submit}>
+    <form className={classnames('create-session', 'ui', 'form')} onSubmit={form.submit}>
       <div role="group">
         <InputField
           errorMessage={form.validationErrors.title}
