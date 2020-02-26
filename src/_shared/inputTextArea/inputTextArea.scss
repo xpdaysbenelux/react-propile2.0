@@ -1,0 +1,21 @@
+@import '../../_styles/colors';
+@import '../../_styles/constants';
+
+.input-wrapper {
+  label:not(:last-child) {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: $grey-dark;
+  }
+
+  &.error {
+    .ui.checkbox label {
+      color: $red;
+    }
+  }
+
+  .error-message {
+    padding-top: 1rem;
+  }
+}
