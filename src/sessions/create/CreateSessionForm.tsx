@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
 import { ICreateSessionForm } from '../_models';
-import { InputField, Button } from '../../_shared';
+import { InputField, InputTextArea, Button } from '../../_shared';
 import { ApiError } from '../../_http';
 import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/useForm';
 import { translations } from '../../_translations';
 import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
-import InputTextArea from '../../_shared/inputTextArea/InputTextArea';
 import { formValidator } from '../../_utils/formValidation';
 import './createSessionForm.scss';
 
@@ -88,6 +87,7 @@ const CreateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           label={translations.getLabel('SESSIONS.DESCRIPTION') + '*'}
           name="description"
           onChange={form.setAttribute}
+          rows={5}
           type="textarea"
           value={form.values.description}
         />

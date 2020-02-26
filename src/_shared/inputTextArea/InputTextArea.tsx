@@ -19,6 +19,7 @@ export interface TextAreaProps {
   normalize?: (value: string) => string;
   onChange?: (value: string, name: string) => void;
   placeholder?: string;
+  rows: number;
   type?: string;
   value?: string;
 }
@@ -31,6 +32,7 @@ const InputTextArea: FC<TextAreaProps> = ({
   errorMessage,
   onChange,
   normalize,
+  rows,
   ...props
 }) => {
   const inputWrapperRef = React.createRef<HTMLDivElement>();
@@ -53,7 +55,7 @@ const InputTextArea: FC<TextAreaProps> = ({
           onChange(normalizedValue, data?.name);
           setDirty();
         }}
-        rows={3}
+        rows={rows}
       />
       <ErrorMessage isVisible={showError}>{errorMessage}</ErrorMessage>
     </div>
