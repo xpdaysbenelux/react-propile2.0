@@ -7,7 +7,6 @@ import EditSession from './edit/EditSession';
 
 const Sessions: React.FC = () => {
   const { url } = useRouteMatch();
-  console.log(url);
   const permissions = useSelector(profileSelectors.permissions);
 
   return (
