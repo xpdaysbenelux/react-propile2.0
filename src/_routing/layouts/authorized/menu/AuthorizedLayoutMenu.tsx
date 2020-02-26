@@ -5,7 +5,7 @@ import { translations } from '../../../../_translations';
 import { authActions } from '../../../../_store/actions';
 import { profileSelectors } from '../../../../_store/selectors';
 import { hasUsersPermissions, hasRolesPermissions, hasSessionsPermissions } from '../../../../profile/_utils';
-import { SvgLogo } from '../../../../_assets/svg';
+import logo from '../../../../_assets/png/xpdaysLogo.png';
 import { Icon } from '../../../../_shared';
 import './authorizedLayoutMenu.scss';
 
@@ -17,7 +17,7 @@ const AuthorizedLayoutMenu: FC = () => {
   return (
     <header className="main-menu">
       <NavLink className="logo" to="/">
-        <SvgLogo />
+        <img alt="Xpdays-logo" src={logo} />
       </NavLink>
       <nav>
         <div>
