@@ -5,7 +5,7 @@ import { SessionsState } from './reducer';
 const selectNode = (state: AppState) => state.sessions;
 
 export const sessions = createSelector(selectNode, (state: SessionsState) => state.sessions);
-export const user = (sessionId: string) =>
+export const session = (sessionId: string) =>
   createSelector(selectNode, (state: SessionsState) => state.sessions?.find(session => session.id === sessionId));
 export const metadata = createSelector(selectNode, (state: SessionsState) => state.metadata);
 export const query = createSelector(selectNode, (state: SessionsState) => state.query);
