@@ -1,14 +1,32 @@
 import { Action } from 'redux';
-import { ApiError } from '../../_http';
+import { ApiError, HttpMetadataPagingResponse } from '../../_http';
 import { ICreateSessionForm, ISession, IUpdateSessionForm } from '../_models';
 
 export enum SessionsActionType {
   CreateSession = '[Sessions] CreateSession',
   CreateSessionError = '[Sessions] CreateSessionError',
   CreateSessionSuccess = '[Sessions] CreateSessionSuccess',
+  GetSessions = '[Sessions] GetSessions',
+  GetSessionsError = '[Sessions] GetSessionsError',
+  GetSessionsSuccess = '[Sessions] GetSessionsSuccess',
   UpdateSession = '[Sessions] UpdateSession',
   UpdateSessionError = '[Sessions] UpdateSessionError',
   UpdateSessionSuccess = '[Sessions] UpdateSessionSuccess',
+}
+
+export class GetSessions implements Action<SessionsActionType> {
+  readonly type = SessionsActionType.GetSessions;
+  constructor(public payload: { userId: string }) {}
+}
+
+export class GetSessionsSuccess implements Action<SessionsActionType> {
+  readonly type = SessionsActionType.GetSessionsSuccess;
+  constructor(public payload: { data: ISession[]; meta: HttpMetadataPagingResponse }) {}
+}
+
+export class GetSessionsError implements Action<SessionsActionType> {
+  readonly type = SessionsActionType.GetSessionsError;
+  constructor(public payload: { error: ApiError }) {}
 }
 
 export class CreateSession implements Action<SessionsActionType> {
@@ -41,6 +59,9 @@ export class UpdateSessionError implements Action<SessionsActionType> {
 }
 
 export type SessionsAction =
+  | GetSessions
+  | GetSessionsSuccess
+  | GetSessionsError
   | CreateSession
   | CreateSessionSuccess
   | CreateSessionError

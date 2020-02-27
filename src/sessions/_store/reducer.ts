@@ -6,6 +6,7 @@ import { SessionsAction, SessionsActionType } from './actions';
 export interface SessionsState {
   errorCrudSession?: ApiError;
   isCreateSessionLoading?: boolean;
+  isGetSessionsLoading?: boolean;
   isUpdateSessionLoading?: boolean;
   metadata?: HttpMetadataPagingResponse;
   query?: HttpMetadataQuery;
@@ -14,10 +15,34 @@ export interface SessionsState {
 
 const initialState: SessionsState = {
   isCreateSessionLoading: false,
+  isGetSessionsLoading: false,
 };
 
 export default function reducer(state = initialState, action: SessionsAction): SessionsState {
   switch (action.type) {
+    case SessionsActionType.GetSessions:
+      return {
+        ...state,
+        errorCrudSession: null,
+        isGetSessionsLoading: true,
+        metadata: null,
+      };
+    case SessionsActionType.GetSessionsSuccess: {
+      let currentData: ISession[] = state.sessions || [];
+      if (!action.payload.meta.skip) currentData = []; // Start overnew when the offset was reset
+      return {
+        ...state,
+        isGetSessionsLoading: false,
+        metadata: action.payload.meta,
+        sessions: insertUpdatedData(currentData, action.payload.data),
+      };
+    }
+    case SessionsActionType.GetSessionsError:
+      return {
+        ...state,
+        errorCrudSession: action.payload.error,
+        isGetSessionsLoading: false,
+      };
     case SessionsActionType.CreateSession:
       return {
         ...state,

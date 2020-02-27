@@ -8,6 +8,16 @@ import { translations } from '../../_translations';
 import { SessionsActionType } from './actions';
 import * as sessionsApi from './api';
 
+const getSessionsEpic$: Epic = action$ =>
+  action$.ofType(SessionsActionType.GetSessions).pipe(
+    exhaustMap(({ payload }: sessionsActions.GetSessions) =>
+      from(sessionsApi.getSessions(payload.userId)).pipe(
+        map(({ data, meta }) => new sessionsActions.GetSessionsSuccess({ data, meta })),
+        catchError(error => of(new sessionsActions.GetSessionsError({ error }))),
+      ),
+    ),
+  );
+
 const createSessionEpic$: Epic = action$ =>
   action$.ofType(SessionsActionType.CreateSession).pipe(
     exhaustMap(({ payload }: sessionsActions.CreateSession) =>
@@ -33,4 +43,4 @@ const updateSessionEpic$: Epic = action$ =>
     ),
   );
 
-export default [createSessionEpic$, createSessionSuccessEpic$, updateSessionEpic$];
+export default [getSessionsEpic$, createSessionEpic$, createSessionSuccessEpic$, updateSessionEpic$];
