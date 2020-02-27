@@ -3,9 +3,10 @@ export interface ISession {
   createdBy?: string;
   description: string;
   duration?: SessionDuration;
-  emailFirstPresenter: string;
-  emailSecondPresenter?: string;
   expierenceLevel?: SessionExpierenceLevel;
+  firstPresenter: {
+    email: string;
+  };
   goal?: string;
   id: string;
   intendedAudience?: {
@@ -22,6 +23,9 @@ export interface ISession {
   otherLimitations?: string;
   outline?: string;
   roomSetup?: string;
+  secondPresenter?: {
+    email: string;
+  };
   sessionState?: SessionState;
   shortDescription?: string;
   subTitle?: string;
