@@ -40,11 +40,14 @@
       "TITLE": "Permissions",
       "FEATURES": {
         "ROLES": "Roles",
-        "USERS": "Users"
+        "USERS": "Users",
+        "SESSIONS": "Sessions",
+        "PERSONAS": "Personas"
       },
       "RIGHTS": {
         "EDIT": "Edit",
-        "VIEW": "View"
+        "VIEW": "View",
+        "ADMIN": "Admin"
       }
     },
     "OVERVIEW": {
@@ -175,7 +178,7 @@
       "TITLE": "Create a session"
     },
     "EDIT": {
-      "TITLE": "Edit {{sessionTitle}}"
+      "TITLE": "Edit \"{{sessionTitle}}\" "
     },
     "ENUMS": {
       "STATE": {
