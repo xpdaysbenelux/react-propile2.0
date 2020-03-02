@@ -14,7 +14,6 @@ interface Props {
   error?: ApiError;
   initialForm: ICreateSessionForm;
   isSubmitting: boolean;
-  sessionId?: string;
   submitForm: SubmitFormFunction<ICreateSessionForm>;
 }
 
@@ -25,7 +24,7 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
-const CreateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitting, error, buttons }) => {
+const CreateSessionForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons }) => {
   function validateForm(values: ICreateSessionForm): FormValidationErrors<ICreateSessionForm> {
     const errors: FormValidationErrors<ICreateSessionForm> = {};
     errors.title = formValidator.isRequired(values.title);
@@ -106,7 +105,7 @@ const CreateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">
-          {translations.getLabel(sessionId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
+          {translations.getLabel('SHARED.BUTTONS.CREATE')}
         </Button>
       </div>
     </form>

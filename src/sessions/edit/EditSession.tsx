@@ -24,7 +24,6 @@ const getInitialForm = (session: ISession): IUpdateSessionForm => ({
   emailSecondPresenter: session?.secondPresenter?.email || '',
   expierenceLevel: session?.expierenceLevel || SessionExpierenceLevel.Novice,
   goal: session?.goal || '',
-  // intendedAudience: [],
   laptopsRequired: session?.laptopsRequired || true,
   materialDescription: session?.materialDescription || '',
   materialUrl: session?.materialUrl || '',
@@ -47,7 +46,6 @@ const EditSession: FC = () => {
   const dispatch = useDispatch();
   const isSubmitting = useSelector(sessionsSelectors.isUpdatingSessionLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
-
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
 

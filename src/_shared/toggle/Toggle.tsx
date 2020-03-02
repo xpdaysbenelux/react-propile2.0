@@ -8,8 +8,7 @@ export interface ToggleProps {
   disabled?: boolean;
   label: string;
   name: string;
-  onChange?: (value: boolean, name: string) => void;
-  placeholder?: string;
+  onChange: (value: boolean, name: string) => void;
   value: boolean;
 }
 
@@ -27,7 +26,7 @@ const Toggle: FC<ToggleProps> = ({ className, label, onChange, value, ...props }
           {...props}
           checked={value}
           onChange={(_: ChangeEvent<HTMLInputElement>, data: CheckboxProps) => {
-            onChange(data.checked, data?.name);
+            onChange(data.checked, data.name);
           }}
           toggle
         />
