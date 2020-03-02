@@ -31,9 +31,9 @@ export const typeOptions = [
     value: SessionType.Discovery,
   },
   {
-    key: SessionType.ExperientelLearning,
+    key: SessionType.ExperientialLearning,
     text: translations.getLabel('SESSIONS.ENUMS.TYPE.EXPERIENTIAL_LEARNING'),
-    value: SessionType.ExperientelLearning,
+    value: SessionType.ExperientialLearning,
   },
   {
     key: SessionType.ShortExperience,

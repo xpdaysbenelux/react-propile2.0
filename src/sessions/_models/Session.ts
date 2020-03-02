@@ -82,7 +82,7 @@ export enum SessionState {
 
 export enum SessionType {
   Discovery = 'DISCOVERY',
-  ExperientelLearning = 'EXPERIENTAL_LEARNING',
+  ExperientialLearning = 'EXPERIENTIAL_LEARNING',
   HandsOn = 'HANDS_ON',
   Other = 'OTHER',
   ShortExperience = 'SHORT_EXPRIENCE',
