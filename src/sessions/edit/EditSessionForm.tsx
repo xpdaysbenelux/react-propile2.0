@@ -10,6 +10,7 @@ import { translations } from '../../_translations';
 import { hasSessionsAdminPermissions } from '../../profile/_utils';
 import { profileSelectors } from '../../_store/selectors';
 import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
+import { formValidator } from '../../_utils/formValidation';
 import { stateOptions, typeOptions, topicOptions, durationOptions, experienceLevelOptions } from './enumOptions';
 import './editSessionForm.scss';
 
@@ -32,6 +33,12 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
 
   function validateForm(values: IUpdateSessionForm): FormValidationErrors<IUpdateSessionForm> {
     const errors: FormValidationErrors<IUpdateSessionForm> = {};
+    errors.title = formValidator.isRequired(values.title);
+    errors.emailFirstPresenter = formValidator.isEmail(values.emailFirstPresenter);
+    if (values.emailSecondPresenter !== '') errors.emailSecondPresenter = formValidator.isEmail(values.emailSecondPresenter);
+    errors.description = formValidator.isRequired(values.description);
+    errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10, 'Xp factor');
+    errors.maxParticipants = formValidator.isBetween(values.maxParticipants, 1, 50, 'amount of max participants');
 
     return errors;
   }

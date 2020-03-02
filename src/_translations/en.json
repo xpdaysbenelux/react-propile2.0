@@ -229,7 +229,7 @@
       "REQUIRED": "Required",
       "INVALID": "Value is not correct",
       "INVALID_EMAIL": "The email is invalid.",
-      "XPFACTOR_MUST_BE_BETWEEN": "The Xp factor must be between {{min}} and {{max}}.",
+      "MUST_BE_BETWEEN": "The {{fieldName}} must be between {{min}} and {{max}}.",
       "PASSWORD_TOO_SHORT": "This password is too short",
       "PASSWORD_UNSAFE": "This password doesn't fit the requirements",
       "MAX_LENGTH": "Value should have at least {{length}} characters",
