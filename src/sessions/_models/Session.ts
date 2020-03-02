@@ -3,7 +3,7 @@ export interface ISession {
   createdBy?: string;
   description: string;
   duration?: SessionDuration;
-  expierenceLevel?: SessionExpierenceLevel;
+  expierenceLevel: SessionExpierenceLevel;
   firstPresenter: {
     email: string;
   };
@@ -15,10 +15,10 @@ export interface ISession {
     imageUrl: string;
     name: string;
   }[];
-  laptopsRequired?: boolean;
+  laptopsRequired: boolean;
   materialDescription?: string;
   materialUrl?: string;
-  maxParticipants?: number;
+  maxParticipants: number;
   neededMaterials?: string;
   otherLimitations?: string;
   outline?: string;
@@ -26,7 +26,7 @@ export interface ISession {
   secondPresenter?: {
     email: string;
   };
-  sessionState?: SessionState;
+  sessionState: SessionState;
   shortDescription?: string;
   subTitle?: string;
   title: string;
@@ -49,7 +49,7 @@ export interface IUpdateSessionForm {
   duration?: SessionDuration;
   emailFirstPresenter: string;
   emailSecondPresenter?: string;
-  expierenceLevel?: SessionExpierenceLevel;
+  expierenceLevel: SessionExpierenceLevel;
   goal?: string;
   intendedAudience?: {
     description: string;
@@ -57,15 +57,15 @@ export interface IUpdateSessionForm {
     imageUrl: string;
     name: string;
   }[];
-  laptopsRequired?: boolean;
+  laptopsRequired: boolean;
   materialDescription?: string;
   materialUrl?: string;
-  maxParticipants?: number;
+  maxParticipants: number;
   neededMaterials?: string;
   otherLimitations?: string;
   outline?: string;
   roomSetup?: string;
-  sessionState?: SessionState;
+  sessionState: SessionState;
   shortDescription?: string;
   subTitle?: string;
   title: string;

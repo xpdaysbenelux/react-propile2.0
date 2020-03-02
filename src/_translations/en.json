@@ -79,6 +79,7 @@
     }
   },
   "SHARED": {
+    "LOADING": "Loading",
     "BUTTONS": {
       "CANCEL": "Cancel",
       "CREATE": "Create",
@@ -203,8 +204,8 @@
       "DURATION": {
         "HALF_HOUR": "30 min",
         "ONE_HOUR": "60 min",
-        "ONE_HALF_HOUR": "90 min",
-        "TWO_HALF_HOUR": "150 min"
+        "ONE_AND_A_HALF_HOUR": "90 min",
+        "TWO_AND_A_HALF_HOUR": "150 min"
       },
       "EXPERIENCE_LEVEL": {
         "NOVICE": "Novice",

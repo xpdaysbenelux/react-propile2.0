@@ -15,6 +15,7 @@ import {
   SessionType,
   ISession,
 } from '../_models';
+import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
 import UpdateSessionForm from './EditSessionForm';
 
 const getInitialForm = (session: ISession): IUpdateSessionForm => ({
@@ -48,6 +49,7 @@ const EditSession: FC = () => {
   const error = useSelector(sessionsSelectors.errorCrudSession);
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
+  console.log(session);
 
   return session ? (
     <Container as="main" className={classnames('left-container', 'edit-session')}>
@@ -61,7 +63,9 @@ const EditSession: FC = () => {
         submitForm={(values: IUpdateSessionForm) => dispatch(new sessionsActions.UpdateSession({ sessionId: id, values }))}
       ></UpdateSessionForm>
     </Container>
-  ) : null;
+  ) : (
+    <LoadingSpinner />
+  );
 };
 
 export default EditSession;

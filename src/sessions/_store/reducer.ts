@@ -5,17 +5,15 @@ import { SessionsAction, SessionsActionType } from './actions';
 
 export interface SessionsState {
   errorCrudSession?: ApiError;
-  isCreateSessionLoading?: boolean;
-  isGetSessionsLoading?: boolean;
-  isUpdateSessionLoading?: boolean;
+  isLoading: boolean;
   metadata?: HttpMetadataPagingResponse;
   query?: HttpMetadataQuery;
-  sessions?: ISession[];
+  sessions: ISession[];
 }
 
 const initialState: SessionsState = {
-  isCreateSessionLoading: false,
-  isGetSessionsLoading: false,
+  isLoading: false,
+  sessions: [],
 };
 
 export default function reducer(state = initialState, action: SessionsAction): SessionsState {
@@ -24,7 +22,7 @@ export default function reducer(state = initialState, action: SessionsAction): S
       return {
         ...state,
         errorCrudSession: null,
-        isGetSessionsLoading: true,
+        isLoading: true,
         metadata: null,
       };
     case SessionsActionType.GetSessionsSuccess: {
@@ -32,7 +30,7 @@ export default function reducer(state = initialState, action: SessionsAction): S
       if (!action.payload.meta.skip) currentData = []; // Start overnew when the offset was reset
       return {
         ...state,
-        isGetSessionsLoading: false,
+        isLoading: false,
         metadata: action.payload.meta,
         sessions: insertUpdatedData(currentData, action.payload.data),
       };
@@ -41,42 +39,42 @@ export default function reducer(state = initialState, action: SessionsAction): S
       return {
         ...state,
         errorCrudSession: action.payload.error,
-        isGetSessionsLoading: false,
+        isLoading: false,
       };
     case SessionsActionType.CreateSession:
       return {
         ...state,
         errorCrudSession: null,
-        isCreateSessionLoading: true,
+        isLoading: true,
       };
     case SessionsActionType.CreateSessionSuccess:
       return {
         ...state,
-        isCreateSessionLoading: false,
+        isLoading: false,
       };
     case SessionsActionType.CreateSessionError:
       return {
         ...state,
         errorCrudSession: action.payload.error,
-        isCreateSessionLoading: false,
+        isLoading: false,
       };
     case SessionsActionType.UpdateSession:
       return {
         ...state,
         errorCrudSession: null,
-        isUpdateSessionLoading: true,
+        isLoading: true,
       };
     case SessionsActionType.UpdateSessionSuccess:
       return {
         ...state,
-        isUpdateSessionLoading: false,
+        isLoading: false,
         sessions: insertUpdatedData(state.sessions, [action.payload.updatedSession]),
       };
     case SessionsActionType.UpdateSessionError:
       return {
         ...state,
         errorCrudSession: action.payload.error,
-        isUpdateSessionLoading: false,
+        isLoading: false,
       };
     default:
       return state;

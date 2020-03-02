@@ -8,12 +8,13 @@ import EditSession from './edit/EditSession';
 
 const Sessions: React.FC = () => {
   const { url } = useRouteMatch();
+  const { id } = useSelector(profileSelectors.profile);
   const permissions = useSelector(profileSelectors.permissions);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(new sessionsActions.GetSessions({ userId: '1d6b0681-d958-416e-a9c1-35377a520e1a' }));
-  }, [dispatch]);
+    dispatch(new sessionsActions.GetSessions({ userId: id }));
+  }, [dispatch, id]);
 
   return (
     <Switch>

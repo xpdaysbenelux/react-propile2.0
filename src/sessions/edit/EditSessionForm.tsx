@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, Fragment } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { IUpdateSessionForm } from '../_models';
@@ -38,8 +38,8 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
 
   const form = useForm<IUpdateSessionForm>({ error, initialForm, submitForm, validateForm });
 
-  return (
-    <form className={classnames('update-session', 'ui', 'form')} onSubmit={form.submit}>
+  const renderImportantfields = () => (
+    <Fragment>
       <div role="group">
         <InputField
           errorMessage={form.validationErrors.title}
@@ -115,7 +115,7 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           value={form.values.goal}
         />
       </div>
-      <div className="xp-factor" role="group">
+      <div className="last-of-partial-form" role="group">
         <InputField
           errorMessage={form.validationErrors.xpFactor}
           label={translations.getLabel('SESSIONS.XP_FACTOR')}
@@ -135,7 +135,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           />
         )}
       </div>
-      <hr />
+    </Fragment>
+  );
+
+  const renderLimitationFields = () => (
+    <Fragment>
       <div role="group">
         <Dropdown
           errorMessage={form.validationErrors.type}
@@ -210,7 +214,7 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           value={form.values.roomSetup}
         />
       </div>
-      <div role="group">
+      <div className="last-of-partial-form" role="group">
         <InputTextArea
           errorMessage={form.validationErrors.otherLimitations}
           label={translations.getLabel('SESSIONS.OTHER_LIMITATIONS')}
@@ -221,7 +225,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           value={form.values.otherLimitations}
         />
       </div>
-      <hr />
+    </Fragment>
+  );
+
+  const renderMaterialFields = () => (
+    <Fragment>
       <div role="group">
         <InputTextArea
           errorMessage={form.validationErrors.outline}
@@ -232,10 +240,6 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           type="textarea"
           value={form.values.outline}
         />
-      </div>
-      {/* Todo persona's dropdown like RolesDropdown */}
-      <div role="group">
-        <p>Personas dropdown</p>
       </div>
       <div role="group">
         <InputTextArea
@@ -259,6 +263,14 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           value={form.values.materialUrl}
         />
       </div>
+    </Fragment>
+  );
+
+  return (
+    <form className={classnames('update-session', 'ui', 'form')} onSubmit={form.submit}>
+      {renderImportantfields()}
+      {renderLimitationFields()}
+      {renderMaterialFields()}
       {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}
       <div className="actions">
         {buttons}

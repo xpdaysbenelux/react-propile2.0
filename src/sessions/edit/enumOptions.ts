@@ -88,12 +88,12 @@ export const durationOptions = [
   },
   {
     key: SessionDuration.OneAndHalfHour,
-    text: translations.getLabel('SESSIONS.ENUMS.DURATION.ONE_HALF_HOUR'),
+    text: translations.getLabel('SESSIONS.ENUMS.DURATION.ONE_AND_A_HALF_HOUR'),
     value: SessionDuration.OneAndHalfHour,
   },
   {
     key: SessionDuration.TwoAndHalfHour,
-    text: translations.getLabel('SESSIONS.ENUMS.DURATION.TWO_HALF_HOUR'),
+    text: translations.getLabel('SESSIONS.ENUMS.DURATION.TWO_AND_A_HALF_HOUR'),
     value: SessionDuration.TwoAndHalfHour,
   },
 ];

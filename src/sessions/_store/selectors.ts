@@ -10,6 +10,6 @@ export const session = (sessionId: string) =>
 export const metadata = createSelector(selectNode, (state: SessionsState) => state.metadata);
 export const query = createSelector(selectNode, (state: SessionsState) => state.query);
 export const errorCrudSession = createSelector(selectNode, (state: SessionsState) => state.errorCrudSession);
-export const isCreateSessionLoading = createSelector(selectNode, (state: SessionsState) => state.isCreateSessionLoading);
-export const isGetSessionsLoading = createSelector(selectNode, (state: SessionsState) => state.isGetSessionsLoading);
-export const isUpdatingSessionLoading = createSelector(selectNode, (state: SessionsState) => state.isUpdateSessionLoading);
+export const isCreateSessionLoading = createSelector(selectNode, (state: SessionsState) => state.isLoading);
+export const isGetSessionsLoading = createSelector(selectNode, (state: SessionsState) => state.isLoading);
+export const isUpdatingSessionLoading = createSelector(selectNode, (state: SessionsState) => state.isLoading);
