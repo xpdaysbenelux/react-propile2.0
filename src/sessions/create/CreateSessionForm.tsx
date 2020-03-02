@@ -31,7 +31,7 @@ const CreateSessionForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, e
     errors.emailFirstPresenter = formValidator.isEmail(values.emailFirstPresenter);
     if (values.emailSecondPresenter !== '') errors.emailSecondPresenter = formValidator.isEmail(values.emailSecondPresenter);
     errors.description = formValidator.isRequired(values.description);
-    errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10);
+    errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10, 'Xp factor');
 
     return errors;
   }
