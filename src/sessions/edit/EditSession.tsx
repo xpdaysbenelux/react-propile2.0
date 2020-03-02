@@ -49,7 +49,6 @@ const EditSession: FC = () => {
   const error = useSelector(sessionsSelectors.errorCrudSession);
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
-  console.log(session);
 
   return session ? (
     <Container as="main" className={classnames('left-container', 'edit-session')}>
