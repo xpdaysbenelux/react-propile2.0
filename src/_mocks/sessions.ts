@@ -4,9 +4,13 @@ import { ISession } from '../sessions/_models';
 export const sessionWithAllValuesBuilder: () => ISession = build('Session').fields({
   createdAt: fake(f => f.date.past().toISOString()),
   description: fake(f => f.lorem.sentences()),
-  emailFirstPresenter: fake(f => f.internet.email()),
-  emailSecondPresenter: fake(f => f.internet.email()),
+  firstPresenter: {
+    email: fake(f => f.internet.email()),
+  },
   id: sequence(x => `user-${x}`),
+  secondPresenter: {
+    email: fake(f => f.internet.email()),
+  },
   subTitle: fake(f => f.lorem.sentence()),
   title: fake(f => f.lorem.sentence()),
   updatedAt: fake(f => f.date.past().toISOString()),
@@ -16,7 +20,9 @@ export const sessionWithAllValuesBuilder: () => ISession = build('Session').fiel
 export const sessionRequiredValuesBuilder: () => ISession = build('Session').fields({
   createdAt: fake(f => f.date.past().toISOString()),
   description: fake(f => f.lorem.sentences()),
-  emailFirstPresenter: fake(f => f.internet.email()),
+  firstPresenter: {
+    email: fake(f => f.internet.email()),
+  },
   id: sequence(x => `user-${x}`),
   title: fake(f => f.lorem.sentence()),
   updatedAt: fake(f => f.date.past().toISOString()),
