@@ -25,7 +25,7 @@ const getInitialForm = (session: ISession): IUpdateSessionForm => ({
   emailSecondPresenter: session?.secondPresenter?.email || '',
   expierenceLevel: session?.expierenceLevel || SessionExpierenceLevel.Novice,
   goal: session?.goal || '',
-  laptopsRequired: session?.laptopsRequired || true,
+  laptopsRequired: session?.laptopsRequired,
   materialDescription: session?.materialDescription || '',
   materialUrl: session?.materialUrl || '',
   maxParticipants: session?.maxParticipants || 50,
