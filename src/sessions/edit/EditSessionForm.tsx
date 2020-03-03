@@ -45,8 +45,8 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
 
   const form = useForm<IUpdateSessionForm>({ error, initialForm, submitForm, validateForm });
 
-  const renderImportantfields = () => (
-    <Fragment>
+  const renderDescriptivefields = () => (
+    <>
       <div role="group">
         <InputField
           errorMessage={form.validationErrors.title}
@@ -142,11 +142,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           />
         )}
       </div>
-    </Fragment>
+    </>
   );
 
   const renderLimitationFields = () => (
-    <Fragment>
+    <>
       <div role="group">
         <Dropdown
           errorMessage={form.validationErrors.type}
@@ -194,8 +194,10 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
         />
         <Toggle
           label={translations.getLabel('SESSIONS.LAPTOPS_REQUIRED')}
+          leftValue="No"
           name="laptopsRequired"
           onChange={form.setAttribute}
+          rightValue="Yes"
           value={form.values.laptopsRequired}
         />
       </div>
@@ -232,11 +234,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           value={form.values.otherLimitations}
         />
       </div>
-    </Fragment>
+    </>
   );
 
   const renderMaterialFields = () => (
-    <Fragment>
+    <>
       <div role="group">
         <InputTextArea
           errorMessage={form.validationErrors.outline}
@@ -270,12 +272,12 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           value={form.values.materialUrl}
         />
       </div>
-    </Fragment>
+    </>
   );
 
   return (
     <form className={classnames('update-session', 'ui', 'form')} onSubmit={form.submit}>
-      {renderImportantfields()}
+      {renderDescriptivefields()}
       {renderLimitationFields()}
       {renderMaterialFields()}
       {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}

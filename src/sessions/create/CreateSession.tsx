@@ -51,7 +51,7 @@ const CreateSession: FC = () => {
         initialForm={initialForm}
         isSubmitting={isSubmitting}
         submitForm={(values: ICreateSessionForm) => checkOptionalValues(values)}
-      ></CreateSessionForm>
+      />
     </Container>
   );
 };
