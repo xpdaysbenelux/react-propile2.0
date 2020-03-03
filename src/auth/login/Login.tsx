@@ -51,7 +51,7 @@ const Login = () => {
         <InputField
           autoComplete="username"
           errorMessage={form.validationErrors.username}
-          label={translations.getLabel('AUTH.LOGIN.USERNAME')}
+          label={translations.getLabel('AUTH.LOGIN.EMAIL')}
           name="username"
           onChange={form.setAttribute}
           type="email"

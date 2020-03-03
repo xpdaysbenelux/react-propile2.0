@@ -6,7 +6,8 @@
       "LOGIN": "Login",
       "PASSWORD": "Password",
       "TITLE": "Welcome!",
-      "USERNAME": "Username"
+      "USERNAME": "Username",
+      "EMAIL": "Email"
     },
     "LOGOUT": "Logout",
     "REGISTER": {
