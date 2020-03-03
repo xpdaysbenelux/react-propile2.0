@@ -78,7 +78,7 @@ const RoleForm: FC<Props> = ({ roleId, initialForm, submitForm, isSubmitting, er
       <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
       <div className="actions">
         {buttons}
-        <Button loading={isSubmitting} theme="primary" type="submit">
+        <Button loading={isSubmitting} type="submit">
           {translations.getLabel(roleId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
         </Button>
       </div>

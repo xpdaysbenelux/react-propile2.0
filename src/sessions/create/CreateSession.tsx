@@ -19,7 +19,7 @@ const initialForm: ICreateSessionForm = {
 
 const CreateSession: FC = () => {
   const dispatch = useDispatch();
-  const isSubmitting = useSelector(sessionsSelectors.isCreateSessionLoading);
+  const isSubmitting = useSelector(sessionsSelectors.isLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
 
   const checkOptionalValues = (givenValues: ICreateSessionForm): void => {

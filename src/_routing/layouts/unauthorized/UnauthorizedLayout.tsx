@@ -30,7 +30,7 @@ const UnauthorizedLayout: React.FC = () => {
         </NavLink>
         {canCreateSession && (
           <div className="create-session-btn" onClick={() => setSession(false)}>
-            <Button href={`${path}/create-session`} isTextLink theme="primary">
+            <Button href={`${path}/create-session`} isTextLink>
               {translations.getLabel('SESSIONS.CREATE.TITLE')}
             </Button>
           </div>

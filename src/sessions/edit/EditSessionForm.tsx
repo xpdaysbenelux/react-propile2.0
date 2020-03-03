@@ -283,7 +283,7 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
       {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}
       <div className="actions">
         {buttons}
-        <Button loading={isSubmitting} theme="primary" type="submit">
+        <Button loading={isSubmitting} type="submit">
           {translations.getLabel(sessionId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
         </Button>
       </div>

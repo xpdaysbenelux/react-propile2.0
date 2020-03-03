@@ -58,7 +58,6 @@ const UserDetail: FC = () => {
       <Button
         loading={isResendRegisterMailLoading}
         onClick={() => dispatch(new usersActions.ResendRegisterEmail({ userId: user.id }))}
-        theme="primary"
       >
         {translations.getLabel(
           user.state === UserState.Registering

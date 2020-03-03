@@ -45,7 +45,7 @@ const getInitialForm = (session: ISession): IUpdateSessionForm => ({
 const EditSession: FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const isSubmitting = useSelector(sessionsSelectors.isUpdatingSessionLoading);
+  const isSubmitting = useSelector(sessionsSelectors.isLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
