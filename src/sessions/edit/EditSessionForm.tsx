@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { IUpdateSessionForm } from '../_models';
@@ -283,7 +283,7 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
       {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}
       <div className="actions">
         {buttons}
-        <Button loading={isSubmitting} type="submit">
+        <Button loading={isSubmitting} theme="primary" type="submit">
           {translations.getLabel(sessionId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
         </Button>
       </div>

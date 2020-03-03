@@ -54,7 +54,11 @@ const EditSession: FC = () => {
     <Container as="main" className={classnames('left-container', 'edit-session')}>
       <h1>{translations.getLabel('SESSIONS.EDIT.TITLE', { sessionTitle: session.title })}</h1>
       <UpdateSessionForm
-        buttons={<Button href="/sessions">{translations.getLabel('SHARED.BUTTONS.CANCEL')}</Button>}
+        buttons={
+          <Button href="/sessions" theme="secondary">
+            {translations.getLabel('SHARED.BUTTONS.CANCEL')}
+          </Button>
+        }
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}

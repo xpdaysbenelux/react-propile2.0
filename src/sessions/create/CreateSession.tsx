@@ -43,7 +43,7 @@ const CreateSession: FC = () => {
       <h1>{translations.getLabel('SESSIONS.CREATE.TITLE')}</h1>
       <CreateSessionForm
         buttons={
-          <Button href="/sessions" isTextLink>
+          <Button href="/sessions" isTextLink theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }

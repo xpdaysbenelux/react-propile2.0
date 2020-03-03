@@ -104,7 +104,7 @@ const CreateSessionForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, e
       {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}
       <div className="actions">
         {buttons}
-        <Button loading={isSubmitting} type="submit">
+        <Button loading={isSubmitting} theme="primary" type="submit">
           {translations.getLabel('SHARED.BUTTONS.CREATE')}
         </Button>
       </div>

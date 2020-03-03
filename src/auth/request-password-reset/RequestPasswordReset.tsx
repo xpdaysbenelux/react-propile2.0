@@ -44,7 +44,7 @@ const RequestPasswordReset = () => {
           value={form.values.email}
         />
         <div className="actions">
-          <Button loading={isSubmitting} primary type="submit">
+          <Button loading={isSubmitting} theme="primary" type="submit">
             {translations.getLabel('AUTH.REQUEST_PASSWORD_RESET.RESET')}
           </Button>
         </div>

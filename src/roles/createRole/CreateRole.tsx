@@ -28,7 +28,7 @@ const CreateRole: FC = () => {
       <h1>{translations.getLabel('ROLES.CREATE.TITLE')}</h1>
       <RoleForm
         buttons={
-          <Button href="/roles" isTextLink>
+          <Button href="/roles" isTextLink theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }

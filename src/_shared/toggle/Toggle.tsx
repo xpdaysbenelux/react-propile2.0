@@ -14,12 +14,12 @@ export interface ToggleProps {
   value: boolean;
 }
 
-const Toggle: FC<ToggleProps> = ({ className, label, onChange, value, leftValue, rightValue, ...props }) => {
+const Toggle: FC<ToggleProps> = ({ className, label, onChange, value, leftValue, rightValue, name, ...props }) => {
   const inputWrapperRef = React.createRef<HTMLDivElement>();
 
   return (
     <div className={classnames('toggle-wrapper', className)} ref={inputWrapperRef}>
-      <label className="label" htmlFor={props.name}>
+      <label className="label" htmlFor={name}>
         <span>{label}</span>
       </label>
       <div className="toggle-input">
@@ -27,6 +27,7 @@ const Toggle: FC<ToggleProps> = ({ className, label, onChange, value, leftValue,
         <Radio
           {...props}
           checked={value}
+          name={name}
           onChange={(_: ChangeEvent<HTMLInputElement>, data: CheckboxProps) => {
             onChange(data.checked, data.name);
           }}

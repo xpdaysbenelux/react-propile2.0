@@ -29,8 +29,10 @@ const ConfirmationModal: FC<Props> = ({ data }) => {
         <p>{data.content}</p>
       </Modal.Content>
       <Modal.Actions>
-        <Button onClick={cancelModal}>{translations.getLabel('SHARED.BUTTONS.CANCEL')}</Button>
-        <Button onClick={confirmModal} primary>
+        <Button onClick={cancelModal} theme="secondary">
+          {translations.getLabel('SHARED.BUTTONS.CANCEL')}
+        </Button>
+        <Button onClick={confirmModal} theme="primary">
           {data.confirmText}
         </Button>
       </Modal.Actions>
