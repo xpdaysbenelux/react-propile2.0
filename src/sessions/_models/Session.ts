@@ -60,7 +60,7 @@ export interface IUpdateSessionForm {
   laptopsRequired: boolean;
   materialDescription?: string;
   materialUrl?: string;
-  maxParticipants: number;
+  maxParticipants?: number;
   neededMaterials?: string;
   otherLimitations?: string;
   outline?: string;

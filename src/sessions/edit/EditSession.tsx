@@ -50,6 +50,26 @@ const EditSession: FC = () => {
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
 
+  // Parses Xp factor and max participants to number when needed
+  // Dispatches the update action
+  const parseNumberValues = (givenValues: IUpdateSessionForm): void => {
+    const { xpFactor, maxParticipants, ...otherValues } = givenValues;
+    const values: IUpdateSessionForm = otherValues;
+
+    if (typeof xpFactor === 'string') {
+      values.xpFactor = parseInt(xpFactor);
+    } else {
+      values.xpFactor = xpFactor;
+    }
+    if (typeof maxParticipants === 'string') {
+      values.maxParticipants = parseInt(maxParticipants);
+    } else {
+      values.maxParticipants = maxParticipants;
+    }
+
+    dispatch(new sessionsActions.UpdateSession({ sessionId: id, values }));
+  };
+
   return session ? (
     <Container as="main" className={classnames('left-container', 'edit-session')}>
       <h1>{translations.getLabel('SESSIONS.EDIT.TITLE', { sessionTitle: session.title })}</h1>
@@ -59,7 +79,7 @@ const EditSession: FC = () => {
         initialForm={initialForm}
         isSubmitting={isSubmitting}
         sessionId={id}
-        submitForm={(values: IUpdateSessionForm) => dispatch(new sessionsActions.UpdateSession({ sessionId: id, values }))}
+        submitForm={(values: IUpdateSessionForm) => parseNumberValues(values)}
       ></UpdateSessionForm>
     </Container>
   ) : (

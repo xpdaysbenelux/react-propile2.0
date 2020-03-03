@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { IUpdateSessionForm } from '../_models';
