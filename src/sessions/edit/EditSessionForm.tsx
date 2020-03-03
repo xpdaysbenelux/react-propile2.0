@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { IUpdateSessionForm } from '../_models';
@@ -24,8 +24,11 @@ interface Props {
 }
 
 function errorAsString(error?: ApiError): string {
-  if (error?.error === '') return '';
-  return '';
+  if (error?.error === 'SESSION_NOT_FOUND') return translations.getLabel(`SESSIONS.ERRORS.SESSION_NOT_FOUND`);
+  if (error?.error === 'SESSION_TITLE_ALREADY_IN_USE')
+    return translations.getLabel(`SESSIONS.ERRORS.SESSION_TITLE_ALREADY_IN_USE`);
+  if (error?.error === 'SESSION_EDIT_NOT_ALLOWED') return translations.getLabel(`SESSIONS.ERRORS.SESSION_EDIT_NOT_ALLOWED`);
+  return null;
 }
 
 const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitting, error, buttons }) => {
