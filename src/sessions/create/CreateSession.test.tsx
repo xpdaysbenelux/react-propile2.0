@@ -89,6 +89,8 @@ describe('CreateSession', () => {
     expect(createSession).toHaveBeenCalledWith({
       description: dummySession.description,
       emailFirstPresenter: dummySession.firstPresenter.email,
+      emailSecondPresenter: '',
+      subTitle: '',
       title: dummySession.title,
       xpFactor: dummySession.xpFactor,
     });

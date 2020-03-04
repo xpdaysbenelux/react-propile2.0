@@ -6,6 +6,7 @@ import { sessionsSelectors } from '../../_store/selectors';
 import { sessionsActions } from '../../_store/actions';
 import { ICreateSessionForm } from '../_models';
 import { Button } from '../../_shared';
+import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import CreateSessionForm from './CreateSessionForm';
 
 const initialForm: ICreateSessionForm = {
@@ -22,20 +23,12 @@ const CreateSession: FC = () => {
   const isSubmitting = useSelector(sessionsSelectors.isLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
 
-  const checkOptionalValues = (givenValues: ICreateSessionForm): void => {
-    const { subTitle, emailSecondPresenter, xpFactor, ...otherValues } = givenValues;
+  const parseXpFactorIfNeeded = (givenValues: ICreateSessionForm): ICreateSessionForm => {
+    const { xpFactor, ...otherValues } = givenValues;
     const values: ICreateSessionForm = otherValues;
+    values.xpFactor = parseValuesToNumber(xpFactor);
 
-    if (typeof xpFactor === 'string') {
-      values.xpFactor = parseInt(xpFactor);
-    } else {
-      values.xpFactor = xpFactor;
-    }
-
-    if (subTitle) values.subTitle = subTitle;
-    if (emailSecondPresenter) values.emailSecondPresenter = emailSecondPresenter;
-
-    dispatch(new sessionsActions.CreateSession({ values }));
+    return values;
   };
 
   return (
@@ -50,7 +43,9 @@ const CreateSession: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: ICreateSessionForm) => checkOptionalValues(values)}
+        submitForm={(values: ICreateSessionForm) =>
+          dispatch(new sessionsActions.CreateSession({ values: parseXpFactorIfNeeded(values) }))
+        }
       />
     </Container>
   );

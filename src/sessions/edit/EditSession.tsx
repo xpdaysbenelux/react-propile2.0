@@ -16,6 +16,7 @@ import {
   ISession,
 } from '../_models';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
+import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import UpdateSessionForm from './EditSessionForm';
 
 const getInitialForm = (session: ISession): IUpdateSessionForm => ({
@@ -25,7 +26,7 @@ const getInitialForm = (session: ISession): IUpdateSessionForm => ({
   emailSecondPresenter: session?.secondPresenter?.email || '',
   expierenceLevel: session?.expierenceLevel || SessionExpierenceLevel.Novice,
   goal: session?.goal || '',
-  laptopsRequired: session?.laptopsRequired || true,
+  laptopsRequired: session?.laptopsRequired,
   materialDescription: session?.materialDescription || '',
   materialUrl: session?.materialUrl || '',
   maxParticipants: session?.maxParticipants || 50,
@@ -50,6 +51,15 @@ const EditSession: FC = () => {
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
 
+  const parseNumberValues = (givenValues: IUpdateSessionForm): IUpdateSessionForm => {
+    const { xpFactor, maxParticipants, ...otherValues } = givenValues;
+    const values: IUpdateSessionForm = otherValues;
+    values.xpFactor = parseValuesToNumber(xpFactor);
+    values.maxParticipants = parseValuesToNumber(maxParticipants);
+
+    return values;
+  };
+
   return session ? (
     <Container as="main" className={classnames('left-container', 'edit-session')}>
       <h1>{translations.getLabel('SESSIONS.EDIT.TITLE', { sessionTitle: session.title })}</h1>
@@ -63,7 +73,9 @@ const EditSession: FC = () => {
         initialForm={initialForm}
         isSubmitting={isSubmitting}
         sessionId={id}
-        submitForm={(values: IUpdateSessionForm) => dispatch(new sessionsActions.UpdateSession({ sessionId: id, values }))}
+        submitForm={(values: IUpdateSessionForm) =>
+          dispatch(new sessionsActions.UpdateSession({ sessionId: id, values: parseNumberValues(values) }))
+        }
       ></UpdateSessionForm>
     </Container>
   ) : (
