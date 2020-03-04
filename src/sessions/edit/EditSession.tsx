@@ -16,6 +16,7 @@ import {
   ISession,
 } from '../_models';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
+import { parseValeusIfNeeded } from '../../_utils/objectHelpers';
 import UpdateSessionForm from './EditSessionForm';
 
 const getInitialForm = (session: ISession): IUpdateSessionForm => ({
@@ -50,24 +51,13 @@ const EditSession: FC = () => {
   const session = useSelector(sessionsSelectors.session(id));
   const initialForm = getInitialForm(session);
 
-  // Parses Xp factor and max participants to number when needed
-  // Dispatches the update action
-  const parseNumberValues = (givenValues: IUpdateSessionForm): void => {
+  const parseNumberValues = (givenValues: IUpdateSessionForm): IUpdateSessionForm => {
     const { xpFactor, maxParticipants, ...otherValues } = givenValues;
     const values: IUpdateSessionForm = otherValues;
+    values.xpFactor = parseValeusIfNeeded(xpFactor);
+    values.maxParticipants = parseValeusIfNeeded(maxParticipants);
 
-    if (typeof xpFactor === 'string') {
-      values.xpFactor = parseInt(xpFactor);
-    } else {
-      values.xpFactor = xpFactor;
-    }
-    if (typeof maxParticipants === 'string') {
-      values.maxParticipants = parseInt(maxParticipants);
-    } else {
-      values.maxParticipants = maxParticipants;
-    }
-
-    dispatch(new sessionsActions.UpdateSession({ sessionId: id, values }));
+    return values;
   };
 
   return session ? (
@@ -83,7 +73,9 @@ const EditSession: FC = () => {
         initialForm={initialForm}
         isSubmitting={isSubmitting}
         sessionId={id}
-        submitForm={(values: IUpdateSessionForm) => parseNumberValues(values)}
+        submitForm={(values: IUpdateSessionForm) =>
+          dispatch(new sessionsActions.UpdateSession({ sessionId: id, values: parseNumberValues(values) }))
+        }
       ></UpdateSessionForm>
     </Container>
   ) : (

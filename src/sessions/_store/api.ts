@@ -7,7 +7,7 @@ export function getSessions(userId: string): Promise<HttpPagedResponse<ISession>
 }
 
 export function createSession(body: ICreateSessionForm): Promise<void> {
-  return HttpClient.post<void>('sessions', body);
+  return HttpClient.post<void>('sessions', removeEmptyKeys(body));
 }
 
 export function updateSession(sessionId: string, body: IUpdateSessionForm): Promise<ISession> {
