@@ -19,8 +19,8 @@ $HEIGHT: 6.5rem;
 
   a.logo {
     display: inline-flex;
-    svg {
-      height: 4rem;
+    img {
+      height: 3.8rem;
     }
   }
 
@@ -55,7 +55,7 @@ $HEIGHT: 6.5rem;
       font-size: 1.4rem;
       font-weight: bold;
       text-transform: uppercase;
-      color: $white;
+      color: $text-color;
       opacity: 0.5;
 
       &:hover {
@@ -73,6 +73,6 @@ $HEIGHT: 6.5rem;
   }
 
   button {
-    color: white;
+    color: $text-color;
   }
 }

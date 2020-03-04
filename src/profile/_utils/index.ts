@@ -11,3 +11,14 @@ export function hasRolesPermissions(permissions: IPermissions): boolean {
   if (permissions?.roles.edit) return true;
   return false;
 }
+
+export function hasSessionsPermissions(permissions: IPermissions): boolean {
+  if (permissions?.sessions.view) return true;
+  if (permissions?.sessions.edit) return true;
+  return false;
+}
+
+export function hasSessionsAdminPermissions(permissions: IPermissions): boolean {
+  if (permissions?.sessions.admin) return true;
+  return false;
+}

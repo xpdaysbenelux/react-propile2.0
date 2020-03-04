@@ -6,7 +6,8 @@
       "LOGIN": "Login",
       "PASSWORD": "Password",
       "TITLE": "Welcome!",
-      "USERNAME": "Username"
+      "USERNAME": "Username",
+      "EMAIL": "Email"
     },
     "LOGOUT": "Logout",
     "REGISTER": {
@@ -40,11 +41,14 @@
       "TITLE": "Permissions",
       "FEATURES": {
         "ROLES": "Roles",
-        "USERS": "Users"
+        "USERS": "Users",
+        "SESSIONS": "Sessions",
+        "PERSONAS": "Personas"
       },
       "RIGHTS": {
         "EDIT": "Edit",
-        "VIEW": "View"
+        "VIEW": "View",
+        "ADMIN": "Admin"
       }
     },
     "OVERVIEW": {
@@ -76,6 +80,7 @@
     }
   },
   "SHARED": {
+    "LOADING": "Loading",
     "BUTTONS": {
       "CANCEL": "Cancel",
       "CREATE": "Create",
@@ -83,7 +88,8 @@
     },
     "NAVIGATION": {
       "ROLES": "Roles",
-      "USERS": "Users"
+      "USERS": "Users",
+      "SESSIONS": "Sessions"
     },
     "SEARCH_PLACEHOLDER": "Search...",
     "DETAIL": {
@@ -155,14 +161,65 @@
     "SECOND_PRESENTER": "Second presenter",
     "DESCRIPTION": "Description",
     "XP_FACTOR": "XP factor",
+    "STATE": "State",
+    "SHORT_DESCRIPTION": "Short description",
+    "GOAL": "Goal",
+    "TYPE": "Type",
+    "TOPIC": "Topic",
+    "DURATION": "Duration",
+    "MAX_PARTICIPANTS": "Max participants",
+    "LAPTOPS_REQUIRED": "Laptops required",
+    "EXPERIENCE_LEVEL": "Experience level",
+    "NEEDED_MATERIALS": "Materials needed",
+    "ROOM_SETUP": "Room setup",
+    "OTHER_LIMITATIONS": "Other limitations",
+    "OUTLINE": "Outline or timetable",
+    "MATERIAL_DESCRIPTION": "Material description",
+    "MATERIAL_URL": "Material url",
     "CREATE": {
       "TITLE": "Create a session"
+    },
+    "EDIT": {
+      "TITLE": "Edit \"{{sessionTitle}}\" "
+    },
+    "ENUMS": {
+      "STATE": {
+        "DRAFT": "Draft",
+        "CONFIRMED": "Confirmed",
+        "CANCELED": "Canceled"
+      },
+      "TYPE": {
+        "HANDS_ON": "Hands on",
+        "DISCOVERY": "Discovery session",
+        "EXPERIENTIAL_LEARNING": "Experiential learning session",
+        "SHORT_EXPERIENCE": "Short experience report",
+        "OTHER": "Other"
+      },
+      "TOPIC": {
+        "TECHNOLOGIE_TECHNIQUE": "Technology and Technique",
+        "TEAM_INDIVIDUAL": "Team and Individual",
+        "PROCESS_IMPROVEMENT": "Process and Improvement",
+        "CUSTOMER_PLANNING": "Customer and Planning",
+        "CASES_INTROS": "Cases and Intros"
+      },
+      "DURATION": {
+        "HALF_HOUR": "30 min",
+        "ONE_HOUR": "60 min",
+        "ONE_AND_A_HALF_HOUR": "90 min",
+        "TWO_AND_A_HALF_HOUR": "150 min"
+      },
+      "EXPERIENCE_LEVEL": {
+        "NOVICE": "Novice",
+        "MEDIUM": "Medium",
+        "EXPERT": "Expert"
+      }
     },
     "ERRORS": {
       "SESSION_TITLE_ALREADY_IN_USE": "A session with the given title already exists."
     },
     "TOASTER": {
-      "SESSION_CREATED": "The session was created successfully."
+      "SESSION_CREATED": "The session was created successfully.",
+      "SESSION_UPDATED": "The session was updated successfully."
     }
   },
   "ERRORS": {
@@ -173,7 +230,7 @@
       "REQUIRED": "Required",
       "INVALID": "Value is not correct",
       "INVALID_EMAIL": "The email is invalid.",
-      "XPFACTOR_MUST_BE_BETWEEN": "The Xp factor must be between {{min}} and {{max}}.",
+      "MUST_BE_BETWEEN": "The {{fieldName}} must be between {{min}} and {{max}}.",
       "PASSWORD_TOO_SHORT": "This password is too short",
       "PASSWORD_UNSAFE": "This password doesn't fit the requirements",
       "MAX_LENGTH": "Value should have at least {{length}} characters",

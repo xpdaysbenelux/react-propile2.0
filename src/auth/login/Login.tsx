@@ -51,7 +51,7 @@ const Login = () => {
         <InputField
           autoComplete="username"
           errorMessage={form.validationErrors.username}
-          label={translations.getLabel('AUTH.LOGIN.USERNAME')}
+          label={translations.getLabel('AUTH.LOGIN.EMAIL')}
           name="username"
           onChange={form.setAttribute}
           type="email"
@@ -69,7 +69,7 @@ const Login = () => {
         <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
         <div className="actions">
           <Link to="/auth/request-password-reset">{translations.getLabel('AUTH.LOGIN.FORGOT_PASSWORD')}</Link>
-          <Button loading={isSubmitting} primary type="submit">
+          <Button loading={isSubmitting} type="submit">
             {translations.getLabel('AUTH.LOGIN.LOGIN')}
           </Button>
         </div>

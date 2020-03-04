@@ -1,0 +1,13 @@
+@import '../../_styles/form';
+@import '../../_styles/constants';
+@import '../../_styles/colors';
+
+.update-session {
+  width: 75rem;
+  max-width: 75rem;
+  margin-bottom: 5rem;
+
+  .last-of-partial-form {
+    margin-bottom: 3rem;
+  }
+}

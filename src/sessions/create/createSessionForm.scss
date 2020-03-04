@@ -1,0 +1,12 @@
+@import '../../_styles/form';
+@import '../../_styles/constants';
+@import '../../_styles/colors';
+
+.create-session {
+  width: 70rem;
+  max-width: 70rem;
+
+  .xp-factor {
+    width: 30rem;
+  }
+}
