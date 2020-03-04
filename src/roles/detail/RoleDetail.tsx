@@ -37,7 +37,12 @@ const RoleDetail: FC = () => {
       <section>
         <RoleForm
           buttons={
-            <Button loading={isDeleteLoading} negative onClick={() => dispatch(new rolesActions.DeleteRole({ role }))}>
+            <Button
+              loading={isDeleteLoading}
+              negative
+              onClick={() => dispatch(new rolesActions.DeleteRole({ role }))}
+              theme="warning"
+            >
               {translations.getLabel('ROLES.DETAIL.BUTTON_DELETE')}
             </Button>
           }

@@ -41,7 +41,7 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
     if (values.emailSecondPresenter !== '') errors.emailSecondPresenter = formValidator.isEmail(values.emailSecondPresenter);
     errors.description = formValidator.isRequired(values.description);
     errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10, 'Xp factor');
-    errors.maxParticipants = formValidator.isBetween(values.maxParticipants, 1, 50, 'amount of max participants');
+    errors.maxParticipants = formValidator.isBetween(values.maxParticipants, 1, 50, 'amount of participants');
 
     return errors;
   }
