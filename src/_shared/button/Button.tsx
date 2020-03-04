@@ -12,7 +12,7 @@ interface Props {
   negative?: boolean;
   onClick?: () => void;
   primary?: boolean;
-  theme?: string;
+  theme?: 'primary' | 'secondary' | 'warning';
   type?: 'button' | 'submit' | 'reset';
 }
 
