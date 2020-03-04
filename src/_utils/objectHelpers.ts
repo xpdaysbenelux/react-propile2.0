@@ -8,7 +8,8 @@ export const setInObject = (object: {}, path: string, value: string | number | b
 
 export function removeEmptyKeys<T>(object: T): Partial<T> {
   return Object.keys(object).reduce<Partial<T>>((acc, key: string) => {
-    if (object[key]) return { ...acc, [key]: object[key] };
+    const shouldNotSkip = object[key] !== null && typeof object[key] !== 'undefined' && object[key] !== '';
+    if (shouldNotSkip) return { ...acc, [key]: object[key] };
     return acc;
   }, {});
 }
