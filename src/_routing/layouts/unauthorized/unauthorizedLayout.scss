@@ -21,18 +21,18 @@ $WIDTH: 30rem;
       width: 100%;
     }
 
-    svg {
-      max-height: 10rem;
-    }
-
     span {
       display: block;
       margin-top: 1rem;
       text-transform: uppercase;
-      color: $button-color;
+      color: $button-primary-color;
       font-size: 2rem;
       letter-spacing: 0.5rem;
       text-align: center;
+    }
+
+    .create-session-btn {
+      margin-top: 3rem;
     }
 
     img {

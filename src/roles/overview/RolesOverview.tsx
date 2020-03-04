@@ -29,7 +29,7 @@ const RolesOverview: FC = () => {
       <div className="header">
         <SearchInput query={query} setQuery={setQuery} />
         {permissions?.roles.edit && (
-          <Button href="/roles/create" isTextLink primary>
+          <Button href="/roles/create" isTextLink>
             <Icon name="SvgAdd" size={1.6} />
             {translations.getLabel('ROLES.OVERVIEW.CREATE_ROLE')}
           </Button>

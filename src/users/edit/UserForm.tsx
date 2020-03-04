@@ -82,7 +82,7 @@ const UserForm: FC<Props> = ({ userId, initialForm, submitForm, isSubmitting, er
       <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
       <div className="actions">
         {buttons}
-        <Button loading={isSubmitting} primary type="submit">
+        <Button loading={isSubmitting} type="submit">
           {translations.getLabel(userId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
         </Button>
       </div>

@@ -12,17 +12,27 @@ interface Props {
   negative?: boolean;
   onClick?: () => void;
   primary?: boolean;
+  theme?: 'primary' | 'secondary' | 'warning';
   type?: 'button' | 'submit' | 'reset';
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const noop = () => {};
 
-const Button: FC<Props> = ({ type, isTextLink, primary, children, onClick = noop, disabled, loading, href, negative }) => {
+const THEMES = ['primary', 'secondary', 'warning'];
+
+const Button: FC<Props> = ({ type, isTextLink, primary, children, onClick = noop, disabled, loading, href, negative, theme }) => {
+  const selectedTheme = THEMES.includes(theme) ? theme : THEMES[0];
   if (isTextLink) {
     return (
       <Link to={href}>
-        <SemanticButton as="span" disabled={disabled || loading} loading={loading} primary={primary}>
+        <SemanticButton
+          as="span"
+          className={`btn-${selectedTheme}`}
+          disabled={disabled || loading}
+          loading={loading}
+          primary={primary}
+        >
           {children}
         </SemanticButton>
       </Link>
@@ -30,6 +40,7 @@ const Button: FC<Props> = ({ type, isTextLink, primary, children, onClick = noop
   }
   return (
     <SemanticButton
+      className={`btn-${selectedTheme}`}
       disabled={disabled || loading}
       loading={loading}
       negative={negative}

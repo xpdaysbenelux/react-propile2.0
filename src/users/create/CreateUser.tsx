@@ -25,7 +25,7 @@ const CreateUser: FC = () => {
       <h1>{translations.getLabel('USERS.CREATE.TITLE')}</h1>
       <UserForm
         buttons={
-          <Button href="/users" isTextLink>
+          <Button href="/users" isTextLink theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }

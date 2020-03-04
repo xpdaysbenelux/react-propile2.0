@@ -19,7 +19,7 @@ const initialForm: ICreateSessionForm = {
 
 const CreateSession: FC = () => {
   const dispatch = useDispatch();
-  const isSubmitting = useSelector(sessionsSelectors.isCreateSessionLoading);
+  const isSubmitting = useSelector(sessionsSelectors.isLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
 
   const checkOptionalValues = (givenValues: ICreateSessionForm): void => {
@@ -43,7 +43,7 @@ const CreateSession: FC = () => {
       <h1>{translations.getLabel('SESSIONS.CREATE.TITLE')}</h1>
       <CreateSessionForm
         buttons={
-          <Button href="/sessions" isTextLink>
+          <Button href="/sessions" isTextLink theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }
