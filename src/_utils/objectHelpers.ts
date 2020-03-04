@@ -19,7 +19,7 @@ export function insertUpdatedData<T extends { id: string }>(currentData: T[], up
   return [...(currentData || []).filter(value => !ids.includes(value.id)), ...updatedData];
 }
 
-export function parseValeusIfNeeded(value: number | string): number {
+export function parseValuesToNumber(value: number | string): number {
   if (typeof value === 'string') {
     return parseInt(value, 10);
   } else {

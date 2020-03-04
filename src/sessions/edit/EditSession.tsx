@@ -16,7 +16,7 @@ import {
   ISession,
 } from '../_models';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
-import { parseValeusIfNeeded } from '../../_utils/objectHelpers';
+import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import UpdateSessionForm from './EditSessionForm';
 
 const getInitialForm = (session: ISession): IUpdateSessionForm => ({
@@ -54,8 +54,8 @@ const EditSession: FC = () => {
   const parseNumberValues = (givenValues: IUpdateSessionForm): IUpdateSessionForm => {
     const { xpFactor, maxParticipants, ...otherValues } = givenValues;
     const values: IUpdateSessionForm = otherValues;
-    values.xpFactor = parseValeusIfNeeded(xpFactor);
-    values.maxParticipants = parseValeusIfNeeded(maxParticipants);
+    values.xpFactor = parseValuesToNumber(xpFactor);
+    values.maxParticipants = parseValuesToNumber(maxParticipants);
 
     return values;
   };

@@ -6,7 +6,7 @@ import { sessionsSelectors } from '../../_store/selectors';
 import { sessionsActions } from '../../_store/actions';
 import { ICreateSessionForm } from '../_models';
 import { Button } from '../../_shared';
-import { parseValeusIfNeeded } from '../../_utils/objectHelpers';
+import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import CreateSessionForm from './CreateSessionForm';
 
 const initialForm: ICreateSessionForm = {
@@ -26,7 +26,7 @@ const CreateSession: FC = () => {
   const parseXpFactorIfNeeded = (givenValues: ICreateSessionForm): ICreateSessionForm => {
     const { xpFactor, ...otherValues } = givenValues;
     const values: ICreateSessionForm = otherValues;
-    values.xpFactor = parseValeusIfNeeded(xpFactor);
+    values.xpFactor = parseValuesToNumber(xpFactor);
 
     return values;
   };
