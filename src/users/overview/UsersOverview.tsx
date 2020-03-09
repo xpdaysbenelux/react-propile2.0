@@ -29,7 +29,7 @@ const UsersOverview: FC = () => {
       <div className="header">
         <SearchInput query={query} setQuery={setQuery} />
         {permissions?.users.edit && (
-          <Button href="/users/create" isTextLink primary>
+          <Button href="/users/create" isTextLink>
             <Icon name="SvgAdd" size={1.6} />
             {translations.getLabel('USERS.OVERVIEW.CREATE_USER')}
           </Button>

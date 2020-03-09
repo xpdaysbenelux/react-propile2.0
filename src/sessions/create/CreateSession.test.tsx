@@ -51,9 +51,9 @@ describe('CreateSession', () => {
     Simulate.change(titleInput);
     user.type(subTitleInput, dummySession.subTitle);
     Simulate.change(subTitleInput);
-    user.type(emailFirstPresenterInput, dummySession.emailFirstPresenter);
+    user.type(emailFirstPresenterInput, dummySession.firstPresenter.email);
     Simulate.change(emailFirstPresenterInput);
-    user.type(emailSecondPresenterInput, dummySession.emailSecondPresenter);
+    user.type(emailSecondPresenterInput, dummySession.secondPresenter.email);
     Simulate.change(emailSecondPresenterInput);
     user.type(descriptionInput, dummySession.description);
     Simulate.change(descriptionInput);
@@ -64,8 +64,8 @@ describe('CreateSession', () => {
     expect(createSession).toHaveBeenCalledTimes(1);
     expect(createSession).toHaveBeenCalledWith({
       description: dummySession.description,
-      emailFirstPresenter: dummySession.emailFirstPresenter,
-      emailSecondPresenter: dummySession.emailSecondPresenter,
+      emailFirstPresenter: dummySession.firstPresenter.email,
+      emailSecondPresenter: dummySession.secondPresenter.email,
       subTitle: dummySession.subTitle,
       title: dummySession.title,
       xpFactor: dummySession.xpFactor,
@@ -77,7 +77,7 @@ describe('CreateSession', () => {
 
     user.type(titleInput, dummySession.title);
     Simulate.change(titleInput);
-    user.type(emailFirstPresenterInput, dummySession.emailFirstPresenter);
+    user.type(emailFirstPresenterInput, dummySession.firstPresenter.email);
     Simulate.change(emailFirstPresenterInput);
     user.type(descriptionInput, dummySession.description);
     Simulate.change(descriptionInput);
@@ -88,7 +88,9 @@ describe('CreateSession', () => {
     expect(createSession).toHaveBeenCalledTimes(1);
     expect(createSession).toHaveBeenCalledWith({
       description: dummySession.description,
-      emailFirstPresenter: dummySession.emailFirstPresenter,
+      emailFirstPresenter: dummySession.firstPresenter.email,
+      emailSecondPresenter: '',
+      subTitle: '',
       title: dummySession.title,
       xpFactor: dummySession.xpFactor,
     });
@@ -106,7 +108,7 @@ describe('CreateSession', () => {
 
     user.type(titleInput, dummySession.title);
     Simulate.change(titleInput);
-    user.type(emailFirstPresenterInput, dummySession.emailFirstPresenter);
+    user.type(emailFirstPresenterInput, dummySession.firstPresenter.email);
     Simulate.change(emailFirstPresenterInput);
     user.type(descriptionInput, dummySession.description);
     Simulate.change(descriptionInput);

@@ -43,12 +43,12 @@ function isMin(value: number, min: number): string {
   return !isValid && translations.getLabel('ERRORS.VALIDATION.TOO_LOW', { min });
 }
 
-function isBetween(value: any, min: number, max: number): string {
+function isBetween(value: any, min: number, max: number, fieldName: string): string {
   if (typeof value === 'string') {
     value = parseInt(value);
   }
   const isValid = value >= min && value <= max;
-  return !isValid && translations.getLabel('ERRORS.VALIDATION.XPFACTOR_MUST_BE_BETWEEN', { max, min });
+  return !isValid && translations.getLabel('ERRORS.VALIDATION.MUST_BE_BETWEEN', { fieldName, max, min });
 }
 
 function isEmail(email: string): string {

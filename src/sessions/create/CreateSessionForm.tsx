@@ -1,22 +1,20 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
-import { ISessionForm } from '../_models';
-import { InputField, Button } from '../../_shared';
+import { ICreateSessionForm } from '../_models';
+import { InputField, InputTextArea, Button } from '../../_shared';
 import { ApiError } from '../../_http';
 import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/useForm';
 import { translations } from '../../_translations';
 import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
-import InputTextArea from '../../_shared/inputTextArea/InputTextArea';
 import { formValidator } from '../../_utils/formValidation';
-import './sessionForm.scss';
+import './createSessionForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
   error?: ApiError;
-  initialForm: ISessionForm;
+  initialForm: ICreateSessionForm;
   isSubmitting: boolean;
-  sessionId?: string;
-  submitForm: SubmitFormFunction<ISessionForm>;
+  submitForm: SubmitFormFunction<ICreateSessionForm>;
 }
 
 function errorAsString(error?: ApiError): string {
@@ -26,22 +24,22 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
-const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitting, error, buttons }) => {
-  function validateForm(values: ISessionForm): FormValidationErrors<ISessionForm> {
-    const errors: FormValidationErrors<ISessionForm> = {};
+const CreateSessionForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons }) => {
+  function validateForm(values: ICreateSessionForm): FormValidationErrors<ICreateSessionForm> {
+    const errors: FormValidationErrors<ICreateSessionForm> = {};
     errors.title = formValidator.isRequired(values.title);
     errors.emailFirstPresenter = formValidator.isEmail(values.emailFirstPresenter);
     if (values.emailSecondPresenter !== '') errors.emailSecondPresenter = formValidator.isEmail(values.emailSecondPresenter);
     errors.description = formValidator.isRequired(values.description);
-    errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10);
+    errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10, 'Xp factor');
 
     return errors;
   }
 
-  const form = useForm<ISessionForm>({ error, initialForm, submitForm, validateForm });
+  const form = useForm<ICreateSessionForm>({ error, initialForm, submitForm, validateForm });
 
   return (
-    <form className={classnames('create-session')} onSubmit={form.submit}>
+    <form className={classnames('create-session', 'ui', 'form')} onSubmit={form.submit}>
       <div role="group">
         <InputField
           errorMessage={form.validationErrors.title}
@@ -88,6 +86,7 @@ const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitti
           label={translations.getLabel('SESSIONS.DESCRIPTION') + '*'}
           name="description"
           onChange={form.setAttribute}
+          rows={5}
           type="textarea"
           value={form.values.description}
         />
@@ -106,11 +105,11 @@ const SessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSubmitti
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">
-          {translations.getLabel(sessionId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
+          {translations.getLabel('SHARED.BUTTONS.CREATE')}
         </Button>
       </div>
     </form>
   );
 };
 
-export default SessionForm;
+export default CreateSessionForm;

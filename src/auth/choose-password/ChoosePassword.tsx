@@ -61,7 +61,7 @@ const ChoosePassword: FC<Props> = ({ isPasswordReset }) => {
         />
         <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
         <div className="actions">
-          <Button loading={isSubmitting} primary type="submit">
+          <Button loading={isSubmitting} type="submit">
             {translations.getLabel(isPasswordReset ? 'AUTH.RESET_PASSWORD.RESET' : 'AUTH.REGISTER.REGISTER')}
           </Button>
         </div>

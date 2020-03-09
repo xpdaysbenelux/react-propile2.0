@@ -4,6 +4,7 @@ import Auth from '../../../auth/Auth';
 import { translations } from '../../../_translations';
 import logo from '../../../_assets/png/xpdaysLogo.png';
 import './unauthorizedLayout.scss';
+import { Button } from '../../../_shared';
 
 export const UNAUTHORIZED_ROUTES = ['/auth'];
 
@@ -28,8 +29,10 @@ const UnauthorizedLayout: React.FC = () => {
           </div>
         </NavLink>
         {canCreateSession && (
-          <div onClick={() => setSession(false)}>
-            <NavLink to={`${path}/create-session`}>{translations.getLabel('SESSIONS.CREATE.TITLE')}</NavLink>
+          <div className="create-session-btn" onClick={() => setSession(false)}>
+            <Button href={`${path}/create-session`} isTextLink>
+              {translations.getLabel('SESSIONS.CREATE.TITLE')}
+            </Button>
           </div>
         )}
       </aside>

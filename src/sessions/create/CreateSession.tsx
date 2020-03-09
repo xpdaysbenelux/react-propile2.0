@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { translations } from '../../_translations';
 import { sessionsSelectors } from '../../_store/selectors';
 import { sessionsActions } from '../../_store/actions';
-import { ISessionForm } from '../_models';
-import SessionForm from '../edit/SessionForm';
+import { ICreateSessionForm } from '../_models';
 import { Button } from '../../_shared';
+import { parseValuesToNumber } from '../../_utils/objectHelpers';
+import CreateSessionForm from './CreateSessionForm';
 
-const initialForm: ISessionForm = {
+const initialForm: ICreateSessionForm = {
   description: '',
   emailFirstPresenter: '',
   emailSecondPresenter: '',
@@ -19,39 +20,33 @@ const initialForm: ISessionForm = {
 
 const CreateSession: FC = () => {
   const dispatch = useDispatch();
-  const isSubmitting = useSelector(sessionsSelectors.isCreateSessionLoading);
+  const isSubmitting = useSelector(sessionsSelectors.isLoading);
   const error = useSelector(sessionsSelectors.errorCrudSession);
 
-  const checkOptionalValues = (givenValues: ISessionForm): void => {
-    const { subTitle, emailSecondPresenter, xpFactor, ...otherValues } = givenValues;
-    const values: ISessionForm = otherValues;
+  const parseXpFactorIfNeeded = (givenValues: ICreateSessionForm): ICreateSessionForm => {
+    const { xpFactor, ...otherValues } = givenValues;
+    const values: ICreateSessionForm = otherValues;
+    values.xpFactor = parseValuesToNumber(xpFactor);
 
-    if (typeof xpFactor === 'string') {
-      values.xpFactor = parseInt(xpFactor);
-    } else {
-      values.xpFactor = xpFactor;
-    }
-
-    if (subTitle) values.subTitle = subTitle;
-    if (emailSecondPresenter) values.emailSecondPresenter = emailSecondPresenter;
-
-    dispatch(new sessionsActions.CreateSession({ values }));
+    return values;
   };
 
   return (
     <Container as="main" className="left-container">
       <h1>{translations.getLabel('SESSIONS.CREATE.TITLE')}</h1>
-      <SessionForm
+      <CreateSessionForm
         buttons={
-          <Button href="/sessions" isTextLink>
+          <Button href="/sessions" isTextLink theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: ISessionForm) => checkOptionalValues(values)}
-      ></SessionForm>
+        submitForm={(values: ICreateSessionForm) =>
+          dispatch(new sessionsActions.CreateSession({ values: parseXpFactorIfNeeded(values) }))
+        }
+      />
     </Container>
   );
 };

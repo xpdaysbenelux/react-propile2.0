@@ -1,0 +1,23 @@
+@import '../../_styles/colors';
+@import '../../_styles/constants';
+
+.toggle-wrapper {
+  display: flex;
+  flex-direction: column;
+
+  label:not(:last-child) {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: $grey-dark;
+  }
+}
+.toggle-input {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+
+  span {
+    margin: 0 1.5rem;
+  }
+}

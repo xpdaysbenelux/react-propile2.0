@@ -4,7 +4,7 @@ import Login from '../auth/login/Login';
 import ChoosePassword from '../auth/choose-password/ChoosePassword';
 import RequestPasswordReset from '../auth/request-password-reset/RequestPasswordReset';
 import './auth.scss';
-import Sessions from '../sessions/Sessions';
+import CreateSession from '../sessions/create/CreateSession';
 
 const Auth: React.FC = () => {
   const { url } = useRouteMatch();
@@ -15,7 +15,7 @@ const Auth: React.FC = () => {
         <Route component={ChoosePassword} path={`${url}/register/:token`} />
         <Route path={`${url}/choose-password/:token`} render={() => <ChoosePassword isPasswordReset />} />
         <Route component={RequestPasswordReset} path={`${url}/request-password-reset`} />
-        <Route component={Sessions} path={`${url}/create-session`} />
+        <Route component={CreateSession} path={`${url}/create-session`} />
         <Redirect to={`${url}/login`} />
       </Switch>
     </div>
