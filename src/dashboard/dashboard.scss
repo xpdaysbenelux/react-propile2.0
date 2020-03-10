@@ -1,5 +1,11 @@
 @import '../_styles/overview';
 
-.yourSessions {
-  width: 50rem;
+.dashboard {
+  .edit-column {
+    width: 5rem;
+  }
+  .yourSessions,
+  .yourSessionsTable {
+    width: 50rem;
+  }
 }

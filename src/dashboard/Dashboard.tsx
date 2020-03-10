@@ -5,6 +5,7 @@ import { Button, Icon } from '../_shared';
 import { translations } from '../_translations';
 import { profileSelectors } from '../_store/selectors';
 import { sessionsActions } from '../_store/actions';
+import YourSessionsTable from './YourSessionsTable';
 import './dashboard.scss';
 
 const Dashboard: React.FC = () => {
@@ -17,7 +18,7 @@ const Dashboard: React.FC = () => {
   }, [dispatch, id]);
 
   return (
-    <Container as="main">
+    <Container as="main" className="dashboard">
       <div className="yourSessions">
         <div className="header">
           <h3>{translations.getLabel('DASHBOARD.OVERVIEW.YOUR_SESSIONS')}</h3>
@@ -29,6 +30,7 @@ const Dashboard: React.FC = () => {
           )}
         </div>
       </div>
+      <YourSessionsTable />
     </Container>
   );
 };

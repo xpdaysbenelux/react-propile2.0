@@ -158,6 +158,7 @@
   "SESSIONS": {
     "TITLE": "Title",
     "SUB_TITLE": "Subtitle",
+    "PRESENTERS": "Presenter(s)",
     "FIRST_PRESENTER": "First presenter",
     "SECOND_PRESENTER": "Second presenter",
     "DESCRIPTION": "Description",
@@ -228,7 +229,9 @@
   "DASHBOARD": {
     "OVERVIEW": {
       "YOUR_SESSIONS": "Your sessions",
-      "CREATE_SESSION": "Create session"
+      "CREATE_SESSION": "Create session",
+      "EDIT": "Edit",
+      "EMPTY": "No sessions found"
     }
   },
   "ERRORS": {
