@@ -1,15 +1,15 @@
 import React, { FormEvent, FC } from 'react';
 import { Checkbox, CheckboxProps } from 'semantic-ui-react';
 import { translations } from '../../_translations';
-import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
 import { Button, InputField } from '../../_shared';
 import { useForm } from '../../_hooks';
 import { IRoleForm } from '../_models';
 import { setInObject } from '../../_utils/objectHelpers';
-import './roleForm.scss';
 import { FormValidationErrors, SubmitFormFunction } from '../../_hooks/useForm';
 import { formValidator } from '../../_utils/formValidation';
 import { ApiError } from '../../_http';
+import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
+import './roleForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];

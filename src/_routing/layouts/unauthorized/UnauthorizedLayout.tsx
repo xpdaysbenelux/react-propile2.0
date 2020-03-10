@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Redirect, Route, NavLink, useRouteMatch, useLocation } from 'react-router-dom';
-import Auth from '../../../auth/Auth';
+import { Button } from '../../../_shared';
 import { translations } from '../../../_translations';
+import Auth from '../../../auth/Auth';
 import logo from '../../../_assets/png/xpdaysLogo.png';
 import './unauthorizedLayout.scss';
-import { Button } from '../../../_shared';
 
 export const UNAUTHORIZED_ROUTES = ['/auth'];
 
