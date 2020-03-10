@@ -17,7 +17,6 @@ const YourSessionsTable: FC = () => {
   const isLoading = useSelector(sessionsSelectors.isLoading);
 
   function renderRow(session: ISession): JSX.Element {
-    //   const className = classnames({})
     return (
       <Table.Row className="yourSessions" key={session.id}>
         <Table.Cell>{session.title}</Table.Cell>
