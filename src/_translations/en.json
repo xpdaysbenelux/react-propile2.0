@@ -89,6 +89,7 @@
     "NAVIGATION": {
       "ROLES": "Roles",
       "USERS": "Users",
+      "DASHBOARD": "Dashboard",
       "SESSIONS": "Sessions"
     },
     "SEARCH_PLACEHOLDER": "Search...",
@@ -222,6 +223,12 @@
     "TOASTER": {
       "SESSION_CREATED": "The session was created successfully.",
       "SESSION_UPDATED": "The session was updated successfully."
+    }
+  },
+  "DASHBOARD": {
+    "OVERVIEW": {
+      "YOUR_SESSIONS": "Your sessions",
+      "CREATE_SESSION": "Create session"
     }
   },
   "ERRORS": {

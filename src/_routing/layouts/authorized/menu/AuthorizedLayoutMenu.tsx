@@ -21,11 +21,12 @@ const AuthorizedLayoutMenu: FC = () => {
       </NavLink>
       <nav>
         <div>
-          {hasUsersPermissions(permissions) && <NavLink to="/users">{translations.getLabel('SHARED.NAVIGATION.USERS')}</NavLink>}
-          {hasRolesPermissions(permissions) && <NavLink to="/roles">{translations.getLabel('SHARED.NAVIGATION.ROLES')}</NavLink>}
+          <NavLink to="/dashboard">{translations.getLabel('SHARED.NAVIGATION.DASHBOARD')}</NavLink>
           {hasSessionsPermissions(permissions) && (
             <NavLink to="/sessions">{translations.getLabel('SHARED.NAVIGATION.SESSIONS')}</NavLink>
           )}
+          {hasUsersPermissions(permissions) && <NavLink to="/users">{translations.getLabel('SHARED.NAVIGATION.USERS')}</NavLink>}
+          {hasRolesPermissions(permissions) && <NavLink to="/roles">{translations.getLabel('SHARED.NAVIGATION.ROLES')}</NavLink>}
         </div>
         <NavLink to="/profile">
           <Icon name="SvgUser" size={2} />
