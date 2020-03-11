@@ -30,7 +30,7 @@ const createSessionEpic$: Epic = action$ =>
   );
 
 const createSessionSuccessEpic$: Epic = action$ =>
-  action$.ofType(SessionsActionType.CreateSessionSuccess).pipe(switchMap(() => of(push('/sessions'))));
+  action$.ofType(SessionsActionType.CreateSessionSuccess).pipe(switchMap(() => of(push('/dashboard'))));
 
 const updateSessionEpic$: Epic = action$ =>
   action$.ofType(SessionsActionType.UpdateSession).pipe(
