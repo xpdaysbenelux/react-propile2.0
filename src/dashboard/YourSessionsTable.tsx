@@ -48,7 +48,7 @@ const YourSessionsTable: FC<Props> = ({ userId }) => {
 
   return (
     <Table
-      className="yourSessionsTable"
+      className="your-sessions-table"
       columns={columns}
       data={sessions}
       emptyLabel={translations.getLabel('DASHBOARD.OVERVIEW.EMPTY')}
