@@ -20,7 +20,8 @@ interface Props {
 function errorAsString(error?: ApiError): string {
   if (error?.error === 'SESSION_TITLE_ALREADY_IN_USE')
     return translations.getLabel(`SESSIONS.ERRORS.SESSION_TITLE_ALREADY_IN_USE`);
-
+  if (error?.error === 'SESSION_PRESENTERS_EMAILS_MUST_DIFFER')
+    return translations.getLabel('SESSIONS.ERRORS.SESSION_PRESENTERS_EMAILS_MUST_DIFFER');
   return null;
 }
 
