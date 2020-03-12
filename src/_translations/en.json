@@ -218,7 +218,7 @@
     "ERRORS": {
       "SESSION_TITLE_ALREADY_IN_USE": "A session with the given title already exists.",
       "SESSION_NOT_FOUND": "The session was not found.",
-      "SESSION_PRESENTERS_EMAILS_MUST_DIFFER": "The presenters their emails cannot be the same.",
+      "SESSION_PRESENTERS_EMAILS_MUST_DIFFER": "The email addresses of the presenters cannot be te same.",
       "SESSION_EDIT_NOT_ALLOWED": "You don't have the rights to edit this session!"
     },
     "TOASTER": {
