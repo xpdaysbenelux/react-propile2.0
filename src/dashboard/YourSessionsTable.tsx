@@ -20,10 +20,10 @@ const columns: TableColumn[] = [
 function renderPresenters(session: ISession): JSX.Element {
   return session.secondPresenter ? (
     <Table.Cell>
-      {session.firstPresenter.email} & {session.secondPresenter?.email}
+      {session.firstPresenter?.email} & {session.secondPresenter?.email}
     </Table.Cell>
   ) : (
-    <Table.Cell> {session.firstPresenter.email} </Table.Cell>
+    <Table.Cell> {session.firstPresenter?.email} </Table.Cell>
   );
 }
 
