@@ -13,8 +13,8 @@ const Dashboard: React.FC = () => {
 
   return (
     <Container as="main" className="dashboard">
-      <div className="yourSessions">
-        <div className="header">
+      <div className="your-sessions">
+        <header className="header">
           <h3>{translations.getLabel('DASHBOARD.OVERVIEW.YOUR_SESSIONS')}</h3>
           {permissions?.sessions.edit && (
             <Button href="/sessions/create-session" isTextLink>
@@ -22,7 +22,7 @@ const Dashboard: React.FC = () => {
               {translations.getLabel('DASHBOARD.OVERVIEW.CREATE_SESSION')}
             </Button>
           )}
-        </div>
+        </header>
       </div>
       <YourSessionsTable userId={id} />
     </Container>

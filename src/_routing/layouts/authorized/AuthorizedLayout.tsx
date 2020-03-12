@@ -18,9 +18,9 @@ const AuthorizedLayout: React.FC = () => {
       <AuthorizedLayoutMenu />
       <Switch>
         <Route component={Profile} path="/profile" />
+        <Route component={Dashboard} path="/dashboard" />
         {hasUsersPermissions(permissions) && <Route component={Users} path="/users" />}
         {hasRolesPermissions(permissions) && <Route component={Roles} path="/roles" />}
-        <Route component={Dashboard} path="/dashboard" />
         {hasSessionsPermissions(permissions) && <Route component={Sessions} path="/sessions" />}
         <Redirect to="/profile" />
       </Switch>

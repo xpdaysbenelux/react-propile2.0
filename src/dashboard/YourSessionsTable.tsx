@@ -17,6 +17,16 @@ const columns: TableColumn[] = [
   { className: 'edit-column', name: 'edit' },
 ];
 
+function renderPresenters(session: ISession): JSX.Element {
+  return session.secondPresenter ? (
+    <Table.Cell>
+      {session.firstPresenter.email} & {session.secondPresenter?.email}
+    </Table.Cell>
+  ) : (
+    <Table.Cell> {session.firstPresenter.email} </Table.Cell>
+  );
+}
+
 const YourSessionsTable: FC<Props> = ({ userId }) => {
   const sessions = useSelector(sessionsSelectors.sessions);
   const isLoading = useSelector(sessionsSelectors.isLoading);
@@ -28,15 +38,9 @@ const YourSessionsTable: FC<Props> = ({ userId }) => {
 
   function renderRow(session: ISession): JSX.Element {
     return (
-      <Table.Row className="yourSessions" key={session.id}>
+      <Table.Row className="your-sessions" key={session.id}>
         <Table.Cell>{session.title}</Table.Cell>
-        {session.secondPresenter ? (
-          <Table.Cell>
-            {session.firstPresenter?.email} & {session.secondPresenter?.email}
-          </Table.Cell>
-        ) : (
-          <Table.Cell>{session.firstPresenter?.email}</Table.Cell>
-        )}
+        {renderPresenters(session)}
         <Table.Cell>
           <Link to={{ pathname: `/sessions/update-session/${session.id}` }}>
             {translations.getLabel('DASHBOARD.OVERVIEW.EDIT')}
@@ -48,7 +52,7 @@ const YourSessionsTable: FC<Props> = ({ userId }) => {
 
   return (
     <Table
-      className="yourSessionsTable"
+      className="your-sessions-table"
       columns={columns}
       data={sessions}
       emptyLabel={translations.getLabel('DASHBOARD.OVERVIEW.EMPTY')}
