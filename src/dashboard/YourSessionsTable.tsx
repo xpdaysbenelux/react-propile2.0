@@ -23,7 +23,7 @@ function renderPresenters(session: ISession): JSX.Element {
       {session.firstPresenter?.email} & {session.secondPresenter?.email}
     </Table.Cell>
   ) : (
-    <Table.Cell> {session.firstPresenter.email} </Table.Cell>
+    <Table.Cell> {session.firstPresenter?.email} </Table.Cell>
   );
 }
 
