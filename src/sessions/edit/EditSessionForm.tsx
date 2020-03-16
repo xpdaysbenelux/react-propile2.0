@@ -27,6 +27,8 @@ function errorAsString(error?: ApiError): string {
   if (error?.error === 'SESSION_NOT_FOUND') return translations.getLabel(`SESSIONS.ERRORS.SESSION_NOT_FOUND`);
   if (error?.error === 'SESSION_TITLE_ALREADY_IN_USE')
     return translations.getLabel(`SESSIONS.ERRORS.SESSION_TITLE_ALREADY_IN_USE`);
+  if (error?.error === 'SESSION_PRESENTERS_EMAILS_MUST_DIFFER')
+    return translations.getLabel('SESSIONS.ERRORS.SESSION_PRESENTERS_EMAILS_MUST_DIFFER');
   if (error?.error === 'SESSION_EDIT_NOT_ALLOWED') return translations.getLabel(`SESSIONS.ERRORS.SESSION_EDIT_NOT_ALLOWED`);
   return null;
 }

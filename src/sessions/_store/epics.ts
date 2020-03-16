@@ -30,7 +30,7 @@ const createSessionEpic$: Epic = action$ =>
   );
 
 const createSessionSuccessEpic$: Epic = action$ =>
-  action$.ofType(SessionsActionType.CreateSessionSuccess).pipe(switchMap(() => of(push('/sessions'))));
+  action$.ofType(SessionsActionType.CreateSessionSuccess).pipe(switchMap(() => of(push('/dashboard'))));
 
 const updateSessionEpic$: Epic = action$ =>
   action$.ofType(SessionsActionType.UpdateSession).pipe(
@@ -43,4 +43,7 @@ const updateSessionEpic$: Epic = action$ =>
     ),
   );
 
-export default [getSessionsEpic$, createSessionEpic$, createSessionSuccessEpic$, updateSessionEpic$];
+const updateSessionSuccessEpic$: Epic = action$ =>
+  action$.ofType(SessionsActionType.UpdateSessionSuccess).pipe(switchMap(() => of(push('/dashboard'))));
+
+export default [getSessionsEpic$, createSessionEpic$, createSessionSuccessEpic$, updateSessionEpic$, updateSessionSuccessEpic$];

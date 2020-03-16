@@ -89,6 +89,7 @@
     "NAVIGATION": {
       "ROLES": "Roles",
       "USERS": "Users",
+      "DASHBOARD": "Dashboard",
       "SESSIONS": "Sessions"
     },
     "SEARCH_PLACEHOLDER": "Search...",
@@ -157,6 +158,7 @@
   "SESSIONS": {
     "TITLE": "Title",
     "SUB_TITLE": "Subtitle",
+    "PRESENTERS": "Presenter(s)",
     "FIRST_PRESENTER": "First presenter",
     "SECOND_PRESENTER": "Second presenter",
     "DESCRIPTION": "Description",
@@ -217,11 +219,20 @@
     "ERRORS": {
       "SESSION_TITLE_ALREADY_IN_USE": "A session with the given title already exists.",
       "SESSION_NOT_FOUND": "The session was not found.",
+      "SESSION_PRESENTERS_EMAILS_MUST_DIFFER": "The email addresses of the presenters cannot be the same.",
       "SESSION_EDIT_NOT_ALLOWED": "You don't have the rights to edit this session!"
     },
     "TOASTER": {
       "SESSION_CREATED": "The session was created successfully.",
       "SESSION_UPDATED": "The session was updated successfully."
+    }
+  },
+  "DASHBOARD": {
+    "OVERVIEW": {
+      "YOUR_SESSIONS": "Your sessions",
+      "CREATE_SESSION": "Create session",
+      "EDIT": "Edit",
+      "EMPTY": "No sessions found"
     }
   },
   "ERRORS": {
