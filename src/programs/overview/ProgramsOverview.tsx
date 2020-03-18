@@ -7,21 +7,19 @@ import './programsOverview.scss';
 const ProgramsOverview: FC = () => {
   return (
     <Container as="main">
-      <div>
-        <header className="header">
-          <h3>{translations.getLabel('PROGRAMS.PROGRAMS')}</h3>
-          <div className="create-buttons">
-            <Button href="/programs/create-program" isTextLink>
-              <Icon name="SvgAdd" size={1.6} />
-              {translations.getLabel('PROGRAMS.CREATE_PROGRAM')}
-            </Button>
-            <Button href="/programs/create-conference" isTextLink>
-              <Icon name="SvgAdd" size={1.6} />
-              {translations.getLabel('PROGRAMS.CREATE_CONFERENCE')}
-            </Button>
-          </div>
-        </header>
-      </div>
+      <header className="header">
+        <h3>{translations.getLabel('PROGRAMS.PROGRAMS')}</h3>
+        <div className="create-buttons">
+          <Button href="/programs/create-program" isTextLink>
+            <Icon name="SvgAdd" size={1.6} />
+            {translations.getLabel('PROGRAMS.CREATE_PROGRAM')}
+          </Button>
+          <Button href="/programs/create-conference" isTextLink>
+            <Icon name="SvgAdd" size={1.6} />
+            {translations.getLabel('PROGRAMS.CREATE_CONFERENCE')}
+          </Button>
+        </div>
+      </header>
     </Container>
   );
 };

@@ -19,7 +19,6 @@ export function hasSessionsPermissions(permissions: IPermissions): boolean {
 }
 
 export function hasProgramPermissions(permissions: IPermissions): boolean {
-  // Todo!!
   return true;
 }
 
