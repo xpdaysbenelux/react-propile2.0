@@ -90,7 +90,8 @@
       "ROLES": "Roles",
       "USERS": "Users",
       "DASHBOARD": "Dashboard",
-      "SESSIONS": "Sessions"
+      "SESSIONS": "Sessions",
+      "PROGRAMS": "Programs"
     },
     "SEARCH_PLACEHOLDER": "Search...",
     "DETAIL": {
@@ -234,6 +235,11 @@
       "EDIT": "Edit",
       "EMPTY": "No sessions found"
     }
+  },
+  "PROGRAMS": {
+    "PROGRAMS": "Programs",
+    "CREATE_PROGRAM": "Create program",
+    "CREATE_CONFERENCE": "Create conference"
   },
   "ERRORS": {
     "GENERAL": "Something went wrong. Please try again.",

@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { translations } from '../../../../_translations';
 import { authActions } from '../../../../_store/actions';
 import { profileSelectors } from '../../../../_store/selectors';
-import { hasUsersPermissions, hasRolesPermissions, hasSessionsPermissions } from '../../../../profile/_utils';
+import {
+  hasUsersPermissions,
+  hasRolesPermissions,
+  hasSessionsPermissions,
+  hasProgramPermissions,
+} from '../../../../profile/_utils';
 import logo from '../../../../_assets/png/xpdaysLogo.png';
 import { Icon } from '../../../../_shared';
 import './authorizedLayoutMenu.scss';
@@ -24,6 +29,9 @@ const AuthorizedLayoutMenu: FC = () => {
           <NavLink to="/dashboard">{translations.getLabel('SHARED.NAVIGATION.DASHBOARD')}</NavLink>
           {hasSessionsPermissions(permissions) && (
             <NavLink to="/sessions">{translations.getLabel('SHARED.NAVIGATION.SESSIONS')}</NavLink>
+          )}
+          {hasProgramPermissions(permissions) && (
+            <NavLink to="/programs">{translations.getLabel('SHARED.NAVIGATION.PROGRAMS')}</NavLink>
           )}
           {hasUsersPermissions(permissions) && <NavLink to="/users">{translations.getLabel('SHARED.NAVIGATION.USERS')}</NavLink>}
           {hasRolesPermissions(permissions) && <NavLink to="/roles">{translations.getLabel('SHARED.NAVIGATION.ROLES')}</NavLink>}

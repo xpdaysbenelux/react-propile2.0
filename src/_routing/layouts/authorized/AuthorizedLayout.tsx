@@ -5,9 +5,10 @@ import Roles from '../../../roles/Roles';
 import Users from '../../../users/Users';
 import Sessions from '../../../sessions/Sessions';
 import { profileSelectors } from '../../../_store/selectors';
-import { hasUsersPermissions, hasRolesPermissions, hasSessionsPermissions } from '../../../profile/_utils';
+import { hasUsersPermissions, hasRolesPermissions, hasSessionsPermissions, hasProgramPermissions } from '../../../profile/_utils';
 import Profile from '../../../profile/Profile';
 import Dashboard from '../../../dashboard/Dashboard';
+import Programs from '../../../programs/Programs';
 import AuthorizedLayoutMenu from './menu/AuthorizedLayoutMenu';
 import './authorizedLayout.scss';
 
@@ -22,6 +23,7 @@ const AuthorizedLayout: React.FC = () => {
         {hasUsersPermissions(permissions) && <Route component={Users} path="/users" />}
         {hasRolesPermissions(permissions) && <Route component={Roles} path="/roles" />}
         {hasSessionsPermissions(permissions) && <Route component={Sessions} path="/sessions" />}
+        {hasProgramPermissions(permissions) && <Route component={Programs} path="/programs" />}
         <Redirect to="/profile" />
       </Switch>
     </div>

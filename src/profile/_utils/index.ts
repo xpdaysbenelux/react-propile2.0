@@ -18,6 +18,11 @@ export function hasSessionsPermissions(permissions: IPermissions): boolean {
   return false;
 }
 
+export function hasProgramPermissions(permissions: IPermissions): boolean {
+  // Todo!!
+  return true;
+}
+
 export function hasSessionsAdminPermissions(permissions: IPermissions): boolean {
   if (permissions?.sessions.admin) return true;
   return false;
