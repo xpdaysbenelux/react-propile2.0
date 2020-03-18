@@ -19,7 +19,7 @@ export function hasSessionsPermissions(permissions: IPermissions): boolean {
 }
 
 export function hasProgramPermissions(permissions: IPermissions): boolean {
-  // TODO
+  // TODO: Check permissions here if backend has implemented the program permissions
   return true;
 }
 
