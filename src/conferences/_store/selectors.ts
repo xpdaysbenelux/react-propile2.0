@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+
 import { AppState } from '../../_store/rootReducer';
 import { ConferencesState } from './reducer';
 
