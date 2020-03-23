@@ -19,8 +19,9 @@ export function hasSessionsPermissions(permissions: IPermissions): boolean {
 }
 
 export function hasConferencesPermissions(permissions: IPermissions): boolean {
-  // TODO: Check permissions here if backend has implemented the conferences permissions
-  return true;
+  if (permissions?.conferences.view) return true;
+  if (permissions?.conferences.edit) return true;
+  return false;
 }
 
 export function hasSessionsAdminPermissions(permissions: IPermissions): boolean {

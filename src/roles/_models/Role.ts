@@ -7,7 +7,15 @@ export interface IRole {
 }
 
 export interface IPermissions {
+  conferences: {
+    edit: boolean;
+    view: boolean;
+  };
   personas: {
+    edit: boolean;
+    view: boolean;
+  };
+  programs: {
     edit: boolean;
     view: boolean;
   };
