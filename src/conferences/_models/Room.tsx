@@ -7,7 +7,7 @@ export interface IRoom {
     startTime: Date;
     title: string;
   }[];
-  id: string;
+  id?: string;
   location?: string;
   maxParticipants: number;
   name: string;

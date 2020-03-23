@@ -1,0 +1,14 @@
+.create-conference {
+  width: 65rem;
+  max-width: 65rem;
+
+  .room-row {
+    width: 65rem;
+    margin-bottom: 2.5rem;
+
+    .delete-room-button {
+      width: 5rem;
+      margin-top: auto;
+    }
+  }
+}

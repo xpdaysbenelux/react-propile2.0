@@ -237,6 +237,15 @@
     }
   },
   "CONFERENCES": {
+    "NAME": "Name",
+    "START_DATE": "Start date",
+    "END_DATE": "End date",
+    "ROOMS": "Rooms",
+    "CREATE": {
+      "TITLE": "Create a conference",
+      "ROOM_NAME": "Room name",
+      "MAX_PARTICIPANTS": "Max participants"
+    },
     "OVERVIEW": {
       "CONFERENCES": "Conferences",
       "CREATE_CONFERENCE": "Create conference"

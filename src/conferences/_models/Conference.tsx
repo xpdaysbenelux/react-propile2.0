@@ -13,9 +13,9 @@ export interface IConference {
 }
 
 export interface ICreateConferenceForm {
-  endDate: Date;
+  endDate: string;
   name: string;
   programs?: IProgram[];
   rooms: IRoom[];
-  startDate: Date;
+  startDate: string;
 }
