@@ -18,8 +18,8 @@ export function hasSessionsPermissions(permissions: IPermissions): boolean {
   return false;
 }
 
-export function hasProgramPermissions(permissions: IPermissions): boolean {
-  // TODO: Check permissions here if backend has implemented the program permissions
+export function hasConferencesPermissions(permissions: IPermissions): boolean {
+  // TODO: Check permissions here if backend has implemented the conferences permissions
   return true;
 }
 

@@ -91,7 +91,7 @@
       "USERS": "Users",
       "DASHBOARD": "Dashboard",
       "SESSIONS": "Sessions",
-      "PROGRAMS": "Programs"
+      "CONFERENCES": "Conferences"
     },
     "SEARCH_PLACEHOLDER": "Search...",
     "DETAIL": {
@@ -236,10 +236,11 @@
       "EMPTY": "No sessions found"
     }
   },
-  "PROGRAMS": {
-    "PROGRAMS": "Programs",
-    "CREATE_PROGRAM": "Create program",
-    "CREATE_CONFERENCE": "Create conference"
+  "CONFERENCES": {
+    "OVERVIEW": {
+      "CONFERENCES": "Conferences",
+      "CREATE_CONFERENCE": "Create conference"
+    }
   },
   "ERRORS": {
     "GENERAL": "Something went wrong. Please try again.",

@@ -8,7 +8,7 @@ import {
   hasUsersPermissions,
   hasRolesPermissions,
   hasSessionsPermissions,
-  hasProgramPermissions,
+  hasConferencesPermissions,
 } from '../../../../profile/_utils';
 import logo from '../../../../_assets/png/xpdaysLogo.png';
 import { Icon } from '../../../../_shared';
@@ -30,8 +30,8 @@ const AuthorizedLayoutMenu: FC = () => {
           {hasSessionsPermissions(permissions) && (
             <NavLink to="/sessions">{translations.getLabel('SHARED.NAVIGATION.SESSIONS')}</NavLink>
           )}
-          {hasProgramPermissions(permissions) && (
-            <NavLink to="/programs">{translations.getLabel('SHARED.NAVIGATION.PROGRAMS')}</NavLink>
+          {hasConferencesPermissions(permissions) && (
+            <NavLink to="/conferences">{translations.getLabel('SHARED.NAVIGATION.CONFERENCES')}</NavLink>
           )}
           {hasUsersPermissions(permissions) && <NavLink to="/users">{translations.getLabel('SHARED.NAVIGATION.USERS')}</NavLink>}
           {hasRolesPermissions(permissions) && <NavLink to="/roles">{translations.getLabel('SHARED.NAVIGATION.ROLES')}</NavLink>}
