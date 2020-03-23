@@ -11,3 +11,11 @@ export interface IConference {
   rooms: IRoom[];
   startDate: Date;
 }
+
+export interface ICreateConferenceForm {
+  endDate: Date;
+  name: string;
+  programs?: IProgram[];
+  rooms: IRoom[];
+  startDate: Date;
+}
