@@ -250,6 +250,9 @@
     "OVERVIEW": {
       "CONFERENCES": "Conferences",
       "CREATE_CONFERENCE": "Create conference"
+    },
+    "ERRORS": {
+      "CONFERENCE_NAME_ALREADY_IN_USE": "A conference with this name already exists."
     }
   },
   "ERRORS": {
