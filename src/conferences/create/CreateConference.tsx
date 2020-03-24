@@ -6,6 +6,7 @@ import { ICreateConferenceForm } from '../_models';
 import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
+import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import CreateConferenceForm from './CreateConferenceForm';
 
 const initialForm: ICreateConferenceForm = {
@@ -29,6 +30,17 @@ const CreateConference: FC = () => {
   const isSubmitting = useSelector(conferencesSelectors.isLoading);
   const error = useSelector(conferencesSelectors.errorCrudConference);
 
+  const parseNumberValues = (givenValues: ICreateConferenceForm): ICreateConferenceForm => {
+    const { rooms, name, startDate, endDate } = givenValues;
+    const values: ICreateConferenceForm = { endDate, name, rooms: [], startDate };
+    rooms.forEach(room => {
+      room.maxParticipants = parseValuesToNumber(room.maxParticipants);
+    });
+
+    values.rooms = rooms;
+    return values;
+  };
+
   return (
     <Container as="main">
       <h1>{translations.getLabel('CONFERENCES.CREATE.TITLE')}</h1>
@@ -41,7 +53,9 @@ const CreateConference: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: ICreateConferenceForm) => dispatch(new conferencesActions.CreateConference({ values }))}
+        submitForm={(values: ICreateConferenceForm) =>
+          dispatch(new conferencesActions.CreateConference({ values: parseNumberValues(values) }))
+        }
       />
     </Container>
   );

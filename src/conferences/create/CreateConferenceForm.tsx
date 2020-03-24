@@ -29,7 +29,7 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
     const errors: FormValidationErrors<ICreateConferenceForm> = {};
     errors.name = formValidator.isRequired(values.name);
 
-    if (values.startDate > values.endDate) {
+    if (Date.parse(values.startDate) > Date.parse(values.endDate)) {
       errors.endDate = 'The end date must be later than the start date!';
     }
 
