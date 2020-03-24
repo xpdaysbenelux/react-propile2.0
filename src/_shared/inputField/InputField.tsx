@@ -55,6 +55,7 @@ const InputField: FC<InputFieldProps> = ({
         icon={icon}
         id={props?.name}
         onChange={(_: ChangeEvent<HTMLInputElement>, data: InputOnChangeData) => {
+          console.log(data);
           const normalizedValue = normalize(data?.value);
           onChange(normalizedValue, data?.name);
           setDirty();

@@ -243,6 +243,7 @@
     "ROOMS": "Rooms",
     "CREATE": {
       "TITLE": "Create a conference",
+      "ROOMS": "Conference rooms",
       "ROOM_NAME": "Room name",
       "MAX_PARTICIPANTS": "Max participants"
     },
