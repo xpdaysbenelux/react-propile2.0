@@ -13,7 +13,7 @@ const createConferenceEpic$: Epic = actions$ =>
   actions$.ofType(ConferencesActionType.CreateConference).pipe(
     switchMap(({ payload }: conferencesActions.CreateConference) =>
       from(conferencesApi.createConference(payload.values)).pipe(
-        tap(() => toast.success(translations.getLabel('CONFERENCE.TOASTER.CONFERENCE_CREATED'))),
+        tap(() => toast.success(translations.getLabel('CONFERENCES.TOASTER.CONFERENCE_CREATED'))),
         map(createdConference => new conferencesActions.CreateConferenceSuccess({ createdConference })),
         catchError(error => of(new conferencesActions.CreateConferenceError({ error }))),
       ),
