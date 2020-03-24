@@ -21,6 +21,7 @@ interface Props {
 function errorAsString(error?: ApiError): string {
   if (error?.error === 'CONFERENCE_NAME_ALREADY_IN_USE')
     return translations.getLabel(`CONFERENCES.ERRORS.CONFERENCE_NAME_ALREADY_IN_USE`);
+  if (error?.error === 'CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS') return translations.getLabel('');
   return null;
 }
 
