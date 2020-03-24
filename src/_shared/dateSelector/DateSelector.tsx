@@ -2,11 +2,14 @@ import React, { FC } from 'react';
 import DatePicker from 'react-datepicker';
 
 import classnames from 'classnames';
+import ErrorMessage from '../errorMessage/ErrorMessage';
+import { useInputError } from '../../_hooks';
 import 'react-datepicker/dist/react-datepicker.css';
 import './dateSelector.scss';
 
 export interface DatePickerProps {
   className?: string;
+  errorMessage?: string;
   label: string;
   name: string;
   onChange: (value: string, name: string) => void;
@@ -14,8 +17,9 @@ export interface DatePickerProps {
   value: string;
 }
 
-const DateSelector: FC<DatePickerProps> = ({ className, label, onChange, value, name, showPopperArrow }) => {
+const DateSelector: FC<DatePickerProps> = ({ className, errorMessage, label, onChange, value, name, showPopperArrow }) => {
   const inputWrapperRef = React.createRef<HTMLDivElement>();
+  const { showError } = useInputError(errorMessage);
   const selectedDate = new Date(value);
 
   return (
@@ -32,6 +36,7 @@ const DateSelector: FC<DatePickerProps> = ({ className, label, onChange, value, 
         showDisabledMonthNavigation
         showPopperArrow={showPopperArrow}
       />
+      <ErrorMessage isVisible={showError}>{errorMessage}</ErrorMessage>
     </div>
   );
 };
