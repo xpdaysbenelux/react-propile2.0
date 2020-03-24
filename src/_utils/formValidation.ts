@@ -47,7 +47,9 @@ function isBetween(value: any, min: number, max: number, fieldName: string): str
   if (typeof value === 'string') {
     value = parseInt(value);
   }
-  const isValid = value >= min && value <= max;
+
+  let isValid = true;
+  if (value < min || value > max) isValid = false;
   return !isValid && translations.getLabel('ERRORS.VALIDATION.MUST_BE_BETWEEN', { fieldName, max, min });
 }
 
