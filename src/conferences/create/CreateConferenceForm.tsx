@@ -31,12 +31,12 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
     errors.name = formValidator.isRequired(values.name);
 
     if (Date.parse(values.startDate) > Date.parse(values.endDate)) {
-      errors.endDate = 'The end date must be later than the start date!';
+      errors.endDate = translations.getLabel('END_DATE_LATER_THAN_START_DATE');
     }
 
     values.rooms.every(room => {
       if (room.name === '' || room.maxParticipants.toString() === '') {
-        errors.rooms = 'All the rooms their values must be filled in.';
+        errors.rooms = translations.getLabel('CONFERENCES.ERRORS.ALL_ROOM_VALUES_MUST_BE_FILLED_IN');
         return false;
       } else if (room.maxParticipants < 0 || room.maxParticipants > 50) {
         errors.rooms = formValidator.isBetween(room.maxParticipants, 0, 50, 'max amount of participants');

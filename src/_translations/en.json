@@ -257,7 +257,9 @@
     },
     "ERRORS": {
       "CONFERENCE_NAME_ALREADY_IN_USE": "A conference with this name already exists.",
-      "CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS": "A conference must have at least two rooms."
+      "CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS": "A conference must have at least two rooms.",
+      "END_DATE_LATER_THAN_START_DATE": "The end date must be later than the start date!",
+      "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in."
     }
   },
   "ERRORS": {

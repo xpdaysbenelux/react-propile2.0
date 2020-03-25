@@ -3,7 +3,6 @@ import { Container } from 'semantic-ui-react';
 
 import { translations } from '../../_translations';
 import { Button, Icon } from '../../_shared';
-import './conferencesOverview.scss';
 
 const ConferencesOverview: FC = () => {
   return (
