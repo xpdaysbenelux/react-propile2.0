@@ -249,7 +249,10 @@
     },
     "OVERVIEW": {
       "CONFERENCES": "Conferences",
-      "CREATE_CONFERENCE": "Create conference"
+      "CREATE_CONFERENCE": "Create conference",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "EMPTY": "No conferences found"
     },
     "TOASTER": {
       "CONFERENCE_CREATED": "The conference was created successfully."
