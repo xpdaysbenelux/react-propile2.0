@@ -57,7 +57,6 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
 
   function removeRoomFromForm(givenIndex: number) {
     const rooms = [...form.values.rooms];
-    console.log('remove', rooms);
     rooms.splice(givenIndex, 1);
     form.setAttribute(rooms, 'rooms');
   }

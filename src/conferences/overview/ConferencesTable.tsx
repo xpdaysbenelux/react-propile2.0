@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import { IConference } from '../_models';
 import { FillMetadataQueryFunction, HttpSortDirection } from '../../_http';
 import Table, { TableColumn } from '../../_shared/table/Table';
 import { conferencesSelectors } from '../../_store/selectors';
-import { dateFromISOString, formatDate } from '../../_utils/timeHelpers';
+import { formatDate, dateFromISOString } from '../../_utils/timeHelpers';
 import { translations } from '../../_translations';
 
 interface Props {
@@ -17,10 +17,11 @@ interface Props {
 }
 
 const columns: TableColumn[] = [
-  { label: 'CONFERENCES.NAME', name: 'email', sortable: true },
-  { label: 'CONFERENCES.START_DATE', name: 'firstName', sortable: true },
-  { className: '', name: 'edit' },
-  { className: '', name: 'delete' },
+  { label: 'CONFERENCES.NAME', name: 'name', sortable: true },
+  { className: 'date-column', label: 'CONFERENCES.START_DATE', name: 'startDate', sortable: true },
+  { className: 'date-column', label: 'CONFERENCES.END_DATE', name: 'endDate', sortable: true },
+  { className: 'action-column', name: 'edit' },
+  { className: 'action-column', name: 'delete' },
 ];
 
 const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
@@ -38,10 +39,10 @@ const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>
           <Link to={{ pathname: `/conferences/${conference.id}` }}>{conference.name}</Link>
         </Table.Cell>
-        <Table.Cell>{formatDate(conference.startDate)}</Table.Cell>
-        <Table.Cell>{formatDate(conference.endDate)}</Table.Cell>
+        <Table.Cell>{formatDate(dateFromISOString(conference.startDate))}</Table.Cell>
+        <Table.Cell>{formatDate(dateFromISOString(conference.endDate))}</Table.Cell>
         <Table.Cell>
-          <Link to={{ pathname: `/conferences/${conference.id}/update-conference/` }}>
+          <Link to={{ pathname: `/conferences/update-conference/${conference.id}` }}>
             {translations.getLabel('CONFERENCES.OVERVIEW.EDIT')}
           </Link>
         </Table.Cell>
