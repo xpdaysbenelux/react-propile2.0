@@ -35,7 +35,7 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
     }
 
     values.rooms.every(room => {
-      if (room.name === '') {
+      if (room.name === '' || room.maxParticipants.toString() === '') {
         errors.rooms = 'All the rooms their values must be filled in.';
         return false;
       } else if (room.maxParticipants < 0 || room.maxParticipants > 50) {
@@ -57,7 +57,6 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
 
   function removeRoomFromForm(givenIndex: number) {
     const rooms = [...form.values.rooms];
-    console.log('remove', rooms);
     rooms.splice(givenIndex, 1);
     form.setAttribute(rooms, 'rooms');
   }
@@ -127,15 +126,15 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
           onChange={form.setAttribute}
           value={form.values.endDate}
         />
-        {form.validationErrors.endDate ? <ErrorMessage isVisible>{form.validationErrors.endDate}</ErrorMessage> : null}
+        {form.validationErrors.endDate && <ErrorMessage isVisible>{form.validationErrors.endDate}</ErrorMessage>}
       </div>
       <div className="conference-rooms">
         <h3>{translations.getLabel('CONFERENCES.CREATE.ROOMS')}</h3>
         {form.values.rooms.map((room: IRoom, index: number) => renderRoomRow(room, index, index <= 1 ? false : true))}
-        {form.validationErrors.rooms ? <ErrorMessage isVisible>{form.validationErrors.rooms}</ErrorMessage> : null}
-        <Button onClick={addRoomToForm}>Add a room</Button>
+        {form.validationErrors.rooms && <ErrorMessage isVisible>{form.validationErrors.rooms}</ErrorMessage>}
+        <Button onClick={addRoomToForm}>{translations.getLabel('CONFERENCES.CREATE.ADD_ROOM')}</Button>
       </div>
-      {error ? <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage> : null}
+      {error && <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>}
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">

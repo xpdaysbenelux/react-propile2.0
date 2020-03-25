@@ -245,7 +245,8 @@
       "TITLE": "Create a conference",
       "ROOMS": "Conference rooms",
       "ROOM_NAME": "Room name",
-      "MAX_PARTICIPANTS": "Max participants"
+      "MAX_PARTICIPANTS": "Max participants",
+      "ADD_ROOM": "Add a room"
     },
     "OVERVIEW": {
       "CONFERENCES": "Conferences",
