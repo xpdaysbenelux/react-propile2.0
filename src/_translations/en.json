@@ -247,6 +247,12 @@
       "ROOM_NAME": "Room name",
       "MAX_PARTICIPANTS": "Max participants"
     },
+    "DETAIL": {
+      "DETAILS": {
+        "TITLE": "Details"
+      },
+      "BACK": "Back to conferences"
+    },
     "OVERVIEW": {
       "CONFERENCES": "Conferences",
       "CREATE_CONFERENCE": "Create conference",
