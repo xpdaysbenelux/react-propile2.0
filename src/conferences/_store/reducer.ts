@@ -18,6 +18,34 @@ const initialState: ConferencesState = {
 
 export default function reducer(state = initialState, action: ConferencesAction): ConferencesState {
   switch (action.type) {
+    case ConferencesActionType.GetConferences:
+      return {
+        ...state,
+        errorCrudConference: null,
+        isLoading: true,
+        metadata: null,
+      };
+    case ConferencesActionType.GetConferencesSuccess: {
+      let currentData = state.conferences || [];
+      if (!action.payload.meta.skip) currentData = [];
+      return {
+        ...state,
+        conferences: insertUpdatedData(currentData, action.payload.data),
+        isLoading: false,
+        metadata: action.payload.meta,
+      };
+    }
+    case ConferencesActionType.GetConferencesError:
+      return {
+        ...state,
+        errorCrudConference: action.payload.error,
+        isLoading: false,
+      };
+    case ConferencesActionType.SetConferencesQuery:
+      return {
+        ...state,
+        query: action.payload.query,
+      };
     case ConferencesActionType.CreateConference:
       return {
         ...state,
