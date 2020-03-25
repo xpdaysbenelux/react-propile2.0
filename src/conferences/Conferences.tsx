@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { profileSelectors } from '../_store/selectors';
@@ -16,6 +16,7 @@ const Conferences: React.FC = () => {
       <Route component={ConferencesOverview} exact path={url} />
       {permissions?.conferences.edit && <Route component={CreateConference} exact path={`${url}/create-conference`} />}
       <Route component={ConferenceDetail} exact path={`${url}/:id`} />
+      <Redirect to="/conferences" />
     </Switch>
   );
 };

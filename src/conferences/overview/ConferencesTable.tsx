@@ -42,9 +42,7 @@ const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>{formatDate(dateFromISOString(conference.startDate))}</Table.Cell>
         <Table.Cell>{formatDate(dateFromISOString(conference.endDate))}</Table.Cell>
         <Table.Cell>
-          <Link to={{ pathname: `/conferences/update-conference/${conference.id}` }}>
-            {translations.getLabel('CONFERENCES.OVERVIEW.EDIT')}
-          </Link>
+          <Link to={`/conferences/update-conference/${conference.id}`}>{translations.getLabel('CONFERENCES.OVERVIEW.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>{translations.getLabel('CONFERENCES.OVERVIEW.DELETE')}</Table.Cell>
       </Table.Row>

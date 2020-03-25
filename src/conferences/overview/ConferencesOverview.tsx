@@ -7,8 +7,8 @@ import { Button, Icon, SearchInput } from '../../_shared';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
 import { FillMetadataQueryFunction, HttpMetadataQuery } from '../../_http';
-import './conferencesOverview.scss';
 import ConferencesTable from './ConferencesTable';
+import './conferencesOverview.scss';
 
 const ConferencesOverview: FC = () => {
   const conferences = useSelector(conferencesSelectors.conferences);

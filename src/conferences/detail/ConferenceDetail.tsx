@@ -25,29 +25,27 @@ const ConferenceDetail: FC = () => {
 
   function renderDetailSection() {
     return (
-      <>
-        <Item.Group>
-          <h2>{translations.getLabel('CONFERENCES.DETAIL.DETAILS.TITLE')}</h2>
-          <Item>
-            <Item.Content>
-              <Item.Header>{translations.getLabel('CONFERENCES.NAME')}</Item.Header>
-              <Item.Description>{conference.name}</Item.Description>
-            </Item.Content>
-          </Item>
-          <Item>
-            <Item.Content>
-              <Item.Header>{translations.getLabel('CONFERENCES.START_DATE')}</Item.Header>
-              <Item.Description>{formatDate(dateFromISOString(conference.startDate))}</Item.Description>
-            </Item.Content>
-          </Item>
-          <Item>
-            <Item.Content>
-              <Item.Header>{translations.getLabel('CONFERENCES.END_DATE')}</Item.Header>
-              <Item.Description>{formatDate(dateFromISOString(conference.endDate))}</Item.Description>
-            </Item.Content>
-          </Item>
-        </Item.Group>
-      </>
+      <Item.Group>
+        <h2>{translations.getLabel('CONFERENCES.DETAIL.DETAILS.TITLE')}</h2>
+        <Item>
+          <Item.Content>
+            <Item.Header>{translations.getLabel('CONFERENCES.NAME')}</Item.Header>
+            <Item.Description>{conference.name}</Item.Description>
+          </Item.Content>
+        </Item>
+        <Item>
+          <Item.Content>
+            <Item.Header>{translations.getLabel('CONFERENCES.START_DATE')}</Item.Header>
+            <Item.Description>{formatDate(dateFromISOString(conference.startDate))}</Item.Description>
+          </Item.Content>
+        </Item>
+        <Item>
+          <Item.Content>
+            <Item.Header>{translations.getLabel('CONFERENCES.END_DATE')}</Item.Header>
+            <Item.Description>{formatDate(dateFromISOString(conference.endDate))}</Item.Description>
+          </Item.Content>
+        </Item>
+      </Item.Group>
     );
   }
 
