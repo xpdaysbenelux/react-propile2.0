@@ -70,10 +70,6 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
       form.setAttribute(rooms, 'rooms');
     };
 
-    const removeRoom = () => {
-      removeRoomFromForm(index);
-    };
-
     return (
       <div className="room-row" key={index} role="group">
         <InputField
@@ -92,7 +88,7 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
         />
         {showDeleteButton && (
           <div className="delete-room-button">
-            <Button onClick={removeRoom} theme="warning">
+            <Button onClick={() => removeRoomFromForm(index)} theme="warning">
               X
             </Button>
           </div>
