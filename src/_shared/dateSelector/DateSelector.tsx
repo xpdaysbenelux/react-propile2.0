@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import DatePicker from 'react-datepicker';
-
 import classnames from 'classnames';
+
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import { useInputError } from '../../_hooks';
+
 import 'react-datepicker/dist/react-datepicker.css';
 import './dateSelector.scss';
 
@@ -18,12 +19,11 @@ export interface DatePickerProps {
 }
 
 const DateSelector: FC<DatePickerProps> = ({ className, errorMessage, label, onChange, value, name, showPopperArrow }) => {
-  const inputWrapperRef = React.createRef<HTMLDivElement>();
   const { showError } = useInputError(errorMessage);
   const selectedDate = new Date(value);
 
   return (
-    <div className={classnames('date-selector', className)} ref={inputWrapperRef}>
+    <div className={classnames('date-selector', className)}>
       <label className="label" htmlFor={name}>
         <span>{label}</span>
       </label>

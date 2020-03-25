@@ -2,8 +2,8 @@ import { Epic } from 'redux-observable';
 import { switchMap, map, tap, catchError, exhaustMap } from 'rxjs/operators';
 import { from, of } from 'rxjs';
 import { push } from 'connected-react-router';
-
 import { toast } from 'react-toastify';
+
 import { conferencesActions } from '../../_store/actions';
 import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
