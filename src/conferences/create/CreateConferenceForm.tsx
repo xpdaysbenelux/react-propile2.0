@@ -130,7 +130,7 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
       </div>
       <div className="conference-rooms">
         <h3>{translations.getLabel('CONFERENCES.CREATE.ROOMS')}</h3>
-        {form.values.rooms.map((room: IRoom, index: number) => renderRoomRow(room, index, index <= 1 ? false : true))}
+        {form.values.rooms.map((room: IRoom, index: number) => renderRoomRow(room, index, !(index <= 1)))}
         {form.validationErrors.rooms && <ErrorMessage isVisible>{form.validationErrors.rooms}</ErrorMessage>}
         <Button onClick={addRoomToForm}>{translations.getLabel('CONFERENCES.CREATE.ADD_ROOM')}</Button>
       </div>
