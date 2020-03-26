@@ -37,7 +37,7 @@ const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
     return (
       <Table.Row key={conference.id}>
         <Table.Cell>
-          <Link to={{ pathname: `/conferences/${conference.id}` }}>{conference.name}</Link>
+          <Link to={`/conferences/${conference.id}`}>{conference.name}</Link>
         </Table.Cell>
         <Table.Cell>{formatDate(dateFromISOString(conference.startDate))}</Table.Cell>
         <Table.Cell>{formatDate(dateFromISOString(conference.endDate))}</Table.Cell>
