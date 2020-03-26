@@ -18,6 +18,12 @@ export function hasSessionsPermissions(permissions: IPermissions): boolean {
   return false;
 }
 
+export function hasConferencesPermissions(permissions: IPermissions): boolean {
+  if (permissions?.conferences.view) return true;
+  if (permissions?.conferences.edit) return true;
+  return false;
+}
+
 export function hasSessionsAdminPermissions(permissions: IPermissions): boolean {
   if (permissions?.sessions.admin) return true;
   return false;

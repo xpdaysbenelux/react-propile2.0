@@ -9,5 +9,19 @@ import SearchInput from './searchInput/SearchInput';
 import Table from './table/Table';
 import Timestamps from './timestamps/Timestamps';
 import Toggle from './toggle/Toggle';
+import DateSelector from './dateSelector/DateSelector';
 
-export { Icon, InputField, InputTextArea, Modal, Table, Button, SearchInput, Dropdown, GoBackLink, Timestamps, Toggle };
+export {
+  Icon,
+  InputField,
+  InputTextArea,
+  Modal,
+  Table,
+  Button,
+  SearchInput,
+  Dropdown,
+  GoBackLink,
+  Timestamps,
+  Toggle,
+  DateSelector,
+};

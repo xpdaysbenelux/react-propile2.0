@@ -5,5 +5,15 @@ import * as rolesSelectors from '../roles/_store/selectors';
 import * as routerSelectors from '../_routing/_store/selectors';
 import * as usersSelectors from '../users/_store/selectors';
 import * as sessionsSelectors from '../sessions/_store/selectors';
+import * as conferencesSelectors from '../conferences/_store/selectors';
 
-export { authSelectors, modalSelectors, profileSelectors, rolesSelectors, routerSelectors, usersSelectors, sessionsSelectors };
+export {
+  authSelectors,
+  modalSelectors,
+  profileSelectors,
+  rolesSelectors,
+  routerSelectors,
+  usersSelectors,
+  sessionsSelectors,
+  conferencesSelectors,
+};

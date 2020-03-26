@@ -90,7 +90,8 @@
       "ROLES": "Roles",
       "USERS": "Users",
       "DASHBOARD": "Dashboard",
-      "SESSIONS": "Sessions"
+      "SESSIONS": "Sessions",
+      "CONFERENCES": "Conferences"
     },
     "SEARCH_PLACEHOLDER": "Search...",
     "DETAIL": {
@@ -235,6 +236,44 @@
       "EMPTY": "No sessions found"
     }
   },
+<<<<<<< HEAD
+=======
+  "CONFERENCES": {
+    "NAME": "Name",
+    "START_DATE": "Start date",
+    "END_DATE": "End date",
+    "ROOMS": "Rooms",
+    "CREATE": {
+      "TITLE": "Create a conference",
+      "ROOMS": "Conference rooms",
+      "ROOM_NAME": "Room name",
+      "MAX_PARTICIPANTS": "Max participants",
+      "ADD_ROOM": "Add a room"
+    },
+    "DETAIL": {
+      "DETAILS": {
+        "TITLE": "Details"
+      },
+      "BACK": "Back to conferences"
+    },
+    "OVERVIEW": {
+      "CONFERENCES": "Conferences",
+      "CREATE_CONFERENCE": "Create conference",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "EMPTY": "No conferences found"
+    },
+    "TOASTER": {
+      "CONFERENCE_CREATED": "The conference was created successfully."
+    },
+    "ERRORS": {
+      "CONFERENCE_NAME_ALREADY_IN_USE": "A conference with this name already exists.",
+      "CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS": "A conference must have at least two rooms.",
+      "END_DATE_LATER_THAN_START_DATE": "The end date must be later than the start date!",
+      "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in."
+    }
+  },
+>>>>>>> develop
   "ERRORS": {
     "GENERAL": "Something went wrong. Please try again.",
     "PERMISSION_DENIED": "You do not have permissions to perform this action. Contact your administrator.",
