@@ -236,8 +236,6 @@
       "EMPTY": "No sessions found"
     }
   },
-<<<<<<< HEAD
-=======
   "CONFERENCES": {
     "NAME": "Name",
     "START_DATE": "Start date",
@@ -273,7 +271,6 @@
       "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in."
     }
   },
->>>>>>> develop
   "ERRORS": {
     "GENERAL": "Something went wrong. Please try again.",
     "PERMISSION_DENIED": "You do not have permissions to perform this action. Contact your administrator.",
