@@ -271,6 +271,11 @@
       "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in."
     }
   },
+  "PROGRAMS": {
+    "TOASTER": {
+      "PROGRAM_CREATED": "The program was created successfully."
+    }
+  },
   "ERRORS": {
     "GENERAL": "Something went wrong. Please try again.",
     "PERMISSION_DENIED": "You do not have permissions to perform this action. Contact your administrator.",

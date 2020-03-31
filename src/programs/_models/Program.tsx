@@ -12,3 +12,11 @@ export interface IProgram {
   id: string;
   startTime: Date;
 }
+
+export interface ICreateProgramForm {
+  conferenceId: string;
+  date: string;
+  endTime: string;
+  startTime: string;
+  title: string;
+}

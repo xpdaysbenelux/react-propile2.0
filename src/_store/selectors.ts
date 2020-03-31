@@ -6,6 +6,7 @@ import * as routerSelectors from '../_routing/_store/selectors';
 import * as usersSelectors from '../users/_store/selectors';
 import * as sessionsSelectors from '../sessions/_store/selectors';
 import * as conferencesSelectors from '../conferences/_store/selectors';
+import * as programsSelectors from '../programs/_store/selectors';
 
 export {
   authSelectors,
@@ -16,4 +17,5 @@ export {
   usersSelectors,
   sessionsSelectors,
   conferencesSelectors,
+  programsSelectors,
 };

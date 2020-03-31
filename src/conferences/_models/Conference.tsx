@@ -1,4 +1,4 @@
-import { IProgram } from './Program';
+import { IProgram } from '../../programs/_models/';
 import { IRoom } from './Room';
 
 export interface IConference {

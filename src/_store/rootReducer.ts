@@ -8,6 +8,7 @@ import conferencesReducer, { ConferencesState } from '../conferences/_store/redu
 import authReducer, { AuthState } from '../auth/_store/reducer';
 import modalReducer, { ModalState } from '../modal/_store/reducer';
 import profileReducer, { ProfileState } from '../profile/_store/reducer';
+import programsReducer, { ProgramsState } from '../programs/_store/reducer';
 import { AuthActionType } from '../auth/_store/actions';
 
 export interface AppState {
@@ -15,6 +16,7 @@ export interface AppState {
   conferences: ConferencesState;
   modal: ModalState;
   profile: ProfileState;
+  programs: ProgramsState;
   roles: RolesState;
   router: RouterState;
   sessions: SessionsState;
@@ -27,6 +29,7 @@ function appReducer(history: History): Reducer {
     conferences: conferencesReducer,
     modal: modalReducer,
     profile: profileReducer,
+    programs: programsReducer,
     roles: rolesReducer,
     router: connectRouter(history),
     sessions: sessionsReducer,

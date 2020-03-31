@@ -1,0 +1,41 @@
+import { Epic } from 'redux-observable';
+import { switchMap, map, tap, catchError, exhaustMap } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import { push } from 'connected-react-router';
+import { toast } from 'react-toastify';
+
+import { programsActions } from '../../_store/actions';
+import { translations } from '../../_translations';
+import { programsSelectors } from '../../_store/selectors';
+import { ProgramsActionType } from './actions';
+import * as programsApi from './api';
+
+const getProgramsEpic$: Epic = (action$, state$) =>
+  action$.ofType(ProgramsActionType.GetPrograms).pipe(
+    exhaustMap(() => {
+      const query = programsSelectors.query(state$.value);
+      return from(programsApi.getPrograms(query)).pipe(
+        map(({ data, meta }) => new programsActions.GetProgramsSuccess({ data, meta })),
+        catchError(error => of(new programsActions.GetProgramsError({ error }))),
+      );
+    }),
+  );
+
+const setProgramsQueryEpic$: Epic = action$ =>
+  action$.ofType(ProgramsActionType.SetProgramsQuery).pipe(map(() => new programsActions.GetPrograms()));
+
+const createProgramEpic$: Epic = actions$ =>
+  actions$.ofType(ProgramsActionType.CreateProgram).pipe(
+    switchMap(({ payload }: programsActions.CreateProgram) =>
+      from(programsApi.createProgram(payload.values)).pipe(
+        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.PROGRAM_CREATED'))),
+        map(createdProgram => new programsActions.CreateProgramSuccess({ createdProgram })),
+        catchError(error => of(new programsActions.CreateProgramError({ error }))),
+      ),
+    ),
+  );
+
+const createProgramSuccessEpic$: Epic = action$ =>
+  action$.ofType(ProgramsActionType.CreateProgramSuccess).pipe(switchMap(() => of(push('/programs/edit-program-events'))));
+
+export default [getProgramsEpic$, setProgramsQueryEpic$, createProgramEpic$, createProgramSuccessEpic$];
