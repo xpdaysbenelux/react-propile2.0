@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Redirect, Link, useRouteMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Container, Item } from 'semantic-ui-react';
 
@@ -9,8 +9,9 @@ import { GoBackLink, Timestamps } from '../../_shared';
 import { formatDate, dateFromISOString } from '../../_utils/timeHelpers';
 
 const ConferenceDetail: FC = () => {
-  const { id } = useParams();
-  const conference = useSelector(conferencesSelectors.conference(id));
+  const { conferenceId } = useParams();
+  const { url } = useRouteMatch();
+  const conference = useSelector(conferencesSelectors.conference(conferenceId));
 
   if (!conference) return <Redirect to="/conferences" />;
 
@@ -54,6 +55,7 @@ const ConferenceDetail: FC = () => {
       <GoBackLink label={translations.getLabel('CONFERENCES.DETAIL.BACK')} to="/conferences" />
       {renderHeader()}
       {renderDetailSection()}
+      <Link to={`${url}/programs/create-program`}>Create program</Link>
     </Container>
   );
 };
