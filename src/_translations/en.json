@@ -265,6 +265,7 @@
       "CONFERENCE_CREATED": "The conference was created successfully."
     },
     "ERRORS": {
+      "CONFERENCE_NOT_FOUND": "The conference was not found.",
       "CONFERENCE_NAME_ALREADY_IN_USE": "A conference with this name already exists.",
       "CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS": "A conference must have at least two rooms.",
       "END_DATE_LATER_THAN_START_DATE": "The end date must be later than the start date!",
@@ -272,8 +273,21 @@
     }
   },
   "PROGRAMS": {
+    "TITLE": "Title",
+    "DATE": "Date",
+    "START_TIME": "Start time",
+    "END_TIME": "End time",
+    "GO_BACK": "Back to conference",
+    "CREATE": {
+      "TITLE": "Create a program"
+    },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully."
+    },
+    "ERRORS": {
+      "PROGRAM_TITLE_ALREADY_IN_USE": "A program with this title already exists.",
+      "PROGRAM_DATE_MUST_BE_BETWEEN_CONFERENCE_DATES": "The program date must be one of or between the conference dates.",
+      "START_END_TIME_DATES_MUST_BE_SAME_AS_PROGRAM_DATE": "The start and end time dates must be the same as the program date."
     }
   },
   "ERRORS": {
