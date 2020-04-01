@@ -10,6 +10,7 @@ import Table from './table/Table';
 import Timestamps from './timestamps/Timestamps';
 import Toggle from './toggle/Toggle';
 import DateSelector from './dateSelector/DateSelector';
+import TimeSelector from './timeSelector/TimeSelector';
 
 export {
   Icon,
@@ -24,4 +25,5 @@ export {
   Timestamps,
   Toggle,
   DateSelector,
+  TimeSelector,
 };
