@@ -68,6 +68,7 @@ const CreateProgram: FC = () => {
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }
+        conference={conference}
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}

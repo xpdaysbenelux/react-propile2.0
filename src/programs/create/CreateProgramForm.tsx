@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import { ApiError } from '../../_http';
 import { ICreateProgramForm } from '../_models';
+import { IConference } from '../../conferences/_models';
 import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/useForm';
 import { formValidator } from '../../_utils/formValidation';
 import { InputField, Button, DateSelector, TimeSelector } from '../../_shared';
@@ -12,6 +13,7 @@ import './createProgramForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
+  conference: IConference;
   error?: ApiError;
   initialForm: ICreateProgramForm;
   isSubmitting: boolean;
@@ -29,7 +31,7 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
-const CreateProgramForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons }) => {
+const CreateProgramForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons, conference }) => {
   function validateForm(values: ICreateProgramForm): FormValidationErrors<ICreateProgramForm> {
     const errors: FormValidationErrors<ICreateProgramForm> = {};
     errors.title = formValidator.isRequired(values.title);
@@ -54,6 +56,8 @@ const CreateProgramForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, e
       <div role="group">
         <DateSelector
           label={translations.getLabel('PROGRAMS.DATE')}
+          maxDate={conference.endDate}
+          minDate={conference.startDate}
           name="date"
           onChange={form.setAttribute}
           value={form.values.date}

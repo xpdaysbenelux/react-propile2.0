@@ -12,13 +12,25 @@ export interface DatePickerProps {
   className?: string;
   errorMessage?: string;
   label: string;
+  maxDate?: string;
+  minDate?: string;
   name: string;
   onChange: (value: string, name: string) => void;
   showPopperArrow?: boolean;
   value: string;
 }
 
-const DateSelector: FC<DatePickerProps> = ({ className, errorMessage, label, onChange, value, name, showPopperArrow }) => {
+const DateSelector: FC<DatePickerProps> = ({
+  className,
+  errorMessage,
+  label,
+  onChange,
+  value,
+  name,
+  showPopperArrow,
+  minDate,
+  maxDate,
+}) => {
   const { showError } = useInputError(errorMessage);
   const selectedDate = new Date(value);
 
@@ -28,7 +40,8 @@ const DateSelector: FC<DatePickerProps> = ({ className, errorMessage, label, onC
         <span>{label}</span>
       </label>
       <DatePicker
-        minDate={new Date()}
+        maxDate={new Date(maxDate)}
+        minDate={minDate ? new Date(minDate) : new Date()}
         onChange={newDate => {
           onChange(newDate.toISOString(), name);
         }}
