@@ -8,5 +8,5 @@ export function getPrograms(query?: HttpMetadataQuery): Promise<HttpPagedRespons
 }
 
 export function createProgram(body: ICreateProgramForm): Promise<IProgram> {
-  return HttpClient.post<IProgram>('conferences', removeEmptyKeys(body));
+  return HttpClient.post<IProgram>('programs', removeEmptyKeys(body));
 }
