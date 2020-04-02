@@ -282,6 +282,12 @@
     "CREATE": {
       "TITLE": "Create a program"
     },
+    "OVERVIEW": {
+      "CREATE_PROGRAM": "Create program",
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "EMPTY": "No programs for this conference were found"
+    },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully."
     },

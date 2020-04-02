@@ -1,17 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useParams, Redirect, Link, useRouteMatch } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Container, Item } from 'semantic-ui-react';
 
 import { conferencesSelectors } from '../../_store/selectors';
 import { translations } from '../../_translations';
 import { GoBackLink, Timestamps } from '../../_shared';
 import { formatDate, dateFromISOString } from '../../_utils/timeHelpers';
+import { programsActions } from '../../_store/actions';
+import ProgramsOverview from '../../programs/overview/ProgramsOverview';
 
 const ConferenceDetail: FC = () => {
   const { conferenceId } = useParams();
   const { url } = useRouteMatch();
   const conference = useSelector(conferencesSelectors.conference(conferenceId));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(new programsActions.GetPrograms());
+  }, [dispatch]);
 
   if (!conference) return <Redirect to="/conferences" />;
 
@@ -50,12 +57,17 @@ const ConferenceDetail: FC = () => {
     );
   }
 
+  function renderRoomDetailsSection() {
+    return <p>Ello</p>;
+  }
+
   return (
     <Container as="main">
       <GoBackLink label={translations.getLabel('CONFERENCES.DETAIL.BACK')} to="/conferences" />
       {renderHeader()}
       {renderDetailSection()}
       <Link to={`${url}/programs/create-program`}>{translations.getLabel('CONFERENCES.DETAIL.CREATE_PROGRAM')}</Link>
+      <ProgramsOverview conferenceId={conferenceId} />
     </Container>
   );
 };
