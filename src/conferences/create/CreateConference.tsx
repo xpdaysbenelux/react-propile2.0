@@ -34,8 +34,12 @@ const CreateConference: FC = () => {
   const parseNumberValues = (givenValues: ICreateConferenceForm): ICreateConferenceForm => {
     const { rooms, name, startDate, endDate } = givenValues;
     const values: ICreateConferenceForm = { endDate, name, rooms: [], startDate };
-    values.startDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(startDate, '02:00')));
-    values.endDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(endDate, '23:59')));
+
+    // These vars get used to set the start & end times of a conference as early and as late as possible
+    const conferenceStartTime = '02:00';
+    const conferenceEndTime = '23:59';
+    values.startDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(startDate, conferenceStartTime)));
+    values.endDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(endDate, conferenceEndTime)));
 
     rooms.forEach(room => {
       room.maxParticipants = parseValuesToNumber(room.maxParticipants);

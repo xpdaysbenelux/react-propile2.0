@@ -10,7 +10,7 @@ import { programsActions } from '../../_store/actions';
 import { IConference } from '../../conferences/_models';
 import { GoBackLink } from '../../_shared';
 import {
-  DateStringFromISOString,
+  dateStringFromISOString,
   dateTimeFromString,
   getCombinedDateTimeString,
   ISOStringFromDate,
@@ -18,17 +18,23 @@ import {
 } from '../../_utils/timeHelpers';
 import CreateProgramForm from './CreateProgramForm';
 
-const getInitialForm = (conference: IConference): ICreateProgramForm => ({
-  conferenceId: conference?.id || '',
-  date: conference?.startDate || new Date().toISOString(),
-  endTime: conference
-    ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, '20:00')))
-    : new Date().toISOString(),
-  startTime: conference
-    ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, '08:00')))
-    : new Date().toISOString(),
-  title: '',
-});
+const getInitialForm = (conference: IConference): ICreateProgramForm => {
+  // These vars get used to prefill the date selectors for the start & endtimes of a program
+  const givenStartTime = '08:00';
+  const givenEndTime = '20:00';
+
+  return {
+    conferenceId: conference?.id || '',
+    date: conference?.startDate || new Date().toISOString(),
+    endTime: conference
+      ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, givenEndTime)))
+      : new Date().toISOString(),
+    startTime: conference
+      ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, givenStartTime)))
+      : new Date().toISOString(),
+    title: '',
+  };
+};
 
 const CreateProgram: FC = () => {
   const { conferenceId } = useParams();
@@ -43,18 +49,19 @@ const CreateProgram: FC = () => {
   const beforeSubmit = (givenValues: ICreateProgramForm): ICreateProgramForm => {
     const { date, startTime, endTime, title, conferenceId } = givenValues;
     const values: ICreateProgramForm = { conferenceId, date, endTime, startTime, title };
-    values.date = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(date, '02:01')));
+
+    // This var is used to set the time of the program date to 1 minute after the start of a conference date
+    const timeForDate = '02:01';
+    values.date = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(date, timeForDate)));
 
     if (
-      DateStringFromISOString(startTime) !== DateStringFromISOString(date) ||
-      DateStringFromISOString(endTime) !== DateStringFromISOString(date)
+      dateStringFromISOString(startTime) !== dateStringFromISOString(date) ||
+      dateStringFromISOString(endTime) !== dateStringFromISOString(date)
     ) {
-      console.log('not the same');
       values.startTime = ISOStringFromDate(dateTimeFromString(getCombinedDateTimeString(date, startTime)));
       values.endTime = ISOStringFromDate(dateTimeFromString(getCombinedDateTimeString(date, endTime)));
     }
 
-    console.log(values);
     return values;
   };
 

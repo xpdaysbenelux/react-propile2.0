@@ -19,7 +19,6 @@ export const dateFromString = (dateString: string, formatString = 'dd/MM/yyyy'):
 };
 
 export const dateTimeFromString = (dateTimeString: string, formatString = 'dd/MM/yyyy HH:mm'): Date => {
-  if (!dateTimeString) return null;
   const date = parse(dateTimeString, formatString, new Date(), { locale: nl });
   if (!isValid(date)) return null;
   return date;
@@ -39,15 +38,15 @@ export const ISOStringFromDate = (date?: Date): string => {
   return date.toISOString();
 };
 
-export const DateStringFromISOString = (string?: string): string => {
-  const date = dateFromISOString(string);
+export const dateStringFromISOString = (timeString: string): string => {
+  const date = dateFromISOString(timeString);
   return date.toDateString();
 };
 
 export const getCombinedDateTimeString = (date: string, time: string): string => {
-  return formatDate(new Date(date)) + ' ' + formatTime(time);
+  return `${formatDate(new Date(date))} ${formatTime(time)}`;
 };
 
 export const getDateAndCustomTimeString = (date: string, time: string): string => {
-  return formatDate(new Date(date)) + ' ' + time;
+  return `${formatDate(new Date(date))} ${time}`;
 };

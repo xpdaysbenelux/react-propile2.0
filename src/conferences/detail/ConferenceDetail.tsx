@@ -55,7 +55,7 @@ const ConferenceDetail: FC = () => {
       <GoBackLink label={translations.getLabel('CONFERENCES.DETAIL.BACK')} to="/conferences" />
       {renderHeader()}
       {renderDetailSection()}
-      <Link to={`${url}/programs/create-program`}>Create program</Link>
+      <Link to={`${url}/programs/create-program`}>{translations.getLabel('CONFERENCES.DETAIL.CREATE_PROGRAM')}</Link>
     </Container>
   );
 };
