@@ -1,12 +1,10 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { useTableSort, useInfiniteScroll } from '../../_hooks';
+import { useTableSort } from '../../_hooks';
 import { IProgram } from '../_models';
 import { FillMetadataQueryFunction, HttpSortDirection } from '../../_http';
 import Table, { TableColumn } from '../../_shared/table/Table';
-import { conferencesSelectors } from '../../_store/selectors';
 import { formatTime } from '../../_utils/timeHelpers';
 import { translations } from '../../_translations';
 
@@ -18,20 +16,16 @@ interface Props {
 
 const columns: TableColumn[] = [
   { label: 'PROGRAMS.TITLE', name: 'name', sortable: true },
-  { className: 'date-column', label: 'CONFERENCES.START_DATE', name: 'startTime', sortable: true },
-  { className: 'date-column', label: 'CONFERENCES.END_DATE', name: 'startTime', sortable: true },
+  { className: 'time-column', label: 'PROGRAMS.START_TIME', name: 'startTime', sortable: true },
+  { className: 'time-column', label: 'PROGRAMS.END_TIME', name: 'endTime', sortable: true },
   { className: 'action-column', name: 'edit' },
   { className: 'action-column', name: 'delete' },
 ];
 
 const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
-  const metadata = useSelector(conferencesSelectors.metadata);
-
   const { sortFunctions } = useTableSort((column: string, direction: HttpSortDirection) =>
     setQuery({ skip: 0, sortBy: column, sortDirection: direction }),
   );
-
-  useInfiniteScroll((skip: number) => setQuery({ skip }), metadata, isLoading);
 
   function renderRow(program: IProgram): JSX.Element {
     return (
@@ -51,6 +45,7 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
 
   return (
     <Table
+      className="programs-table"
       columns={columns}
       data={data}
       emptyLabel={translations.getLabel('PROGRAMS.OVERVIEW.EMPTY')}

@@ -1,24 +1,19 @@
-import React, { FC, useEffect } from 'react';
-import { useParams, Redirect, Link, useRouteMatch } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from 'react';
+import { useParams, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Container, Item } from 'semantic-ui-react';
 
 import { conferencesSelectors } from '../../_store/selectors';
 import { translations } from '../../_translations';
 import { GoBackLink, Timestamps } from '../../_shared';
 import { formatDate, dateFromISOString } from '../../_utils/timeHelpers';
-import { programsActions } from '../../_store/actions';
+import { IRoom } from '../_models';
 import ProgramsOverview from '../../programs/overview/ProgramsOverview';
+import './conferenceDetail.scss';
 
 const ConferenceDetail: FC = () => {
   const { conferenceId } = useParams();
-  const { url } = useRouteMatch();
   const conference = useSelector(conferencesSelectors.conference(conferenceId));
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(new programsActions.GetPrograms());
-  }, [dispatch]);
 
   if (!conference) return <Redirect to="/conferences" />;
 
@@ -31,16 +26,14 @@ const ConferenceDetail: FC = () => {
     );
   }
 
+  function roomDetailsString(room: IRoom) {
+    return `${room.name}, ${translations.getLabel('CONFERENCES.OVERVIEW.ROOMS.MAX_PARTICIPANTS')}: ${room.maxParticipants}`;
+  }
+
   function renderDetailSection() {
     return (
       <Item.Group>
         <h2>{translations.getLabel('CONFERENCES.DETAIL.DETAILS.TITLE')}</h2>
-        <Item>
-          <Item.Content>
-            <Item.Header>{translations.getLabel('CONFERENCES.NAME')}</Item.Header>
-            <Item.Description>{conference.name}</Item.Description>
-          </Item.Content>
-        </Item>
         <Item>
           <Item.Content>
             <Item.Header>{translations.getLabel('CONFERENCES.START_DATE')}</Item.Header>
@@ -53,21 +46,27 @@ const ConferenceDetail: FC = () => {
             <Item.Description>{formatDate(dateFromISOString(conference.endDate))}</Item.Description>
           </Item.Content>
         </Item>
+        <Item>
+          <Item.Content>
+            <Item.Header>{translations.getLabel('CONFERENCES.OVERVIEW.ROOMS.ROOMS')}</Item.Header>
+            {conference.rooms.map((room: IRoom) => {
+              return <Item.Description key={room.id}>{roomDetailsString(room)}</Item.Description>;
+            })}
+          </Item.Content>
+        </Item>
       </Item.Group>
     );
   }
 
-  function renderRoomDetailsSection() {
-    return <p>Ello</p>;
-  }
-
   return (
-    <Container as="main">
+    <Container as="main" className="conference-detail">
       <GoBackLink label={translations.getLabel('CONFERENCES.DETAIL.BACK')} to="/conferences" />
       {renderHeader()}
       {renderDetailSection()}
-      <Link to={`${url}/programs/create-program`}>{translations.getLabel('CONFERENCES.DETAIL.CREATE_PROGRAM')}</Link>
-      <ProgramsOverview conferenceId={conferenceId} />
+      <div className="programs">
+        <h2>{translations.getLabel('CONFERENCES.DETAIL.PROGRAMS')}</h2>
+        <ProgramsOverview conferenceId={conferenceId} />
+      </div>
     </Container>
   );
 };

@@ -253,6 +253,7 @@
         "TITLE": "Details"
       },
       "BACK": "Back to conferences",
+      "PROGRAMS": "Programs",
       "CREATE_PROGRAM": "Create program"
     },
     "OVERVIEW": {
@@ -260,7 +261,11 @@
       "CREATE_CONFERENCE": "Create conference",
       "EDIT": "Edit",
       "DELETE": "Delete",
-      "EMPTY": "No conferences found"
+      "EMPTY": "No conferences found",
+      "ROOMS": {
+        "ROOMS": "Rooms",
+        "MAX_PARTICIPANTS": "max participants"
+      }
     },
     "TOASTER": {
       "CONFERENCE_CREATED": "The conference was created successfully."
