@@ -262,7 +262,7 @@
       "EMPTY": "No conferences found",
       "ROOMS": {
         "ROOMS": "Rooms",
-        "MAX_PARTICIPANTS": "max participants: {{maxParticipants}}"
+        "ROOM_DETAILS": "{{roomName}}, max participants: {{maxParticipants}}"
       }
     },
     "TOASTER": {
