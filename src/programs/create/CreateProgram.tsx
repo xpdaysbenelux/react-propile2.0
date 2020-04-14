@@ -51,7 +51,7 @@ const CreateProgram: FC = () => {
     const values: ICreateProgramForm = { conferenceId, date, endTime, startTime, title };
 
     // This var is used to set the time of the program date to 1 minute after the start of a conference date
-    const timeForDate = '00:01';
+    const timeForDate = '02:01';
     values.date = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(date, timeForDate)));
 
     if (
