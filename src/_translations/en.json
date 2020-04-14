@@ -249,6 +249,9 @@
       "MAX_PARTICIPANTS": "Max participants",
       "ADD_ROOM": "Add a room"
     },
+    "EDIT": {
+      "TITLE": "Edit \"{{conferenceName}}\" "
+    },
     "DETAIL": {
       "DETAILS": {
         "TITLE": "Details"

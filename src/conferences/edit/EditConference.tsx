@@ -2,18 +2,20 @@ import React, { FC } from 'react';
 import { Container, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IConferenceForm } from '../_models';
+import { useParams } from 'react-router-dom';
+import { IConferenceForm, IConference } from '../_models';
 import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
 import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import { ISOStringFromDate, dateTimeFromString, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
+import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
 import ConferenceForm from '../ConferenceForm';
 
-const initialForm: IConferenceForm = {
-  endDate: new Date().toISOString(),
-  name: '',
-  rooms: [
+const getInitialForm = (conference: IConference): IConferenceForm => ({
+  endDate: conference?.endDate || new Date().toISOString(),
+  name: conference?.name || '',
+  rooms: conference?.rooms || [
     {
       maxParticipants: 50,
       name: 'Room 1',
@@ -23,14 +25,16 @@ const initialForm: IConferenceForm = {
       name: 'Room 2',
     },
   ],
-  startDate: new Date().toISOString(),
-};
+  startDate: conference?.startDate || new Date().toISOString(),
+});
 
-const CreateConference: FC = () => {
-  console.log('ello from create');
+const EditConference: FC = () => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const isSubmitting = useSelector(conferencesSelectors.isLoading);
   const error = useSelector(conferencesSelectors.errorCrudConference);
+  const conference = useSelector(conferencesSelectors.conference(id));
+  const initialForm = getInitialForm(conference);
 
   const parseNumberValues = (givenValues: IConferenceForm): IConferenceForm => {
     const { rooms, name, startDate, endDate } = givenValues;
@@ -50,15 +54,16 @@ const CreateConference: FC = () => {
     return values;
   };
 
-  return (
+  return conference ? (
     <Container as="main">
-      <h1>{translations.getLabel('CONFERENCES.CREATE.TITLE')}</h1>
+      <h1>{translations.getLabel('CONFERENCES.EDIT.TITLE', { conferenceName: conference.name })}</h1>
       <ConferenceForm
         buttons={
           <Button href="/conferences" theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }
+        conferenceId={id}
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
@@ -67,7 +72,9 @@ const CreateConference: FC = () => {
         }
       />
     </Container>
+  ) : (
+    <LoadingSpinner />
   );
 };
 
-export default CreateConference;
+export default EditConference;

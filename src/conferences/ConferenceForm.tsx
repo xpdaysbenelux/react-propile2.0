@@ -12,6 +12,7 @@ import './conferenceForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
+  conferenceId?: string;
   error?: ApiError;
   initialForm: IConferenceForm;
   isSubmitting: boolean;
@@ -25,7 +26,7 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
-const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons }) => {
+const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm, isSubmitting, error, buttons }) => {
   function validateForm(values: IConferenceForm): FormValidationErrors<IConferenceForm> {
     const errors: FormValidationErrors<IConferenceForm> = {};
     errors.name = formValidator.isRequired(values.name);
@@ -134,7 +135,7 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">
-          {translations.getLabel('SHARED.BUTTONS.CREATE')}
+          {translations.getLabel(conferenceId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
         </Button>
       </div>
     </form>
