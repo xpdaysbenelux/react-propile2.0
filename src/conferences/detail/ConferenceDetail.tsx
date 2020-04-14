@@ -64,7 +64,7 @@ const ConferenceDetail: FC = () => {
       {renderHeader()}
       {renderDetailSection()}
       <div className="programs">
-        <h2>{translations.getLabel('CONFERENCES.DETAIL.PROGRAMS')}</h2>
+        <h2>{translations.getLabel('PROGRAMS.PROGRAMS')}</h2>
         <ProgramsOverview conferenceId={conferenceId} />
       </div>
     </Container>

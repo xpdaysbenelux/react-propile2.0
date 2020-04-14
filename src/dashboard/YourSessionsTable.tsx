@@ -42,9 +42,7 @@ const YourSessionsTable: FC<Props> = ({ userId }) => {
         <Table.Cell>{session.title}</Table.Cell>
         {renderPresenters(session)}
         <Table.Cell>
-          <Link to={{ pathname: `/sessions/update-session/${session.id}` }}>
-            {translations.getLabel('DASHBOARD.OVERVIEW.EDIT')}
-          </Link>
+          <Link to={{ pathname: `/sessions/update-session/${session.id}` }}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </Table.Cell>
       </Table.Row>
     );
