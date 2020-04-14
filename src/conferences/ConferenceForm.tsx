@@ -7,15 +7,15 @@ import { formValidator } from '../_utils/formValidation';
 import { InputField, Button, DateSelector } from '../_shared';
 import ErrorMessage from '../_shared/errorMessage/ErrorMessage';
 import { translations } from '../_translations';
-import { ICreateConferenceForm, IRoom } from './_models';
+import { IConferenceForm, IRoom } from './_models';
 import './conferenceForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
   error?: ApiError;
-  initialForm: ICreateConferenceForm;
+  initialForm: IConferenceForm;
   isSubmitting: boolean;
-  submitForm: SubmitFormFunction<ICreateConferenceForm>;
+  submitForm: SubmitFormFunction<IConferenceForm>;
 }
 
 function errorAsString(error?: ApiError): string {
@@ -26,8 +26,8 @@ function errorAsString(error?: ApiError): string {
 }
 
 const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons }) => {
-  function validateForm(values: ICreateConferenceForm): FormValidationErrors<ICreateConferenceForm> {
-    const errors: FormValidationErrors<ICreateConferenceForm> = {};
+  function validateForm(values: IConferenceForm): FormValidationErrors<IConferenceForm> {
+    const errors: FormValidationErrors<IConferenceForm> = {};
     errors.name = formValidator.isRequired(values.name);
 
     if (Date.parse(values.startDate) > Date.parse(values.endDate)) {
@@ -49,7 +49,7 @@ const CreateConferenceForm: FC<Props> = ({ initialForm, submitForm, isSubmitting
     return errors;
   }
 
-  const form = useForm<ICreateConferenceForm>({ error, initialForm, submitForm, validateForm });
+  const form = useForm<IConferenceForm>({ error, initialForm, submitForm, validateForm });
 
   function addRoomToForm() {
     form.setAttribute([...form.values.rooms, { maxParticipants: 50, name: `Room ${form.values.rooms.length + 1}` }], 'rooms');

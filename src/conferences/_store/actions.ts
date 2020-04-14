@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 
-import { ICreateConferenceForm, IConference } from '../_models';
+import { IConferenceForm, IConference } from '../_models';
 import { ApiError, HttpMetadataPagingResponse, HttpMetadataQuery } from '../../_http';
 
 export enum ConferencesActionType {
@@ -34,7 +34,7 @@ export class SetConferencesQuery implements Action<ConferencesActionType> {
 
 export class CreateConference implements Action<ConferencesActionType> {
   readonly type = ConferencesActionType.CreateConference;
-  constructor(public payload: { values: ICreateConferenceForm }) {}
+  constructor(public payload: { values: IConferenceForm }) {}
 }
 
 export class CreateConferenceSuccess implements Action<ConferencesActionType> {

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Container, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ICreateConferenceForm } from '../_models';
+import { IConferenceForm } from '../_models';
 import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
@@ -10,7 +10,7 @@ import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import { ISOStringFromDate, dateTimeFromString, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
 import ConferenceForm from '../ConferenceForm';
 
-const initialForm: ICreateConferenceForm = {
+const initialForm: IConferenceForm = {
   endDate: new Date().toISOString(),
   name: '',
   rooms: [
@@ -31,9 +31,9 @@ const CreateConference: FC = () => {
   const isSubmitting = useSelector(conferencesSelectors.isLoading);
   const error = useSelector(conferencesSelectors.errorCrudConference);
 
-  const parseNumberValues = (givenValues: ICreateConferenceForm): ICreateConferenceForm => {
+  const parseNumberValues = (givenValues: IConferenceForm): IConferenceForm => {
     const { rooms, name, startDate, endDate } = givenValues;
-    const values: ICreateConferenceForm = { endDate, name, rooms: [], startDate };
+    const values: IConferenceForm = { endDate, name, rooms: [], startDate };
 
     // These vars get used to set the start & end times of a conference as early and as late as possible
     const conferenceStartTime = '02:00';
@@ -61,7 +61,7 @@ const CreateConference: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: ICreateConferenceForm) =>
+        submitForm={(values: IConferenceForm) =>
           dispatch(new conferencesActions.CreateConference({ values: parseNumberValues(values) }))
         }
       />

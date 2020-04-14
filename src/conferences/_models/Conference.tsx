@@ -12,7 +12,7 @@ export interface IConference {
   startDate: string;
 }
 
-export interface ICreateConferenceForm {
+export interface IConferenceForm {
   endDate: string;
   name: string;
   programs?: IProgram[];
