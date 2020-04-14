@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Container } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { useRouteMatch } from 'react-router-dom';
+
 import { SearchInput, Button, Icon } from '../../_shared';
 import { translations } from '../../_translations';
 import { programsSelectors } from '../../_store/selectors';

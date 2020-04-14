@@ -45,7 +45,6 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
 
   return (
     <Table
-      className="programs-table"
       columns={columns}
       data={data}
       emptyLabel={translations.getLabel('PROGRAMS.OVERVIEW.EMPTY')}

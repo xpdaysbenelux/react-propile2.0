@@ -20,9 +20,6 @@ const ConferencesOverview: FC = () => {
     dispatch(new conferencesActions.GetConferences());
     dispatch(new programsActions.GetPrograms());
   }, [dispatch]);
-  /*useEffect(() => {
-    dispatch(new programsActions.GetPrograms());
-  }, [dispatch]);*/
 
   const setQuery: FillMetadataQueryFunction = (partialQuery: HttpMetadataQuery) => {
     dispatch(new conferencesActions.SetConferencesQuery({ query: { ...query, ...partialQuery } }));
