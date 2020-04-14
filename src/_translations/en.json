@@ -84,7 +84,9 @@
     "BUTTONS": {
       "CANCEL": "Cancel",
       "CREATE": "Create",
-      "SAVE": "Save changes"
+      "SAVE": "Save changes",
+      "EDIT": "Edit",
+      "DELETE": "Delete"
     },
     "NAVIGATION": {
       "ROLES": "Roles",
@@ -232,7 +234,6 @@
     "OVERVIEW": {
       "YOUR_SESSIONS": "Your sessions",
       "CREATE_SESSION": "Create session",
-      "EDIT": "Edit",
       "EMPTY": "No sessions found"
     }
   },
@@ -258,9 +259,11 @@
     "OVERVIEW": {
       "CONFERENCES": "Conferences",
       "CREATE_CONFERENCE": "Create conference",
-      "EDIT": "Edit",
-      "DELETE": "Delete",
-      "EMPTY": "No conferences found"
+      "EMPTY": "No conferences found",
+      "ROOMS": {
+        "ROOMS": "Rooms",
+        "ROOM_DETAILS": "{{roomName}}, max participants: {{maxParticipants}}"
+      }
     },
     "TOASTER": {
       "CONFERENCE_CREATED": "The conference was created successfully."
@@ -274,6 +277,7 @@
     }
   },
   "PROGRAMS": {
+    "PROGRAMS": "Programs",
     "TITLE": "Title",
     "DATE": "Date",
     "START_TIME": "Start time",
@@ -281,6 +285,10 @@
     "GO_BACK": "Back to conference",
     "CREATE": {
       "TITLE": "Create a program"
+    },
+    "OVERVIEW": {
+      "CREATE_PROGRAM": "Create program",
+      "EMPTY": "No programs for this conference were found"
     },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully."

@@ -47,7 +47,7 @@ describe('Dashboard component', () => {
 
       const title = getByText(fakeSession.title);
       const presenter = getByText(fakeSession.firstPresenter.email);
-      const editButton = getByText(translations.getLabel('DASHBOARD.OVERVIEW.EDIT'));
+      const editButton = getByText(translations.getLabel('SHARED.BUTTONS.EDIT'));
 
       expect(title).toBeInTheDocument();
       expect(presenter).toBeInTheDocument();

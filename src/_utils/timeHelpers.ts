@@ -1,4 +1,4 @@
-import { format, parse, isValid } from 'date-fns';
+import { format, parse, formatISO, isValid } from 'date-fns';
 import { nl } from 'date-fns/locale';
 
 export const formatDate = (date: Date, formatString = 'dd/MM/yyyy'): string => {
@@ -35,7 +35,7 @@ export const dateFromISOString = (isoString?: string): Date => {
 
 export const ISOStringFromDate = (date?: Date): string => {
   if (!isValid(date)) return null;
-  return date.toISOString();
+  return formatISO(date);
 };
 
 export const dateStringFromISOString = (timeString: string): string => {

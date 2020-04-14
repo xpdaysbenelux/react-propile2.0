@@ -15,10 +15,10 @@ const Conferences: React.FC = () => {
   return (
     <Switch>
       <Route component={ConferencesOverview} exact path={url} />
-      {permissions?.conferences.edit && <Route component={CreateConference} exact path={`${url}/create-conference`} />}
+      {permissions?.conferences.edit && <Route component={CreateConference} exact path={`${url}/create`} />}
       <Route component={ConferenceDetail} exact path={`${url}/:conferenceId`} />
       {permissions?.programs.edit && permissions?.programs.view && (
-        <Route component={CreateProgram} exact path={`${url}/:conferenceId/programs/create-program`} />
+        <Route component={CreateProgram} exact path={`${url}/:conferenceId/programs/create`} />
       )}
       <Redirect to="/conferences" />
     </Switch>

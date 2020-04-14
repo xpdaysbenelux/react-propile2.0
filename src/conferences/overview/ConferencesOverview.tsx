@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { translations } from '../../_translations';
 import { Button, Icon, SearchInput } from '../../_shared';
 import { conferencesSelectors } from '../../_store/selectors';
-import { conferencesActions } from '../../_store/actions';
+import { conferencesActions, programsActions } from '../../_store/actions';
 import { FillMetadataQueryFunction, HttpMetadataQuery } from '../../_http';
 import ConferencesTable from './ConferencesTable';
 import './conferencesOverview.scss';
@@ -18,6 +18,7 @@ const ConferencesOverview: FC = () => {
 
   useEffect(() => {
     dispatch(new conferencesActions.GetConferences());
+    dispatch(new programsActions.GetPrograms());
   }, [dispatch]);
 
   const setQuery: FillMetadataQueryFunction = (partialQuery: HttpMetadataQuery) => {
@@ -28,7 +29,7 @@ const ConferencesOverview: FC = () => {
     <Container as="main" className="conferences-overview">
       <header className="header">
         <SearchInput query={query} setQuery={setQuery} />
-        <Button href="/conferences/create-conference" isTextLink>
+        <Button href="/conferences/create" isTextLink>
           <Icon name="SvgAdd" size={1.6} />
           {translations.getLabel('CONFERENCES.OVERVIEW.CREATE_CONFERENCE')}
         </Button>

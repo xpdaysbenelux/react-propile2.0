@@ -18,8 +18,8 @@ const Sessions: React.FC = () => {
 
   return (
     <Switch>
-      <Route component={CreateSession} exact path={`${url}/create-session`} />
-      {permissions?.sessions.edit && <Route component={EditSession} exact path={`${url}/update-session/:id`} />}
+      <Route component={CreateSession} exact path={`${url}/create`} />
+      {permissions?.sessions.edit && <Route component={EditSession} exact path={`${url}/edit/:id`} />}
     </Switch>
   );
 };

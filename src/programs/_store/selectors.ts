@@ -6,6 +6,8 @@ import { ProgramsState } from './reducer';
 const selectNode = (state: AppState) => state.programs;
 
 export const programs = createSelector(selectNode, (state: ProgramsState) => state.programs);
+export const programsFromConference = (conferenceId: string) =>
+  createSelector(selectNode, (state: ProgramsState) => state.programs?.filter(program => program.conference.id === conferenceId));
 export const program = (programId: string) =>
   createSelector(selectNode, (state: ProgramsState) => state.programs?.find(program => program.id === programId));
 export const metadata = createSelector(selectNode, (state: ProgramsState) => state.metadata);
