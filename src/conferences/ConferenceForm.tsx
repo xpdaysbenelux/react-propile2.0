@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
 
-import { ApiError } from '../../_http';
-import { ICreateConferenceForm, IRoom } from '../_models';
-import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/useForm';
-import { formValidator } from '../../_utils/formValidation';
-import { InputField, Button, DateSelector } from '../../_shared';
-import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
-import { translations } from '../../_translations';
-import './createConferenceForm.scss';
+import { ApiError } from '../_http';
+import useForm, { SubmitFormFunction, FormValidationErrors } from '../_hooks/useForm';
+import { formValidator } from '../_utils/formValidation';
+import { InputField, Button, DateSelector } from '../_shared';
+import ErrorMessage from '../_shared/errorMessage/ErrorMessage';
+import { translations } from '../_translations';
+import { ICreateConferenceForm, IRoom } from './_models';
+import './conferenceForm.scss';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];

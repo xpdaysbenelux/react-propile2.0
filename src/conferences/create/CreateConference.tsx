@@ -8,7 +8,7 @@ import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
 import { parseValuesToNumber } from '../../_utils/objectHelpers';
 import { ISOStringFromDate, dateTimeFromString, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
-import CreateConferenceForm from './CreateConferenceForm';
+import ConferenceForm from '../ConferenceForm';
 
 const initialForm: ICreateConferenceForm = {
   endDate: new Date().toISOString(),
@@ -52,7 +52,7 @@ const CreateConference: FC = () => {
   return (
     <Container as="main">
       <h1>{translations.getLabel('CONFERENCES.CREATE.TITLE')}</h1>
-      <CreateConferenceForm
+      <ConferenceForm
         buttons={
           <Button href="/conferences" theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
