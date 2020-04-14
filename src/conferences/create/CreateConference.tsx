@@ -36,7 +36,7 @@ const CreateConference: FC = () => {
     const values: ICreateConferenceForm = { endDate, name, rooms: [], startDate };
 
     // These vars get used to set the start & end times of a conference as early and as late as possible
-    const conferenceStartTime = '02:00';
+    const conferenceStartTime = '00:00';
     const conferenceEndTime = '23:59';
     values.startDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(startDate, conferenceStartTime)));
     values.endDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(endDate, conferenceEndTime)));
