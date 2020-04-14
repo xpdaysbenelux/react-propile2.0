@@ -26,10 +26,6 @@ const ConferenceDetail: FC = () => {
     );
   }
 
-  function roomDetailsString(room: IRoom) {
-    return `${room.name}, ${translations.getLabel('CONFERENCES.OVERVIEW.ROOMS.MAX_PARTICIPANTS')}: ${room.maxParticipants}`;
-  }
-
   function renderDetailSection() {
     return (
       <Item.Group>
@@ -50,7 +46,10 @@ const ConferenceDetail: FC = () => {
           <Item.Content>
             <Item.Header>{translations.getLabel('CONFERENCES.OVERVIEW.ROOMS.ROOMS')}</Item.Header>
             {conference.rooms.map((room: IRoom) => {
-              return <Item.Description key={room.id}>{roomDetailsString(room)}</Item.Description>;
+              const roomDetailString = `${room.name}, ${translations.getLabel('CONFERENCES.OVERVIEW.ROOMS.MAX_PARTICIPANTS', {
+                maxParticipants: room.maxParticipants,
+              })}`;
+              return <Item.Description key={room.id}>{roomDetailString}</Item.Description>;
             })}
           </Item.Content>
         </Item>
