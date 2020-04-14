@@ -29,7 +29,7 @@ const ConferencesOverview: FC = () => {
     <Container as="main" className="conferences-overview">
       <header className="header">
         <SearchInput query={query} setQuery={setQuery} />
-        <Button href="/conferences/create-conference" isTextLink>
+        <Button href="/conferences/create" isTextLink>
           <Icon name="SvgAdd" size={1.6} />
           {translations.getLabel('CONFERENCES.OVERVIEW.CREATE_CONFERENCE')}
         </Button>

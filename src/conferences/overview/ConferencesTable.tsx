@@ -42,7 +42,7 @@ const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>{formatDate(dateFromISOString(conference.startDate))}</Table.Cell>
         <Table.Cell>{formatDate(dateFromISOString(conference.endDate))}</Table.Cell>
         <Table.Cell>
-          <Link to={`/conferences/update-conference/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
+          <Link to={`/conferences/edit/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>{translations.getLabel('SHARED.BUTTONS.DELETE')}</Table.Cell>
       </Table.Row>

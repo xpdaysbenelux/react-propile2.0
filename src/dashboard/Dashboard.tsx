@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
         <header className="header">
           <h3>{translations.getLabel('DASHBOARD.OVERVIEW.YOUR_SESSIONS')}</h3>
           {permissions?.sessions.edit && (
-            <Button href="/sessions/create-session" isTextLink>
+            <Button href="/sessions/create" isTextLink>
               <Icon name="SvgAdd" size={1.6} />
               {translations.getLabel('DASHBOARD.OVERVIEW.CREATE_SESSION')}
             </Button>

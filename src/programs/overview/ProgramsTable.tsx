@@ -36,7 +36,7 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>{formatTime(program.startTime)}</Table.Cell>
         <Table.Cell>{formatTime(program.endTime)}</Table.Cell>
         <Table.Cell>
-          <Link to={`/programs/update-program/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
+          <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>{translations.getLabel('SHARED.BUTTONS.DELETE')}</Table.Cell>
       </Table.Row>

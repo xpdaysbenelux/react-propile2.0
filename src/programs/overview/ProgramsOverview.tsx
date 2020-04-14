@@ -30,7 +30,7 @@ const ProgramsOverview: FC<Prop> = ({ conferenceId }) => {
     <Container className="programs-overview">
       <header className="header">
         <SearchInput query={query} setQuery={setQuery} />
-        <Button href={`${url}/programs/create-program`} isTextLink>
+        <Button href={`${url}/programs/create`} isTextLink>
           <Icon name="SvgAdd" size={1.6} />
           {translations.getLabel('PROGRAMS.OVERVIEW.CREATE_PROGRAM')}
         </Button>
