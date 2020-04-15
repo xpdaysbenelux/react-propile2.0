@@ -11,6 +11,9 @@ export enum ConferencesActionType {
   GetConferencesError = '[Conferences] GetConferencesError',
   GetConferencesSuccess = '[Conferences] GetConferencesSuccess',
   SetConferencesQuery = '[Conferences] SetConferencesQuery',
+  UpdateConference = '[Conferences] UpdateConference',
+  UpdateConferenceError = '[Conferences] UpdateConferenceError',
+  UpdateConferenceSuccess = '[Conferences] UpdateConferenceSuccess',
 }
 
 export class GetConferences implements Action<ConferencesActionType> {
@@ -47,10 +50,28 @@ export class CreateConferenceError implements Action<ConferencesActionType> {
   constructor(public payload: { error: ApiError }) {}
 }
 
+export class UpdateConference implements Action<ConferencesActionType> {
+  readonly type = ConferencesActionType.UpdateConference;
+  constructor(public payload: { conferenceId: string; values: IConferenceForm }) {}
+}
+
+export class UpdateConferenceSuccess implements Action<ConferencesActionType> {
+  readonly type = ConferencesActionType.UpdateConferenceSuccess;
+  constructor(public payload: { updatedConference: IConference }) {}
+}
+
+export class UpdateConferenceError implements Action<ConferencesActionType> {
+  readonly type = ConferencesActionType.UpdateConferenceError;
+  constructor(public payload: { error: ApiError }) {}
+}
+
 export type ConferencesAction =
   | CreateConference
   | CreateConferenceSuccess
   | CreateConferenceError
+  | UpdateConference
+  | UpdateConferenceSuccess
+  | UpdateConferenceError
   | GetConferences
   | GetConferencesSuccess
   | GetConferencesError

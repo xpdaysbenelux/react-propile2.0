@@ -10,3 +10,7 @@ export function getConferences(query?: HttpMetadataQuery): Promise<HttpPagedResp
 export function createConference(body: IConferenceForm): Promise<IConference> {
   return HttpClient.post<IConference>('conferences', removeEmptyKeys(body));
 }
+
+export function updateConference(conferenceId: string, body: IConferenceForm): Promise<IConference> {
+  return HttpClient.put<IConference>(`sessions/${conferenceId}`, body);
+}

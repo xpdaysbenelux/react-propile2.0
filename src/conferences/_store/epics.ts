@@ -38,4 +38,25 @@ const createConferenceEpic$: Epic = actions$ =>
 const createConferenceSuccessEpic$: Epic = action$ =>
   action$.ofType(ConferencesActionType.CreateConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
 
-export default [getConferencesEpic$, setConferencesQueryEpic$, createConferenceEpic$, createConferenceSuccessEpic$];
+const updateConferenceEpic$: Epic = action$ =>
+  action$.ofType(ConferencesActionType.UpdateConference).pipe(
+    exhaustMap(({ payload }: conferencesActions.UpdateConference) =>
+      from(conferencesApi.updateConference(payload.conferenceId, payload.values)).pipe(
+        tap(() => toast.success(translations.getLabel('CONFERENCES.TOASTER.CONFERENCE_UPDATED'))),
+        map(updatedConference => new conferencesActions.UpdateConferenceSuccess({ updatedConference })),
+        catchError(error => of(new conferencesActions.UpdateConferenceError({ error }))),
+      ),
+    ),
+  );
+
+const updateConferenceSuccessEpic$: Epic = action$ =>
+  action$.ofType(ConferencesActionType.UpdateConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
+
+export default [
+  getConferencesEpic$,
+  setConferencesQueryEpic$,
+  createConferenceEpic$,
+  createConferenceSuccessEpic$,
+  updateConferenceEpic$,
+  updateConferenceSuccessEpic$,
+];

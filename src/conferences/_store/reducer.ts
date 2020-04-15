@@ -64,6 +64,24 @@ export default function reducer(state = initialState, action: ConferencesAction)
         errorCrudConference: action.payload.error,
         isLoading: false,
       };
+    case ConferencesActionType.UpdateConference:
+      return {
+        ...state,
+        errorCrudConference: null,
+        isLoading: true,
+      };
+    case ConferencesActionType.UpdateConferenceSuccess:
+      return {
+        ...state,
+        conferences: insertUpdatedData(state.conferences, [action.payload.updatedConference]),
+        isLoading: false,
+      };
+    case ConferencesActionType.UpdateConferenceError:
+      return {
+        ...state,
+        errorCrudConference: action.payload.error,
+        isLoading: false,
+      };
     default:
       return state;
   }
