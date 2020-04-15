@@ -22,7 +22,8 @@ interface Props {
 function errorAsString(error?: ApiError): string {
   if (error?.error === 'CONFERENCE_NAME_ALREADY_IN_USE')
     return translations.getLabel(`CONFERENCES.ERRORS.CONFERENCE_NAME_ALREADY_IN_USE`);
-  if (error?.error === 'CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS') return translations.getLabel('');
+  if (error?.error === 'CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS')
+    return translations.getLabel('CONFERENCES.ERRORS.CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS');
   return null;
 }
 
@@ -33,6 +34,10 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
 
     if (Date.parse(values.startDate) > Date.parse(values.endDate)) {
       errors.endDate = translations.getLabel('END_DATE_LATER_THAN_START_DATE');
+    }
+
+    if (values.rooms.length < 2) {
+      errors.rooms = translations.getLabel('CONFERENCES.ERRORS.CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS');
     }
 
     values.rooms.every(room => {
@@ -127,7 +132,7 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
       </div>
       <div className="conference-rooms">
         <h3>{translations.getLabel('CONFERENCES.CREATE.ROOMS')}</h3>
-        {form.values.rooms.map((room: IRoom, index: number) => renderRoomRow(room, index, !(index <= 1)))}
+        {form.values.rooms.map((room: IRoom, index: number) => renderRoomRow(room, index, conferenceId ? true : !(index <= 1)))}
         {form.validationErrors.rooms && <ErrorMessage isVisible>{form.validationErrors.rooms}</ErrorMessage>}
         <Button onClick={addRoomToForm}>{translations.getLabel('CONFERENCES.CREATE.ADD_ROOM')}</Button>
       </div>
