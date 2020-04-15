@@ -1,4 +1,4 @@
-import { format, parse, isValid } from 'date-fns';
+import { format, parse, formatISO, isValid } from 'date-fns';
 import { nl } from 'date-fns/locale';
 
 export const formatDate = (date: Date, formatString = 'dd/MM/yyyy'): string => {
@@ -18,6 +18,12 @@ export const dateFromString = (dateString: string, formatString = 'dd/MM/yyyy'):
   return date;
 };
 
+export const dateTimeFromString = (dateTimeString: string, formatString = 'dd/MM/yyyy HH:mm'): Date => {
+  const date = parse(dateTimeString, formatString, new Date(), { locale: nl });
+  if (!isValid(date)) return null;
+  return date;
+};
+
 export const dateFromTime = (timeString: string): Date => {
   return dateFromString(timeString, 'HH:mm');
 };
@@ -29,5 +35,18 @@ export const dateFromISOString = (isoString?: string): Date => {
 
 export const ISOStringFromDate = (date?: Date): string => {
   if (!isValid(date)) return null;
-  return date.toISOString();
+  return formatISO(date);
+};
+
+export const dateStringFromISOString = (timeString: string): string => {
+  const date = dateFromISOString(timeString);
+  return date.toDateString();
+};
+
+export const getCombinedDateTimeString = (date: string, time: string): string => {
+  return `${formatDate(new Date(date))} ${formatTime(time)}`;
+};
+
+export const getDateAndCustomTimeString = (date: string, time: string): string => {
+  return `${formatDate(new Date(date))} ${time}`;
 };

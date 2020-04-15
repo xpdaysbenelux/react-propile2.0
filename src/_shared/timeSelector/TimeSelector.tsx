@@ -6,21 +6,21 @@ import ErrorMessage from '../errorMessage/ErrorMessage';
 import { useInputError } from '../../_hooks';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import './dateSelector.scss';
+import './timeSelector.scss';
 
 export interface DatePickerProps {
   className?: string;
   errorMessage?: string;
   label: string;
-  maxDate?: string;
-  minDate?: string;
   name: string;
   onChange: (value: string, name: string) => void;
   showPopperArrow?: boolean;
+  timeFormat: string;
+  timeIntervals: number;
   value: string;
 }
 
-const DateSelector: FC<DatePickerProps> = ({
+const TimeSelector: FC<DatePickerProps> = ({
   className,
   errorMessage,
   label,
@@ -28,30 +28,32 @@ const DateSelector: FC<DatePickerProps> = ({
   value,
   name,
   showPopperArrow,
-  minDate,
-  maxDate,
+  timeFormat,
+  timeIntervals,
 }) => {
   const { showError } = useInputError(errorMessage);
   const selectedDate = new Date(value);
 
   return (
-    <div className={classnames('date-selector', className)}>
+    <div className={classnames('date-time-selector', className)}>
       <label className="label" htmlFor={name}>
         <span>{label}</span>
       </label>
       <DatePicker
-        maxDate={new Date(maxDate)}
-        minDate={minDate ? new Date(minDate) : new Date()}
+        dateFormat={timeFormat}
         onChange={newDate => {
           onChange(newDate.toISOString(), name);
         }}
         selected={selectedDate}
-        showDisabledMonthNavigation
         showPopperArrow={showPopperArrow}
+        showTimeSelect
+        showTimeSelectOnly
+        timeCaption="Time"
+        timeIntervals={timeIntervals}
       />
       <ErrorMessage isVisible={showError}>{errorMessage}</ErrorMessage>
     </div>
   );
 };
 
-export default DateSelector;
+export default TimeSelector;

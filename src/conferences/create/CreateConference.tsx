@@ -7,6 +7,7 @@ import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
 import { parseValuesToNumber } from '../../_utils/objectHelpers';
+import { ISOStringFromDate, dateTimeFromString, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
 import CreateConferenceForm from './CreateConferenceForm';
 
 const initialForm: ICreateConferenceForm = {
@@ -33,6 +34,13 @@ const CreateConference: FC = () => {
   const parseNumberValues = (givenValues: ICreateConferenceForm): ICreateConferenceForm => {
     const { rooms, name, startDate, endDate } = givenValues;
     const values: ICreateConferenceForm = { endDate, name, rooms: [], startDate };
+
+    // These vars get used to set the start & end times of a conference as early and as late as possible
+    const conferenceStartTime = '02:00';
+    const conferenceEndTime = '23:59';
+    values.startDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(startDate, conferenceStartTime)));
+    values.endDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(endDate, conferenceEndTime)));
+
     rooms.forEach(room => {
       room.maxParticipants = parseValuesToNumber(room.maxParticipants);
     });

@@ -36,6 +36,6 @@ const createConferenceEpic$: Epic = actions$ =>
   );
 
 const createConferenceSuccessEpic$: Epic = action$ =>
-  action$.ofType(ConferencesActionType.CreateConferenceSuccess).pipe(switchMap(() => of(push('/conferences/create-program'))));
+  action$.ofType(ConferencesActionType.CreateConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
 
 export default [getConferencesEpic$, setConferencesQueryEpic$, createConferenceEpic$, createConferenceSuccessEpic$];

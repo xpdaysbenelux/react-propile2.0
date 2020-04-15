@@ -1,4 +1,8 @@
 export interface IProgram {
+  conference: {
+    id: string;
+    name: string;
+  };
   createdAt?: string;
   createdBy?: string;
   date: Date;
@@ -11,4 +15,13 @@ export interface IProgram {
   }[];
   id: string;
   startTime: Date;
+  title: string;
+}
+
+export interface ICreateProgramForm {
+  conferenceId: string;
+  date: string;
+  endTime: string;
+  startTime: string;
+  title: string;
 }
