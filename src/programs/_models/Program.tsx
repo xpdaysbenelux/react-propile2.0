@@ -18,7 +18,7 @@ export interface IProgram {
   title: string;
 }
 
-export interface ICreateProgramForm {
+export interface IProgramForm {
   conferenceId: string;
   date: string;
   endTime: string;

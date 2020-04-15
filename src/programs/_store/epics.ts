@@ -38,4 +38,41 @@ const createProgramEpic$: Epic = actions$ =>
 const createProgramSuccessEpic$: Epic = action$ =>
   action$.ofType(ProgramsActionType.CreateProgramSuccess).pipe(switchMap(() => of(push('/programs/edit-program-events'))));
 
-export default [getProgramsEpic$, setProgramsQueryEpic$, createProgramEpic$, createProgramSuccessEpic$];
+const updateProgramEpic$: Epic = action$ =>
+  action$.ofType(ProgramsActionType.UpdateProgram).pipe(
+    exhaustMap(({ payload }: programsActions.UpdateProgram) =>
+      from(programsApi.updateProgram(payload.programId, payload.values)).pipe(
+        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.CONFERENCE_UPDATED'))),
+        map(updatedProgram => new programsActions.UpdateProgramSuccess({ updatedProgram })),
+        catchError(error => of(new programsActions.UpdateProgramError({ error }))),
+      ),
+    ),
+  );
+
+const updateProgramSuccessEpic$: Epic = action$ =>
+  action$.ofType(ProgramsActionType.UpdateProgramSuccess).pipe(switchMap(() => of(push('/conferences'))));
+
+const deleteProgramEpic$: Epic = action$ =>
+  action$.ofType(ProgramsActionType.DeleteProgram).pipe(
+    exhaustMap(({ payload }: programsActions.DeleteProgram) =>
+      from(programsApi.deleteProgram(payload.programId)).pipe(
+        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.CONFERENCE_DELETED'))),
+        map(programId => new programsActions.DeleteProgramSuccess({ programId })),
+        catchError(error => of(new programsActions.DeleteProgramError({ error }))),
+      ),
+    ),
+  );
+
+const deleteProgramSuccessEpic$: Epic = action$ =>
+  action$.ofType(ProgramsActionType.DeleteProgramSuccess).pipe(switchMap(() => of(push('/conferences'))));
+
+export default [
+  getProgramsEpic$,
+  setProgramsQueryEpic$,
+  createProgramEpic$,
+  createProgramSuccessEpic$,
+  updateProgramEpic$,
+  updateProgramSuccessEpic$,
+  deleteProgramEpic$,
+  deleteProgramSuccessEpic$,
+];

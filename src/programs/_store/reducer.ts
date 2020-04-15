@@ -64,6 +64,44 @@ export default function reducer(state = initialState, action: ProgramsAction): P
         errorCrudProgram: action.payload.error,
         isLoading: false,
       };
+    case ProgramsActionType.UpdateProgram:
+      return {
+        ...state,
+        errorCrudProgram: null,
+        isLoading: true,
+      };
+    case ProgramsActionType.UpdateProgramSuccess:
+      return {
+        ...state,
+        isLoading: false,
+        programs: insertUpdatedData(state.programs, [action.payload.updatedProgram]),
+      };
+    case ProgramsActionType.UpdateProgramError:
+      return {
+        ...state,
+        errorCrudProgram: action.payload.error,
+        isLoading: false,
+      };
+    case ProgramsActionType.DeleteProgram:
+      return {
+        ...state,
+        errorCrudProgram: null,
+        isLoading: true,
+      };
+    case ProgramsActionType.DeleteProgramSuccess:
+      return {
+        ...state,
+        isLoading: false,
+        programs: state.programs.filter(program => {
+          return program.id !== action.payload.programId;
+        }),
+      };
+    case ProgramsActionType.DeleteProgramError:
+      return {
+        ...state,
+        errorCrudProgram: action.payload.error,
+        isLoading: false,
+      };
     default:
       return state;
   }

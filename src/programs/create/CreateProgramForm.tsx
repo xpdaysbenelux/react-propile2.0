@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import { ApiError } from '../../_http';
-import { ICreateProgramForm } from '../_models';
+import { IProgramForm } from '../_models';
 import { IConference } from '../../conferences/_models';
 import useForm, { SubmitFormFunction, FormValidationErrors } from '../../_hooks/useForm';
 import { formValidator } from '../../_utils/formValidation';
@@ -15,9 +15,9 @@ interface Props {
   buttons?: JSX.Element | JSX.Element[];
   conference: IConference;
   error?: ApiError;
-  initialForm: ICreateProgramForm;
+  initialForm: IProgramForm;
   isSubmitting: boolean;
-  submitForm: SubmitFormFunction<ICreateProgramForm>;
+  submitForm: SubmitFormFunction<IProgramForm>;
 }
 
 function errorAsString(error?: ApiError): string {
@@ -32,14 +32,14 @@ function errorAsString(error?: ApiError): string {
 }
 
 const CreateProgramForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons, conference }) => {
-  function validateForm(values: ICreateProgramForm): FormValidationErrors<ICreateProgramForm> {
-    const errors: FormValidationErrors<ICreateProgramForm> = {};
+  function validateForm(values: IProgramForm): FormValidationErrors<IProgramForm> {
+    const errors: FormValidationErrors<IProgramForm> = {};
     errors.title = formValidator.isRequired(values.title);
 
     return errors;
   }
 
-  const form = useForm<ICreateProgramForm>({ error, initialForm, submitForm, validateForm });
+  const form = useForm<IProgramForm>({ error, initialForm, submitForm, validateForm });
 
   return (
     <form className={classnames('create-conference', 'ui', 'form')} onSubmit={form.submit}>

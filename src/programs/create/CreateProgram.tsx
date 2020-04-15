@@ -3,7 +3,7 @@ import { Container, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Redirect } from 'react-router-dom';
 
-import { ICreateProgramForm } from '../_models';
+import { IProgramForm } from '../_models';
 import { translations } from '../../_translations';
 import { programsSelectors, conferencesSelectors } from '../../_store/selectors';
 import { programsActions } from '../../_store/actions';
@@ -18,7 +18,7 @@ import {
 } from '../../_utils/timeHelpers';
 import CreateProgramForm from './CreateProgramForm';
 
-const getInitialForm = (conference: IConference): ICreateProgramForm => {
+const getInitialForm = (conference: IConference): IProgramForm => {
   // These vars get used to prefill the date selectors for the start & endtimes of a program
   const givenStartTime = '08:00';
   const givenEndTime = '20:00';
@@ -46,9 +46,9 @@ const CreateProgram: FC = () => {
   if (!conference) return <Redirect to={`conferences/${conferenceId}`} />;
   const initialForm = getInitialForm(conference);
 
-  const beforeSubmit = (givenValues: ICreateProgramForm): ICreateProgramForm => {
+  const beforeSubmit = (givenValues: IProgramForm): IProgramForm => {
     const { date, startTime, endTime, title, conferenceId } = givenValues;
-    const values: ICreateProgramForm = { conferenceId, date, endTime, startTime, title };
+    const values: IProgramForm = { conferenceId, date, endTime, startTime, title };
 
     // This var is used to set the time of the program date to 1 minute after the start of a conference date
     const timeForDate = '02:01';
@@ -79,7 +79,7 @@ const CreateProgram: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: ICreateProgramForm) => dispatch(new programsActions.CreateProgram({ values: beforeSubmit(values) }))}
+        submitForm={(values: IProgramForm) => dispatch(new programsActions.CreateProgram({ values: beforeSubmit(values) }))}
       />
     </Container>
   );
