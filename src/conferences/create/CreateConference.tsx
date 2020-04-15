@@ -27,7 +27,6 @@ const initialForm: IConferenceForm = {
 };
 
 const CreateConference: FC = () => {
-  console.log('ello from create');
   const dispatch = useDispatch();
   const isSubmitting = useSelector(conferencesSelectors.isLoading);
   const error = useSelector(conferencesSelectors.errorCrudConference);
