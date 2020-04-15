@@ -12,5 +12,5 @@ export function createConference(body: IConferenceForm): Promise<IConference> {
 }
 
 export function updateConference(conferenceId: string, body: IConferenceForm): Promise<IConference> {
-  return HttpClient.put<IConference>(`sessions/${conferenceId}`, body);
+  return HttpClient.put<IConference>(`conferences/${conferenceId}`, body);
 }
