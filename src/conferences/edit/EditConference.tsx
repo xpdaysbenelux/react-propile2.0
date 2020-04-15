@@ -68,7 +68,7 @@ const EditConference: FC = () => {
         initialForm={initialForm}
         isSubmitting={isSubmitting}
         submitForm={(values: IConferenceForm) =>
-          dispatch(new conferencesActions.CreateConference({ values: parseNumberValues(values) }))
+          dispatch(new conferencesActions.UpdateConference({ conferenceId: id, values: parseNumberValues(values) }))
         }
       />
     </Container>
