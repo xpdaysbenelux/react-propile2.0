@@ -82,6 +82,26 @@ export default function reducer(state = initialState, action: ConferencesAction)
         errorCrudConference: action.payload.error,
         isLoading: false,
       };
+    case ConferencesActionType.DeleteConference:
+      return {
+        ...state,
+        errorCrudConference: null,
+        isLoading: true,
+      };
+    case ConferencesActionType.DeleteConferenceSuccess:
+      return {
+        ...state,
+        conferences: state.conferences.filter(conference => {
+          return conference.id !== action.payload.conferenceId;
+        }),
+        isLoading: false,
+      };
+    case ConferencesActionType.DeleteConferenceError:
+      return {
+        ...state,
+        errorCrudConference: action.payload.error,
+        isLoading: false,
+      };
     default:
       return state;
   }

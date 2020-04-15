@@ -7,6 +7,9 @@ export enum ConferencesActionType {
   CreateConference = '[Conferences] CreateConference',
   CreateConferenceError = '[Conferences] CreateConferenceError',
   CreateConferenceSuccess = '[Conferences] CreateConferenceSuccess',
+  DeleteConference = '[Conferences] DeleteConference',
+  DeleteConferenceError = '[Conferences] DeleteConferenceError',
+  DeleteConferenceSuccess = '[Conferences] DeleteConferenceSuccess',
   GetConferences = '[Conferences] GetConferences',
   GetConferencesError = '[Conferences] GetConferencesError',
   GetConferencesSuccess = '[Conferences] GetConferencesSuccess',
@@ -65,6 +68,21 @@ export class UpdateConferenceError implements Action<ConferencesActionType> {
   constructor(public payload: { error: ApiError }) {}
 }
 
+export class DeleteConference implements Action<ConferencesActionType> {
+  readonly type = ConferencesActionType.DeleteConference;
+  constructor(public payload: { conferenceId: string }) {}
+}
+
+export class DeleteConferenceSuccess implements Action<ConferencesActionType> {
+  readonly type = ConferencesActionType.DeleteConferenceSuccess;
+  constructor(public payload: { conferenceId: string }) {}
+}
+
+export class DeleteConferenceError implements Action<ConferencesActionType> {
+  readonly type = ConferencesActionType.DeleteConferenceError;
+  constructor(public payload: { error: ApiError }) {}
+}
+
 export type ConferencesAction =
   | CreateConference
   | CreateConferenceSuccess
@@ -75,4 +93,7 @@ export type ConferencesAction =
   | GetConferences
   | GetConferencesSuccess
   | GetConferencesError
+  | DeleteConference
+  | DeleteConferenceSuccess
+  | DeleteConferenceError
   | SetConferencesQuery;

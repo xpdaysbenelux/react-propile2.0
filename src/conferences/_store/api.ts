@@ -14,3 +14,7 @@ export function createConference(body: IConferenceForm): Promise<IConference> {
 export function updateConference(conferenceId: string, body: IConferenceForm): Promise<IConference> {
   return HttpClient.put<IConference>(`conferences/${conferenceId}`, body);
 }
+
+export function deleteConference(conferenceId: string): Promise<string> {
+  return HttpClient.delete<string>(`conferences/${conferenceId}`);
+}

@@ -52,6 +52,20 @@ const updateConferenceEpic$: Epic = action$ =>
 const updateConferenceSuccessEpic$: Epic = action$ =>
   action$.ofType(ConferencesActionType.UpdateConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
 
+const deleteConferenceEpic$: Epic = action$ =>
+  action$.ofType(ConferencesActionType.DeleteConference).pipe(
+    exhaustMap(({ payload }: conferencesActions.DeleteConference) =>
+      from(conferencesApi.deleteConference(payload.conferenceId)).pipe(
+        tap(() => toast.success(translations.getLabel('CONFERENCES.TOASTER.CONFERENCE_DELETED'))),
+        map(conferenceId => new conferencesActions.DeleteConferenceSuccess({ conferenceId })),
+        catchError(error => of(new conferencesActions.DeleteConferenceError({ error }))),
+      ),
+    ),
+  );
+
+const deleteConferenceSuccessEpic$: Epic = action$ =>
+  action$.ofType(ConferencesActionType.DeleteConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
+
 export default [
   getConferencesEpic$,
   setConferencesQueryEpic$,
@@ -59,4 +73,6 @@ export default [
   createConferenceSuccessEpic$,
   updateConferenceEpic$,
   updateConferenceSuccessEpic$,
+  deleteConferenceEpic$,
+  deleteConferenceSuccessEpic$,
 ];

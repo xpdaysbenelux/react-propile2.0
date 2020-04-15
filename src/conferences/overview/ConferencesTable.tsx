@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { useTableSort, useInfiniteScroll } from '../../_hooks';
+import { conferencesActions } from '../../_store/actions';
 import { IConference } from '../_models';
 import { FillMetadataQueryFunction, HttpSortDirection } from '../../_http';
 import Table, { TableColumn } from '../../_shared/table/Table';
@@ -25,6 +26,7 @@ const columns: TableColumn[] = [
 ];
 
 const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
+  const dispatch = useDispatch();
   const metadata = useSelector(conferencesSelectors.metadata);
 
   const { sortFunctions } = useTableSort((column: string, direction: HttpSortDirection) =>
@@ -44,7 +46,17 @@ const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>
           <Link to={`/conferences/edit/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </Table.Cell>
-        <Table.Cell>{translations.getLabel('SHARED.BUTTONS.DELETE')}</Table.Cell>
+        <Table.Cell>
+          <Link
+            onClick={() => {
+              console.log('about to delete', conference.name);
+              dispatch(new conferencesActions.DeleteConference({ conferenceId: conference.id }));
+            }}
+            to="/conferences"
+          >
+            {translations.getLabel('SHARED.BUTTONS.DELETE')}
+          </Link>
+        </Table.Cell>
       </Table.Row>
     );
   }

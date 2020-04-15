@@ -270,7 +270,8 @@
     },
     "TOASTER": {
       "CONFERENCE_CREATED": "The conference was created successfully.",
-      "CONFERENCE_UPDATED": "The conference was updated successfully."
+      "CONFERENCE_UPDATED": "The conference was updated successfully.",
+      "CONFERENCE_DELETED": "The conference was deleted successfully."
     },
     "ERRORS": {
       "CONFERENCE_NOT_FOUND": "The conference was not found.",
