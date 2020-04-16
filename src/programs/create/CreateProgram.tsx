@@ -16,7 +16,7 @@ import {
   ISOStringFromDate,
   getDateAndCustomTimeString,
 } from '../../_utils/timeHelpers';
-import CreateProgramForm from './CreateProgramForm';
+import ProgramForm from '../ProgramForm';
 
 const getInitialForm = (conference: IConference): IProgramForm => {
   // These vars get used to prefill the date selectors for the start & endtimes of a program
@@ -69,7 +69,7 @@ const CreateProgram: FC = () => {
     <Container as="main">
       <GoBackLink label={translations.getLabel('PROGRAMS.GO_BACK')} to={`/conferences/${conferenceId}`} />
       <h1>{translations.getLabel('PROGRAMS.CREATE.TITLE')}</h1>
-      <CreateProgramForm
+      <ProgramForm
         buttons={
           <Button href="/programs" theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
