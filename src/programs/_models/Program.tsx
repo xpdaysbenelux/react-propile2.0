@@ -5,8 +5,8 @@ export interface IProgram {
   };
   createdAt?: string;
   createdBy?: string;
-  date: Date;
-  endTime: Date;
+  date: string;
+  endTime: string;
   events?: {
     endTime: Date;
     spanRow: boolean;
@@ -14,7 +14,7 @@ export interface IProgram {
     title: string;
   }[];
   id: string;
-  startTime: Date;
+  startTime: string;
   title: string;
 }
 

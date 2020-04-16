@@ -97,6 +97,7 @@
     },
     "SEARCH_PLACEHOLDER": "Search...",
     "DETAIL": {
+      "TITLE": "Details",
       "CREATED_AT_BY": "Created at {{date}} by {{name}}",
       "UPDATED_AT_BY": "Last updated at {{date}} by {{name}}"
     }
@@ -294,6 +295,9 @@
     "OVERVIEW": {
       "CREATE_PROGRAM": "Create program",
       "EMPTY": "No programs for this conference were found"
+    },
+    "DETAIL": {
+      "BACK": "Back to conferences"
     },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully."
