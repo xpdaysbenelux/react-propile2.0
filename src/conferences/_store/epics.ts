@@ -35,9 +35,6 @@ const createConferenceEpic$: Epic = actions$ =>
     ),
   );
 
-const createConferenceSuccessEpic$: Epic = action$ =>
-  action$.ofType(ConferencesActionType.CreateConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
-
 const updateConferenceEpic$: Epic = action$ =>
   action$.ofType(ConferencesActionType.UpdateConference).pipe(
     exhaustMap(({ payload }: conferencesActions.UpdateConference) =>
@@ -48,9 +45,6 @@ const updateConferenceEpic$: Epic = action$ =>
       ),
     ),
   );
-
-const updateConferenceSuccessEpic$: Epic = action$ =>
-  action$.ofType(ConferencesActionType.UpdateConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
 
 const deleteConferenceEpic$: Epic = action$ =>
   action$.ofType(ConferencesActionType.DeleteConference).pipe(
@@ -63,16 +57,20 @@ const deleteConferenceEpic$: Epic = action$ =>
     ),
   );
 
-const deleteConferenceSuccessEpic$: Epic = action$ =>
-  action$.ofType(ConferencesActionType.DeleteConferenceSuccess).pipe(switchMap(() => of(push('/conferences'))));
+const crudConferenceSuccessEpic$: Epic = action$ =>
+  action$
+    .ofType(
+      ConferencesActionType.CreateConferenceSuccess ||
+        ConferencesActionType.UpdateConferenceSuccess ||
+        ConferencesActionType.DeleteConferenceSuccess,
+    )
+    .pipe(switchMap(() => of(push('/conferences'))));
 
 export default [
   getConferencesEpic$,
   setConferencesQueryEpic$,
   createConferenceEpic$,
-  createConferenceSuccessEpic$,
   updateConferenceEpic$,
-  updateConferenceSuccessEpic$,
   deleteConferenceEpic$,
-  deleteConferenceSuccessEpic$,
+  crudConferenceSuccessEpic$,
 ];

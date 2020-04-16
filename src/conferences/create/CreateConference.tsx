@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Container, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IConferenceForm } from '../_models';
+import { IConferenceForm, createEmptyRoom, conferenceDefaultStartTime, conferenceDefaultEndTime } from '../_models';
 import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
@@ -13,16 +13,7 @@ import ConferenceForm from '../ConferenceForm';
 const initialForm: IConferenceForm = {
   endDate: new Date().toISOString(),
   name: '',
-  rooms: [
-    {
-      maxParticipants: 50,
-      name: 'Room 1',
-    },
-    {
-      maxParticipants: 50,
-      name: 'Room 2',
-    },
-  ],
+  rooms: [createEmptyRoom(1), createEmptyRoom(2)],
   startDate: new Date().toISOString(),
 };
 
@@ -35,11 +26,8 @@ const CreateConference: FC = () => {
     const { rooms, name, startDate, endDate } = givenValues;
     const values: IConferenceForm = { endDate, name, rooms: [], startDate };
 
-    // These vars get used to set the start & end times of a conference as early and as late as possible
-    const conferenceStartTime = '02:00';
-    const conferenceEndTime = '23:59';
-    values.startDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(startDate, conferenceStartTime)));
-    values.endDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(endDate, conferenceEndTime)));
+    values.startDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(startDate, conferenceDefaultStartTime)));
+    values.endDate = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(endDate, conferenceDefaultEndTime)));
 
     rooms.forEach(room => {
       room.maxParticipants = parseValuesToNumber(room.maxParticipants);
