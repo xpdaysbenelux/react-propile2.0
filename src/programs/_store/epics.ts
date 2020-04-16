@@ -56,23 +56,27 @@ const deleteProgramEpic$: Epic = action$ =>
   action$.ofType(ProgramsActionType.DeleteProgram).pipe(
     exhaustMap(({ payload }: programsActions.DeleteProgram) =>
       from(programsApi.deleteProgram(payload.programId)).pipe(
-        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.CONFERENCE_DELETED'))),
+        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.PROGRAM_DELETED'))),
         map(programId => new programsActions.DeleteProgramSuccess({ programId })),
         catchError(error => of(new programsActions.DeleteProgramError({ error }))),
       ),
     ),
   );
 
-const deleteProgramSuccessEpic$: Epic = action$ =>
-  action$.ofType(ProgramsActionType.DeleteProgramSuccess).pipe(switchMap(() => of(push('/conferences'))));
+const crudProgramSuccessEpic$: Epic = action$ =>
+  action$
+    .ofType(
+      ProgramsActionType.CreateProgramSuccess,
+      ProgramsActionType.UpdateProgramSuccess,
+      ProgramsActionType.DeleteProgramSuccess,
+    )
+    .pipe(switchMap(() => of(push('/conferences'))));
 
 export default [
   getProgramsEpic$,
   setProgramsQueryEpic$,
   createProgramEpic$,
-  createProgramSuccessEpic$,
   updateProgramEpic$,
-  updateProgramSuccessEpic$,
   deleteProgramEpic$,
-  deleteProgramSuccessEpic$,
+  crudProgramSuccessEpic$,
 ];

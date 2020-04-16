@@ -301,7 +301,9 @@
       "TITLE": "Edit \"{{programTitle}}\""
     },
     "TOASTER": {
-      "PROGRAM_CREATED": "The program was created successfully."
+      "PROGRAM_CREATED": "The program was created successfully.",
+      "PROGRAM_UPDATED": "The program was updated successfully.",
+      "PROGRAM_DELETED": "The program was deleted successfully."
     },
     "ERRORS": {
       "PROGRAM_TITLE_ALREADY_IN_USE": "A program with this title already exists.",
