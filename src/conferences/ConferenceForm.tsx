@@ -7,7 +7,7 @@ import { formValidator } from '../_utils/formValidation';
 import { InputField, Button, DateSelector, Icon } from '../_shared';
 import ErrorMessage from '../_shared/errorMessage/ErrorMessage';
 import { translations } from '../_translations';
-import { IConferenceForm, IRoom, createEmptyRoom } from './_models';
+import { IConferenceForm, IRoom, createEmptyRoom, roomMaxParticipants } from './_models';
 import './conferenceForm.scss';
 
 interface Props {
@@ -31,7 +31,7 @@ function validateRoom(room: IRoom): string {
   console.log(room.maxParticipants.toString());
   if (!room.name || room.maxParticipants.toString() === '')
     return translations.getLabel('CONFERENCES.ERRORS.ALL_ROOM_VALUES_MUST_BE_FILLED_IN');
-  return formValidator.isBetween(room.maxParticipants, 0, 50, 'max amount of participants');
+  return formValidator.isBetween(room.maxParticipants, 0, roomMaxParticipants, 'max amount of participants');
 }
 
 const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm, isSubmitting, error, buttons }) => {

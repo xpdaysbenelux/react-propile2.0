@@ -60,9 +60,9 @@ const deleteConferenceEpic$: Epic = action$ =>
 const crudConferenceSuccessEpic$: Epic = action$ =>
   action$
     .ofType(
-      ConferencesActionType.CreateConferenceSuccess ||
-        ConferencesActionType.UpdateConferenceSuccess ||
-        ConferencesActionType.DeleteConferenceSuccess,
+      ConferencesActionType.CreateConferenceSuccess,
+      ConferencesActionType.UpdateConferenceSuccess,
+      ConferencesActionType.DeleteConferenceSuccess,
     )
     .pipe(switchMap(() => of(push('/conferences'))));
 

@@ -17,6 +17,7 @@ import {
 } from '../_models';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
 import { parseValuesToNumber } from '../../_utils/objectHelpers';
+import { roomMaxParticipants } from '../../conferences/_models';
 import UpdateSessionForm from './EditSessionForm';
 
 const getInitialForm = (session: ISession): IUpdateSessionForm => ({
@@ -29,7 +30,7 @@ const getInitialForm = (session: ISession): IUpdateSessionForm => ({
   laptopsRequired: session?.laptopsRequired,
   materialDescription: session?.materialDescription || '',
   materialUrl: session?.materialUrl || '',
-  maxParticipants: session?.maxParticipants || 50,
+  maxParticipants: session?.maxParticipants || roomMaxParticipants,
   neededMaterials: session?.neededMaterials || '',
   otherLimitations: session?.otherLimitations || '',
   outline: session?.outline || '',
