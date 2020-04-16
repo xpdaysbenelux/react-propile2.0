@@ -28,7 +28,6 @@ function errorAsString(error?: ApiError): string {
 }
 
 function validateRoom(room: IRoom): string {
-  console.log(room.maxParticipants.toString());
   if (!room.name || room.maxParticipants.toString() === '')
     return translations.getLabel('CONFERENCES.ERRORS.ALL_ROOM_VALUES_MUST_BE_FILLED_IN');
   return formValidator.isBetween(room.maxParticipants, 0, roomMaxParticipants, 'max amount of participants');
