@@ -5,7 +5,7 @@ import { useTableSort } from '../../_hooks';
 import { IProgram } from '../_models';
 import { FillMetadataQueryFunction, HttpSortDirection } from '../../_http';
 import Table, { TableColumn } from '../../_shared/table/Table';
-import { formatTime } from '../../_utils/timeHelpers';
+import { formatTime, dateFromISOString, formatDate } from '../../_utils/timeHelpers';
 import { translations } from '../../_translations';
 
 interface Props {
@@ -16,6 +16,7 @@ interface Props {
 
 const columns: TableColumn[] = [
   { label: 'PROGRAMS.TITLE', name: 'name', sortable: true },
+  { className: 'time-column', label: 'PROGRAMS.DATE', name: 'date', sortable: true },
   { className: 'time-column', label: 'PROGRAMS.START_TIME', name: 'startTime', sortable: true },
   { className: 'time-column', label: 'PROGRAMS.END_TIME', name: 'endTime', sortable: true },
   { className: 'action-column', name: 'edit' },
@@ -33,6 +34,7 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>
           <Link to={`/programs/${program.id}`}>{program.title}</Link>
         </Table.Cell>
+        <Table.Cell>{formatDate(dateFromISOString(program.date))}</Table.Cell>
         <Table.Cell>{formatTime(program.startTime)}</Table.Cell>
         <Table.Cell>{formatTime(program.endTime)}</Table.Cell>
         <Table.Cell>
