@@ -296,8 +296,8 @@
       "CREATE_PROGRAM": "Create program",
       "EMPTY": "No programs for this conference were found"
     },
-    "DETAIL": {
-      "BACK": "Back to conferences"
+    "EDIT": {
+      "TITLE": "Edit \"{{programTitle}}\""
     },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully."

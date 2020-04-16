@@ -17,6 +17,7 @@ interface Props {
   error?: ApiError;
   initialForm: IProgramForm;
   isSubmitting: boolean;
+  programId?: string;
   submitForm: SubmitFormFunction<IProgramForm>;
 }
 
@@ -31,7 +32,7 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
-const ProgramForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, buttons, conference }) => {
+const ProgramForm: FC<Props> = ({ programId, initialForm, submitForm, isSubmitting, error, buttons, conference }) => {
   function validateForm(values: IProgramForm): FormValidationErrors<IProgramForm> {
     const errors: FormValidationErrors<IProgramForm> = {};
     errors.title = formValidator.isRequired(values.title);
@@ -83,7 +84,7 @@ const ProgramForm: FC<Props> = ({ initialForm, submitForm, isSubmitting, error, 
       <div className="actions">
         {buttons}
         <Button loading={isSubmitting} type="submit">
-          {translations.getLabel('SHARED.BUTTONS.CREATE')}
+          {translations.getLabel(programId ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
         </Button>
       </div>
     </form>
