@@ -4,10 +4,10 @@ import classnames from 'classnames';
 import { ApiError } from '../_http';
 import useForm, { SubmitFormFunction, FormValidationErrors } from '../_hooks/useForm';
 import { formValidator } from '../_utils/formValidation';
-import { InputField, Button, DateSelector } from '../_shared';
+import { InputField, Button, DateSelector, Icon } from '../_shared';
 import ErrorMessage from '../_shared/errorMessage/ErrorMessage';
 import { translations } from '../_translations';
-import { IConferenceForm, IRoom } from './_models';
+import { IConferenceForm, IRoom, createEmptyRoom } from './_models';
 import './conferenceForm.scss';
 
 interface Props {
@@ -27,6 +27,13 @@ function errorAsString(error?: ApiError): string {
   return null;
 }
 
+function validateRoom(room: IRoom): string {
+  console.log(room.maxParticipants.toString());
+  if (!room.name || room.maxParticipants.toString() === '')
+    return translations.getLabel('CONFERENCES.ERRORS.ALL_ROOM_VALUES_MUST_BE_FILLED_IN');
+  return formValidator.isBetween(room.maxParticipants, 0, 50, 'max amount of participants');
+}
+
 const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm, isSubmitting, error, buttons }) => {
   function validateForm(values: IConferenceForm): FormValidationErrors<IConferenceForm> {
     const errors: FormValidationErrors<IConferenceForm> = {};
@@ -38,19 +45,9 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
 
     if (values.rooms.length < 2) {
       errors.rooms = translations.getLabel('CONFERENCES.ERRORS.CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS');
+    } else {
+      errors.rooms = values.rooms.map(room => validateRoom(room)).find(error => !!error);
     }
-
-    values.rooms.every(room => {
-      if (room.name === '' || room.maxParticipants.toString() === '') {
-        errors.rooms = translations.getLabel('CONFERENCES.ERRORS.ALL_ROOM_VALUES_MUST_BE_FILLED_IN');
-        return false;
-      } else if (room.maxParticipants < 0 || room.maxParticipants > 50) {
-        errors.rooms = formValidator.isBetween(room.maxParticipants, 0, 50, 'max amount of participants');
-        return false;
-      } else {
-        return true;
-      }
-    });
 
     return errors;
   }
@@ -58,7 +55,7 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
   const form = useForm<IConferenceForm>({ error, initialForm, submitForm, validateForm });
 
   function addRoomToForm() {
-    form.setAttribute([...form.values.rooms, { maxParticipants: 50, name: `Room ${form.values.rooms.length + 1}` }], 'rooms');
+    form.setAttribute([...form.values.rooms, createEmptyRoom(form.values.rooms.length + 1)], 'rooms');
   }
 
   function removeRoomFromForm(givenIndex: number) {
@@ -93,10 +90,8 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
           value={form.values.rooms[index].maxParticipants.toString()}
         />
         {showDeleteButton && (
-          <div className="delete-room-button">
-            <Button onClick={() => removeRoomFromForm(index)} theme="warning">
-              X
-            </Button>
+          <div className="delete-room">
+            <Icon name="SvgClose" onClick={() => removeRoomFromForm(index)} size={2.4} />
           </div>
         )}
       </div>

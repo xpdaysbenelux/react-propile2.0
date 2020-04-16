@@ -248,7 +248,8 @@
       "ROOMS": "Conference rooms",
       "ROOM_NAME": "Room name",
       "MAX_PARTICIPANTS": "Max participants",
-      "ADD_ROOM": "Add a room"
+      "ADD_ROOM": "Add a room",
+      "FAKE_ROOM_NAME": "Room {{number}}"
     },
     "EDIT": {
       "TITLE": "Edit \"{{conferenceName}}\" "

@@ -49,7 +49,6 @@ const ConferencesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>
           <Link
             onClick={() => {
-              console.log('about to delete', conference.name);
               dispatch(new conferencesActions.DeleteConference({ conferenceId: conference.id }));
             }}
             to="/conferences"

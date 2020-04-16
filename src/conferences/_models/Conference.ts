@@ -1,5 +1,8 @@
-import { IProgram } from '../../programs/_models/';
+import { IProgram } from '../../programs/_models';
 import { IRoom } from './Room';
+
+export const conferenceDefaultStartTime = '02:00';
+export const conferenceDefaultEndTime = '23:59';
 
 export interface IConference {
   createdAt?: string;

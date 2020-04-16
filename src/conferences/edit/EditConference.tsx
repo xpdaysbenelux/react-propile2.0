@@ -3,7 +3,7 @@ import { Container, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
-import { IConferenceForm, IConference } from '../_models';
+import { IConferenceForm, IConference, createEmptyRoom } from '../_models';
 import { translations } from '../../_translations';
 import { conferencesSelectors } from '../../_store/selectors';
 import { conferencesActions } from '../../_store/actions';
@@ -15,16 +15,7 @@ import ConferenceForm from '../ConferenceForm';
 const getInitialForm = (conference: IConference): IConferenceForm => ({
   endDate: conference?.endDate || new Date().toISOString(),
   name: conference?.name || '',
-  rooms: conference?.rooms || [
-    {
-      maxParticipants: 50,
-      name: 'Room 1',
-    },
-    {
-      maxParticipants: 50,
-      name: 'Room 2',
-    },
-  ],
+  rooms: conference?.rooms || [createEmptyRoom(1), createEmptyRoom(2)],
   startDate: conference?.startDate || new Date().toISOString(),
 });
 
