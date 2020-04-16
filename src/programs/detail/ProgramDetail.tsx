@@ -51,7 +51,7 @@ const ProgramDetail: FC = () => {
 
   return (
     <Container as="main" className="program-detail">
-      <GoBackLink label={translations.getLabel('PROGRAMS.DETAIL.BACK')} to="/conferences" />
+      <GoBackLink label={translations.getLabel('PROGRAMS.GO_BACK')} to={`/conferences/${program.conference.id}`} />
       {renderHeader()}
       {renderDetailSection()}
     </Container>
