@@ -10,12 +10,14 @@ import {
   hasRolesPermissions,
   hasSessionsPermissions,
   hasConferencesPermissions,
+  hasProgramsPermissions,
 } from '../../../profile/_utils';
 import Profile from '../../../profile/Profile';
 import Dashboard from '../../../dashboard/Dashboard';
 import Conferences from '../../../conferences/Conferences';
 import AuthorizedLayoutMenu from './menu/AuthorizedLayoutMenu';
 import './authorizedLayout.scss';
+import Programs from '../../../programs/Programs';
 
 const AuthorizedLayout: React.FC = () => {
   const permissions = useSelector(profileSelectors.permissions);
@@ -29,6 +31,7 @@ const AuthorizedLayout: React.FC = () => {
         {hasRolesPermissions(permissions) && <Route component={Roles} path="/roles" />}
         {hasSessionsPermissions(permissions) && <Route component={Sessions} path="/sessions" />}
         {hasConferencesPermissions(permissions) && <Route component={Conferences} path="/conferences" />}
+        {hasProgramsPermissions(permissions) && <Route component={Programs} path="/programs" />}
         <Redirect to="/profile" />
       </Switch>
     </div>
