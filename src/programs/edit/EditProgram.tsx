@@ -9,7 +9,6 @@ import { programsSelectors, conferencesSelectors } from '../../_store/selectors'
 import { programsActions } from '../../_store/actions';
 import { GoBackLink } from '../../_shared';
 import { dateTimeFromString, ISOStringFromDate, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
-import { handleProgramFormBeforeSubmit } from '../_utils';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
 import ProgramForm from '../ProgramForm';
 

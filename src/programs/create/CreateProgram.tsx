@@ -10,7 +10,6 @@ import { programsActions } from '../../_store/actions';
 import { IConference } from '../../conferences/_models';
 import { GoBackLink } from '../../_shared';
 import { dateTimeFromString, ISOStringFromDate, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
-import { handleProgramFormBeforeSubmit } from '../_utils';
 import ProgramForm from '../ProgramForm';
 
 const getInitialForm = (conference: IConference): IProgramForm => {
