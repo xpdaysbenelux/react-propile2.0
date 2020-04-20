@@ -13,6 +13,7 @@ import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
 import { formValidator } from '../../_utils/formValidation';
 import { stateOptions, typeOptions, topicOptions, durationOptions, experienceLevelOptions } from './enumOptions';
 import './editSessionForm.scss';
+import { roomMaxParticipants } from '../../conferences/_models';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
@@ -43,7 +44,7 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
     if (values.emailSecondPresenter !== '') errors.emailSecondPresenter = formValidator.isEmail(values.emailSecondPresenter);
     errors.description = formValidator.isRequired(values.description);
     errors.xpFactor = formValidator.isBetween(values.xpFactor, 0, 10, 'Xp factor');
-    errors.maxParticipants = formValidator.isBetween(values.maxParticipants, 1, 50, 'amount of participants');
+    errors.maxParticipants = formValidator.isBetween(values.maxParticipants, 1, roomMaxParticipants, 'amount of participants');
 
     return errors;
   }
