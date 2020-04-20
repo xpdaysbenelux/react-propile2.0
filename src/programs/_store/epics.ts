@@ -35,9 +35,6 @@ const createProgramEpic$: Epic = actions$ =>
     ),
   );
 
-const createProgramSuccessEpic$: Epic = action$ =>
-  action$.ofType(ProgramsActionType.CreateProgramSuccess).pipe(switchMap(() => of(push('/programs/edit-program-events'))));
-
 const updateProgramEpic$: Epic = action$ =>
   action$.ofType(ProgramsActionType.UpdateProgram).pipe(
     exhaustMap(({ payload }: programsActions.UpdateProgram) =>
@@ -48,9 +45,6 @@ const updateProgramEpic$: Epic = action$ =>
       ),
     ),
   );
-
-const updateProgramSuccessEpic$: Epic = action$ =>
-  action$.ofType(ProgramsActionType.UpdateProgramSuccess).pipe(switchMap(() => of(push('/conferences'))));
 
 const deleteProgramEpic$: Epic = action$ =>
   action$.ofType(ProgramsActionType.DeleteProgram).pipe(

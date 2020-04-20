@@ -1,3 +1,8 @@
+export const programTimeIntervals = 30;
+export const programDefaultStartTime = '08:00';
+export const programDefaultEndTime = '20:00';
+export const programDateStartTime = '02:01';
+
 export interface IProgram {
   conference: {
     id: string;

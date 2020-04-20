@@ -3,34 +3,25 @@ import { Container, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Redirect } from 'react-router-dom';
 
-import { IProgramForm } from '../_models';
+import { IProgramForm, programDefaultEndTime, programDefaultStartTime } from '../_models';
 import { translations } from '../../_translations';
 import { programsSelectors, conferencesSelectors } from '../../_store/selectors';
 import { programsActions } from '../../_store/actions';
 import { IConference } from '../../conferences/_models';
 import { GoBackLink } from '../../_shared';
-import {
-  dateStringFromISOString,
-  dateTimeFromString,
-  getCombinedDateTimeString,
-  ISOStringFromDate,
-  getDateAndCustomTimeString,
-} from '../../_utils/timeHelpers';
+import { dateTimeFromString, ISOStringFromDate, getDateAndCustomTimeString } from '../../_utils/timeHelpers';
+import { handleProgramFormBeforeSubmit } from '../_utils';
 import ProgramForm from '../ProgramForm';
 
 const getInitialForm = (conference: IConference): IProgramForm => {
-  // These vars get used to prefill the date selectors for the start & endtimes of a program
-  const givenStartTime = '08:00';
-  const givenEndTime = '20:00';
-
   return {
     conferenceId: conference?.id || '',
     date: conference?.startDate || new Date().toISOString(),
     endTime: conference
-      ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, givenEndTime)))
+      ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, programDefaultEndTime)))
       : new Date().toISOString(),
     startTime: conference
-      ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, givenStartTime)))
+      ? ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(conference.startDate, programDefaultStartTime)))
       : new Date().toISOString(),
     title: '',
   };
@@ -46,25 +37,6 @@ const CreateProgram: FC = () => {
   if (!conference) return <Redirect to={`conferences/${conferenceId}`} />;
   const initialForm = getInitialForm(conference);
 
-  const beforeSubmit = (givenValues: IProgramForm): IProgramForm => {
-    const { date, startTime, endTime, title, conferenceId } = givenValues;
-    const values: IProgramForm = { conferenceId, date, endTime, startTime, title };
-
-    // This var is used to set the time of the program date to 1 minute after the start of a conference date
-    const timeForDate = '02:01';
-    values.date = ISOStringFromDate(dateTimeFromString(getDateAndCustomTimeString(date, timeForDate)));
-
-    if (
-      dateStringFromISOString(startTime) !== dateStringFromISOString(date) ||
-      dateStringFromISOString(endTime) !== dateStringFromISOString(date)
-    ) {
-      values.startTime = ISOStringFromDate(dateTimeFromString(getCombinedDateTimeString(date, startTime)));
-      values.endTime = ISOStringFromDate(dateTimeFromString(getCombinedDateTimeString(date, endTime)));
-    }
-
-    return values;
-  };
-
   return (
     <Container as="main">
       <GoBackLink label={translations.getLabel('PROGRAMS.GO_BACK')} to={`/conferences/${conferenceId}`} />
@@ -79,7 +51,9 @@ const CreateProgram: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: IProgramForm) => dispatch(new programsActions.CreateProgram({ values: beforeSubmit(values) }))}
+        submitForm={(values: IProgramForm) =>
+          dispatch(new programsActions.CreateProgram({ values: handleProgramFormBeforeSubmit(values) }))
+        }
       />
     </Container>
   );

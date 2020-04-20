@@ -8,7 +8,7 @@ import { formValidator } from '../_utils/formValidation';
 import { InputField, Button, DateSelector, TimeSelector } from '../_shared';
 import ErrorMessage from '../_shared/errorMessage/ErrorMessage';
 import { translations } from '../_translations';
-import { IProgramForm } from './_models';
+import { IProgramForm, programTimeIntervals } from './_models';
 import './programForm.scss';
 
 interface Props {
@@ -68,7 +68,7 @@ const ProgramForm: FC<Props> = ({ programId, initialForm, submitForm, isSubmitti
           name="startTime"
           onChange={form.setAttribute}
           timeFormat="h:mm aa"
-          timeIntervals={30}
+          timeIntervals={programTimeIntervals}
           value={form.values.startTime}
         />
         <TimeSelector
@@ -76,7 +76,7 @@ const ProgramForm: FC<Props> = ({ programId, initialForm, submitForm, isSubmitti
           name="endTime"
           onChange={form.setAttribute}
           timeFormat="h:mm aa"
-          timeIntervals={30}
+          timeIntervals={programTimeIntervals}
           value={form.values.endTime}
         />
       </div>
