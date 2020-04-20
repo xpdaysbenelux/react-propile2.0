@@ -53,9 +53,7 @@ const EditProgram: FC = () => {
         initialForm={initialForm}
         isSubmitting={isSubmitting}
         programId={program.id}
-        submitForm={(values: IProgramForm) =>
-          dispatch(new programsActions.UpdateProgram({ programId: program.id, values: handleProgramFormBeforeSubmit(values) }))
-        }
+        submitForm={(values: IProgramForm) => dispatch(new programsActions.UpdateProgram({ programId: program.id, values }))}
       />
     </Container>
   ) : (

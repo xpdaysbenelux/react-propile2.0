@@ -39,7 +39,7 @@ const updateProgramEpic$: Epic = action$ =>
   action$.ofType(ProgramsActionType.UpdateProgram).pipe(
     exhaustMap(({ payload }: programsActions.UpdateProgram) =>
       from(programsApi.updateProgram(payload.programId, payload.values)).pipe(
-        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.CONFERENCE_UPDATED'))),
+        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.PROGRAM_UPDATED'))),
         map(updatedProgram => new programsActions.UpdateProgramSuccess({ updatedProgram })),
         catchError(error => of(new programsActions.UpdateProgramError({ error }))),
       ),

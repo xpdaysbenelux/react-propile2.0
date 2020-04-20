@@ -51,9 +51,7 @@ const CreateProgram: FC = () => {
         error={error}
         initialForm={initialForm}
         isSubmitting={isSubmitting}
-        submitForm={(values: IProgramForm) =>
-          dispatch(new programsActions.CreateProgram({ values: handleProgramFormBeforeSubmit(values) }))
-        }
+        submitForm={(values: IProgramForm) => dispatch(new programsActions.CreateProgram({ values }))}
       />
     </Container>
   );
