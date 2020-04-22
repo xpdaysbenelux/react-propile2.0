@@ -22,13 +22,13 @@ describe('CreateUser component', () => {
     const emailInput = getByLabelText(translations.getLabel('USERS.EMAIL'));
     const firstNameInput = getByLabelText(translations.getLabel('USERS.FIRST_NAME'));
     const lastNameInput = getByLabelText(translations.getLabel('USERS.LAST_NAME'));
-    const roleDropdown = getByLabelText(translations.getLabel('USERS.ROLE'));
+    // const roleDropdown = getByLabelText(translations.getLabel('USERS.ROLE'));
     const createButton = getByText(translations.getLabel('SHARED.BUTTONS.CREATE'), { selector: 'button' });
 
     expect(emailInput).toBeInTheDocument();
     expect(firstNameInput).toBeInTheDocument();
     expect(lastNameInput).toBeInTheDocument();
-    expect(roleDropdown).toBeInTheDocument();
+    // expect(roleDropdown).toBeInTheDocument();
 
     user.type(emailInput, dummyUser.email);
     Simulate.change(emailInput);
