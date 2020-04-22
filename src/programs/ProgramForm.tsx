@@ -56,7 +56,6 @@ const ProgramForm: FC<Props> = ({ programId, initialForm, submitForm, isSubmitti
       </div>
       <div role="group">
         <DateSelector
-          dateFormat="dd/MM/yyyy"
           label={translations.getLabel('PROGRAMS.DATE')}
           maxDate={conference.endDate}
           minDate={conference.startDate}

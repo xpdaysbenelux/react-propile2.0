@@ -111,14 +111,12 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
       </div>
       <div role="group">
         <DateSelector
-          dateFormat="dd/MM/yyyy"
           label={translations.getLabel('CONFERENCES.START_DATE') + '*'}
           name="startDate"
           onChange={form.setAttribute}
           value={form.values.startDate}
         />
         <DateSelector
-          dateFormat="dd/MM/yyyy"
           label={translations.getLabel('CONFERENCES.END_DATE') + '*'}
           name="endDate"
           onChange={form.setAttribute}
