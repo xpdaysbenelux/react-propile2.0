@@ -10,6 +10,7 @@ import './dateSelector.scss';
 
 export interface DatePickerProps {
   className?: string;
+  dateFormat: string;
   errorMessage?: string;
   label: string;
   maxDate?: string;
@@ -22,6 +23,7 @@ export interface DatePickerProps {
 
 const DateSelector: FC<DatePickerProps> = ({
   className,
+  dateFormat,
   errorMessage,
   label,
   onChange,
@@ -40,6 +42,7 @@ const DateSelector: FC<DatePickerProps> = ({
         <span>{label}</span>
       </label>
       <DatePicker
+        dateFormat={dateFormat}
         maxDate={new Date(maxDate)}
         minDate={minDate ? new Date(minDate) : new Date()}
         onChange={newDate => {
