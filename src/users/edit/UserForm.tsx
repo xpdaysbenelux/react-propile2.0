@@ -1,4 +1,7 @@
 import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+
+import { profileSelectors } from '../../_store/selectors';
 import { IUserForm } from '../_models';
 import { InputField, Button } from '../../_shared';
 import { useForm } from '../../_hooks';
@@ -26,6 +29,8 @@ function errorAsString(error?: ApiError): string {
 }
 
 const UserForm: FC<Props> = ({ userId, initialForm, submitForm, isSubmitting, error, buttons }) => {
+  const permissions = useSelector(profileSelectors.permissions);
+
   function validateForm(values: IUserForm): FormValidationErrors<IUserForm> {
     const errors: FormValidationErrors<IUserForm> = {};
     if (values.email) errors.email = formValidator.isEmail(values.email);
@@ -69,16 +74,19 @@ const UserForm: FC<Props> = ({ userId, initialForm, submitForm, isSubmitting, er
           value={form.values.lastName}
         />
       </div>
-      <div role="group">
-        <RolesDropdown
-          errorMessage={form.validationErrors.roleIds}
-          label={translations.getLabel('USERS.ROLE')}
-          name="roleIds"
-          onChange={form.setAttribute}
-          value={form.values.roleIds}
-        />
-        <div />
-      </div>
+
+      {permissions?.roles.edit && (
+        <div role="group">
+          <RolesDropdown
+            errorMessage={form.validationErrors.roleIds}
+            label={translations.getLabel('USERS.ROLE')}
+            name="roleIds"
+            onChange={form.setAttribute}
+            value={form.values.roleIds}
+          />
+          <div />
+        </div>
+      )}
       <ErrorMessage isVisible>{errorAsString(error)}</ErrorMessage>
       <div className="actions">
         {buttons}

@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { FillMetadataQueryFunction, HttpSortDirection } from '../../_http';
 import Table, { TableColumn } from '../../_shared/table/Table';
 import { formatDate, dateFromISOString } from '../../_utils/timeHelpers';
 import { useTableSort, useInfiniteScroll } from '../../_hooks';
 import { translations } from '../../_translations';
-import { rolesSelectors } from '../../_store/selectors';
+import { rolesSelectors, profileSelectors } from '../../_store/selectors';
 import { IRole } from '../_models';
 
 interface Props {
@@ -23,6 +24,7 @@ const columns: TableColumn[] = [
 ];
 
 const RolesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
+  const permissions = useSelector(profileSelectors.permissions);
   const metadata = useSelector(rolesSelectors.metadata);
 
   const { sortFunctions } = useTableSort((column: string, direction: HttpSortDirection) =>
@@ -34,7 +36,7 @@ const RolesTable: FC<Props> = ({ data, isLoading, setQuery }) => {
     return (
       <Table.Row key={role.id}>
         <Table.Cell>
-          <Link to={{ pathname: `/roles/${role.id}` }}>{role.name}</Link>
+          {permissions?.roles.edit ? <Link to={{ pathname: `/roles/${role.id}` }}>{role.name}</Link> : role.name}
         </Table.Cell>
         <Table.Cell>{formatDate(dateFromISOString(role.createdAt))}</Table.Cell>
         <Table.Cell>{formatDate(dateFromISOString(role.updatedAt))}</Table.Cell>
