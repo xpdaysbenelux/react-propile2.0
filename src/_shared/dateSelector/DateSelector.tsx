@@ -40,6 +40,7 @@ const DateSelector: FC<DatePickerProps> = ({
         <span>{label}</span>
       </label>
       <DatePicker
+        dateFormat="dd/MM/yyyy"
         maxDate={new Date(maxDate)}
         minDate={minDate ? new Date(minDate) : new Date()}
         onChange={newDate => {
