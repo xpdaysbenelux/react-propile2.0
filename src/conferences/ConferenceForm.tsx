@@ -39,7 +39,7 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
     errors.name = formValidator.isRequired(values.name);
 
     if (Date.parse(values.startDate) > Date.parse(values.endDate)) {
-      errors.endDate = translations.getLabel('END_DATE_LATER_THAN_START_DATE');
+      errors.endDate = translations.getLabel('CONFERENCES.ERRORS.END_DATE_LATER_THAN_START_DATE');
     }
 
     if (values.rooms.length < 2) {
@@ -122,8 +122,8 @@ const CreateConferenceForm: FC<Props> = ({ conferenceId, initialForm, submitForm
           onChange={form.setAttribute}
           value={form.values.endDate}
         />
-        {form.validationErrors.endDate && <ErrorMessage isVisible>{form.validationErrors.endDate}</ErrorMessage>}
       </div>
+      {form.validationErrors.endDate && <ErrorMessage isVisible>{form.validationErrors.endDate}</ErrorMessage>}
       <div className="conference-rooms">
         <h3>{translations.getLabel('CONFERENCES.CREATE.ROOMS')}</h3>
         {form.values.rooms.map((room: IRoom, index: number) => renderRoomRow(room, index, conferenceId ? true : !(index <= 1)))}
