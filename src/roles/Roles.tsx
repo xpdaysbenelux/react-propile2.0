@@ -13,7 +13,7 @@ const Roles: React.FC = () => {
     <Switch>
       <Route component={RolesOverview} exact path={url} />
       {permissions?.roles.edit && <Route component={CreateRole} exact path={`${url}/create`} />}
-      <Route component={RoleDetail} exact path={`${url}/:id`} />
+      {permissions?.roles.edit && <Route component={RoleDetail} exact path={`${url}/:id`} />}
     </Switch>
   );
 };
