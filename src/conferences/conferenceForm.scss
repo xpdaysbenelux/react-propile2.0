@@ -7,9 +7,12 @@
 
     .room-row {
       margin-bottom: 2.5rem;
+      position: relative;
 
       .delete-room {
-        max-width: 0;
+        position: absolute;
+        left: 65rem;
+        top: 3.1rem;
         margin-left: 0.5rem;
         height: 3.2rem;
         margin-top: auto;
