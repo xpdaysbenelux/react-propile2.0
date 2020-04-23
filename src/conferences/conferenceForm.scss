@@ -6,11 +6,11 @@
     margin-top: 5rem;
 
     .room-row {
-      width: 100%;
       margin-bottom: 2.5rem;
 
       .delete-room {
-        width: 3.5rem;
+        max-width: 0;
+        margin-left: 0.5rem;
         height: 3.2rem;
         margin-top: auto;
       }
