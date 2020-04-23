@@ -16,7 +16,6 @@ export enum SessionsActionType {
 
 export class GetSessions implements Action<SessionsActionType> {
   readonly type = SessionsActionType.GetSessions;
-  constructor(public payload: { userId: string }) {}
 }
 
 export class GetSessionsSuccess implements Action<SessionsActionType> {
@@ -36,6 +35,7 @@ export class CreateSession implements Action<SessionsActionType> {
 
 export class CreateSessionSuccess implements Action<SessionsActionType> {
   readonly type = SessionsActionType.CreateSessionSuccess;
+  constructor(public payload: { createdSession: ISession }) {}
 }
 
 export class CreateSessionError implements Action<SessionsActionType> {

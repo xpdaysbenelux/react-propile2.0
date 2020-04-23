@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action: SessionsAction): S
       };
     case SessionsActionType.GetSessionsSuccess: {
       let currentData: ISession[] = state.sessions || [];
-      if (!action.payload.meta.skip) currentData = []; // Start overnew when the offset was reset
+      if (!action.payload.meta.skip) currentData = [];
       return {
         ...state,
         isLoading: false,
@@ -51,6 +51,7 @@ export default function reducer(state = initialState, action: SessionsAction): S
       return {
         ...state,
         isLoading: false,
+        sessions: insertUpdatedData(state.sessions, [action.payload.createdSession]),
       };
     case SessionsActionType.CreateSessionError:
       return {

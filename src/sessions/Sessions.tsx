@@ -13,7 +13,7 @@ const Sessions: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(new sessionsActions.GetSessions({ userId: id }));
+    dispatch(new sessionsActions.GetSessions());
   }, [dispatch, id]);
 
   return (

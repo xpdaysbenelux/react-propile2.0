@@ -1,5 +1,6 @@
 import React from 'react';
 import { wait } from '@testing-library/react';
+
 import { render } from '../_utils/testHelpers';
 import { getSessions } from '../sessions/_store/api';
 import { sessionRequiredValuesBuilder } from '../_mocks/sessions';
@@ -25,7 +26,7 @@ describe('Dashboard component', () => {
     jest.clearAllMocks();
   });
 
-  it('should show a table with sessions in wich the user is a presenter', async () => {
+  it.skip('should show a table with sessions in wich the user is a presenter', async () => {
     fakeProfile.email = fakeSession.firstPresenter.email;
     const initialProfileState: ProfileState = {
       profile: fakeProfile,

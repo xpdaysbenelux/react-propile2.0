@@ -1,11 +1,10 @@
-import React, { FC, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Table, { TableColumn } from '../_shared/table/Table';
 import { sessionsSelectors } from '../_store/selectors';
 import { ISession } from '../sessions/_models';
 import { translations } from '../_translations';
-import { sessionsActions } from '../_store/actions';
 
 interface Props {
   userId: string;
@@ -28,13 +27,8 @@ function renderPresenters(session: ISession): JSX.Element {
 }
 
 const YourSessionsTable: FC<Props> = ({ userId }) => {
-  const sessions = useSelector(sessionsSelectors.sessions);
+  const sessions = useSelector(sessionsSelectors.sessionsFromUser(userId));
   const isLoading = useSelector(sessionsSelectors.isLoading);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(new sessionsActions.GetSessions({ userId }));
-  }, [dispatch, userId]);
 
   function renderRow(session: ISession): JSX.Element {
     return (

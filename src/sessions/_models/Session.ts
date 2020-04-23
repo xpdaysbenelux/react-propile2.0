@@ -4,9 +4,7 @@ export interface ISession {
   description: string;
   duration?: SessionDuration;
   expierenceLevel: SessionExpierenceLevel;
-  firstPresenter: {
-    email: string;
-  };
+  firstPresenter: IPresenter;
   goal?: string;
   id: string;
   intendedAudience?: {
@@ -23,9 +21,7 @@ export interface ISession {
   otherLimitations?: string;
   outline?: string;
   roomSetup?: string;
-  secondPresenter?: {
-    email: string;
-  };
+  secondPresenter?: IPresenter;
   sessionState: SessionState;
   shortDescription?: string;
   subTitle?: string;
@@ -72,6 +68,11 @@ export interface IUpdateSessionForm {
   topic?: SessionTopic;
   type?: SessionType;
   xpFactor?: number;
+}
+
+export interface IPresenter {
+  email: string;
+  id: string;
 }
 
 export enum SessionState {

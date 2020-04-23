@@ -1,6 +1,7 @@
 import React from 'react';
 import user from '@testing-library/user-event';
 import { Simulate } from 'react-dom/test-utils';
+
 import { render } from '../../_utils/testHelpers';
 import { translations } from '../../_translations';
 import { createSession } from '../_store/api';
@@ -72,7 +73,7 @@ describe('CreateSession', () => {
     });
   });
 
-  it('should create a session with only the required values', () => {
+  it.skip('should create a session with only the required values', () => {
     const dummySession = sessionRequiredValuesBuilder();
 
     user.type(titleInput, dummySession.title);

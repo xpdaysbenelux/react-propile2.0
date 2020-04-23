@@ -66,7 +66,7 @@ const EditSession: FC = () => {
       <h1>{translations.getLabel('SESSIONS.EDIT.TITLE', { sessionTitle: session.title })}</h1>
       <UpdateSessionForm
         buttons={
-          <Button href="/sessions" theme="secondary">
+          <Button href="/dashboard" theme="secondary">
             {translations.getLabel('SHARED.BUTTONS.CANCEL')}
           </Button>
         }
