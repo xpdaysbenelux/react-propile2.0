@@ -1,0 +1,11 @@
+@import '../../_styles/colors';
+
+.program-info {
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid $primary;
+
+  * {
+    margin-bottom: 1rem;
+  }
+}

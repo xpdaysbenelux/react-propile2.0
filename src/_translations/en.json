@@ -302,8 +302,10 @@
     },
     "PLANNING": {
       "EDIT": "Edit planning",
-      "EDIT_PARAMS": "Edit program parameters",
-      "TITLE": "Edit the planning of \"{{programTitle}}\""
+      "TITLE": "Edit the planning of \"{{programTitle}}\"",
+      "PROGRAM_START_AND_END_TIME": "The program starts at {{programStartTime}} and ends at {{programEndTime}}.",
+      "PROGRAM_ROOMS_AMOUNT": "There are {{programRoomAmount}} rooms.",
+      "EDIT_PARAMS": "Edit program parameters"
     },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully.",
