@@ -22,6 +22,7 @@ const columns: TableColumn[] = [
   { className: 'time-column', label: 'PROGRAMS.START_TIME', name: 'startTime', sortable: true },
   { className: 'time-column', label: 'PROGRAMS.END_TIME', name: 'endTime', sortable: true },
   { className: 'action-column', name: 'edit' },
+  { className: 'planning-action-column', name: 'edit planning' },
   { className: 'action-column', name: 'delete' },
 ];
 
@@ -42,6 +43,9 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>{formatTime(program.endTime)}</Table.Cell>
         <Table.Cell>
           <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
+        </Table.Cell>
+        <Table.Cell>
+          <Link to={`/programs/edit/planning/${program.id}`}>{translations.getLabel('PROGRAMS.PLANNING.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>
           <Link

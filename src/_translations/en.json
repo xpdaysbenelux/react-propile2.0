@@ -300,6 +300,11 @@
     "EDIT": {
       "TITLE": "Edit \"{{programTitle}}\""
     },
+    "PLANNING": {
+      "EDIT": "Edit planning",
+      "EDIT_PARAMS": "Edit program parameters",
+      "TITLE": "Edit the planning of \"{{programTitle}}\""
+    },
     "TOASTER": {
       "PROGRAM_CREATED": "The program was created successfully.",
       "PROGRAM_UPDATED": "The program was updated successfully.",
