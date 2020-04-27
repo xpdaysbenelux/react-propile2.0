@@ -8,6 +8,7 @@ import { translations } from '../../_translations';
 import { formatTime } from '../../_utils/timeHelpers';
 import { GoBackLink } from '../../_shared';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
+import PlanningTable from './PlanningTable';
 import './editProgramPlanning.scss';
 
 const EditProgramPlanning: FC = () => {
@@ -24,12 +25,15 @@ const EditProgramPlanning: FC = () => {
           {translations.getLabel('PROGRAMS.PLANNING.PROGRAM_START_AND_END_TIME', {
             programEndTime: formatTime(program.endTime),
             programStartTime: formatTime(program.startTime),
-          })}
+          })}{' '}
+          <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </p>
-        <p>{translations.getLabel('PROGRAMS.PLANNING.PROGRAM_ROOMS_AMOUNT', { programRoomAmount: conference.rooms.length })}</p>
-        <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('PROGRAMS.PLANNING.EDIT_PARAMS')}</Link>
+        <p>
+          {translations.getLabel('PROGRAMS.PLANNING.PROGRAM_ROOMS_AMOUNT', { programRoomAmount: conference.rooms.length })}{' '}
+          <Link to={`/conferences/edit/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
+        </p>
       </div>
-      <p>Program planning</p>
+      <PlanningTable endTime={formatTime(program.endTime)} events={program.events} startTime={formatTime(program.startTime)} />
     </Container>
   ) : (
     <LoadingSpinner />
