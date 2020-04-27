@@ -303,7 +303,8 @@
     "PLANNING": {
       "EDIT": "Edit planning",
       "TITLE": "Edit the planning of \"{{programTitle}}\"",
-      "PROGRAM_START_AND_END_TIME": "The program starts at {{programStartTime}} and ends at {{programEndTime}}.",
+      "PROGRAM_DATE": "The program takes place on {{programDate}}.",
+      "PROGRAM_START_AND_END_TIME": "It starts at {{programStartTime}} and ends at {{programEndTime}}.",
       "PROGRAM_ROOMS_AMOUNT": "There are {{programRoomAmount}} rooms."
     },
     "TOASTER": {

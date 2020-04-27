@@ -4,8 +4,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 
 import { programsSelectors, conferencesSelectors } from '../../_store/selectors';
+import { formatTime, formatDate, dateFromISOString } from '../../_utils/timeHelpers';
 import { translations } from '../../_translations';
-import { formatTime } from '../../_utils/timeHelpers';
 import { GoBackLink } from '../../_shared';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
 import PlanningTable from './PlanningTable';
@@ -22,6 +22,9 @@ const EditProgramPlanning: FC = () => {
       <h1>{translations.getLabel('PROGRAMS.PLANNING.TITLE', { programTitle: program.title })}</h1>
       <div className="program-info">
         <p>
+          {translations.getLabel('PROGRAMS.PLANNING.PROGRAM_DATE', { programDate: formatDate(dateFromISOString(program.date)) })}
+        </p>
+        <p>
           {translations.getLabel('PROGRAMS.PLANNING.PROGRAM_START_AND_END_TIME', {
             programEndTime: formatTime(program.endTime),
             programStartTime: formatTime(program.startTime),
@@ -33,7 +36,12 @@ const EditProgramPlanning: FC = () => {
           <Link to={`/conferences/edit/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </p>
       </div>
-      <PlanningTable endTime={formatTime(program.endTime)} events={program.events} startTime={formatTime(program.startTime)} />
+      <PlanningTable
+        date={formatDate(dateFromISOString(program.date))}
+        endTime={formatTime(program.endTime)}
+        events={program.events}
+        startTime={formatTime(program.startTime)}
+      />
     </Container>
   ) : (
     <LoadingSpinner />
