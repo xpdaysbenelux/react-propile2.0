@@ -38,9 +38,10 @@ const EditProgramPlanning: FC = () => {
       </div>
       <PlanningTable
         date={formatDate(dateFromISOString(program.date))}
-        endTime={formatTime(program.endTime)}
+        endTime={program.endTime}
         events={program.events}
-        startTime={formatTime(program.startTime)}
+        rooms={conference.rooms}
+        startTime={program.startTime}
       />
     </Container>
   ) : (
