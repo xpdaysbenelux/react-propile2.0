@@ -13,7 +13,6 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    border-bottom: 0.2px solid $primary;
 
     * {
       padding: 2px;
@@ -22,16 +21,22 @@
 
     .header {
       background-color: $primary;
+      border-left: 0.2px solid $text-color;
+      border-right: 0.2px solid $text-color;
+      border-bottom: 0.2px solid $text-color;
       h4 {
         margin: 0 auto;
       }
     }
 
+    .hour-cell-header {
+      width: 10%;
+    }
+
     .hour-cell {
       width: 10%;
-      background-color: $accent;
-      /* opacity: 0.5; */
-      border-bottom: 0.2px solid $white;
+      background-color: $accent-opacity;
+      border-top: 0.6px solid $primary;
 
       p {
         text-align: center;
@@ -39,7 +44,8 @@
     }
 
     .cell {
-      border-right: 0.5px solid $primary;
+      border-left: 1.2px solid $primary;
+      border-bottom: 1px solid $primary;
     }
 
     /* Column sizing */
@@ -66,13 +72,5 @@
     .cols-7 {
       width: 12.8%;
     }
-  }
-
-  .column {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border-left: 0.4px solid $primary;
-    border-right: 0.4px solid $primary;
   }
 }

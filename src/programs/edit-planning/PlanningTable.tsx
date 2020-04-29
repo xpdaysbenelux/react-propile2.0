@@ -24,30 +24,10 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) => {
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
-  function renderRow(hour: Date, roomsAmount: number): JSX.Element {
-    const cells: JSX.Element[] = [];
-    for (let rowNumber = 0; rowNumber < roomsAmount; rowNumber++) {
-      cells.push(
-        <div className={`cell cols-${rooms.length}`}>
-          <p>Empty cell</p>
-        </div>,
-      );
-    }
-
+  function generateHeader(rooms: IRoom[]): JSX.Element {
     return (
       <div className="row">
-        <div className="hour-cell">
-          <p>{formatTime(hour)}</p>
-        </div>
-        {cells}
-      </div>
-    );
-  }
-
-  return (
-    <div className="planning-container">
-      <div className="row">
-        <div className="hour-cell header"></div>
+        <div className="hour-cell-header"></div>
         {rooms.map((room: IRoom) => {
           return (
             <div className={`header cols-${rooms.length}`} key={room.id}>
@@ -56,8 +36,27 @@ const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) =
           );
         })}
       </div>
+    );
+  }
+
+  function generateRow(hour: Date, rooms: IRoom[]): JSX.Element {
+    return (
+      <div className="row" key={`${formatTime(hour)}`}>
+        <div className="hour-cell">
+          <p>{formatTime(hour)}</p>
+        </div>
+        {rooms.map((room: IRoom) => {
+          return <div className={`cell cols-${rooms.length}`} key={`${formatTime(hour)}-${room.id}`}></div>;
+        })}
+      </div>
+    );
+  }
+
+  return (
+    <div className="planning-container">
+      {generateHeader(rooms)}
       {timeArray.map((time: Date) => {
-        return renderRow(time, rooms.length);
+        return generateRow(time, rooms);
       })}
     </div>
   );
