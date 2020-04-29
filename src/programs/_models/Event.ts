@@ -1,5 +1,5 @@
 export interface IEvent {
-  comment: string;
+  comment?: string;
   endTime: string;
   program: {
     date: string;
