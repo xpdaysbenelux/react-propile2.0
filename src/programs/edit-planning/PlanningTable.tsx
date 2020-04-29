@@ -19,7 +19,7 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 }
 
 const PlanningTable: FC<Props> = ({ program, rooms }) => {
-  const { startTime, endTime, events, date } = program;
+  const { startTime, endTime } = program;
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
