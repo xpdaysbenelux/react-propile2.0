@@ -1,3 +1,5 @@
+import { IEvent } from './Event';
+
 export const programTimeIntervals = 30;
 export const programDefaultStartTime = '08:00';
 export const programDefaultEndTime = '20:00';
@@ -12,12 +14,7 @@ export interface IProgram {
   createdBy?: string;
   date: string;
   endTime: string;
-  events?: {
-    endTime: Date;
-    spanRow: boolean;
-    startTime: Date;
-    title: string;
-  }[];
+  events?: IEvent[];
   id: string;
   startTime: string;
   title: string;
