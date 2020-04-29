@@ -1,5 +1,13 @@
 @import '../../_styles/colors';
 
+.actions-header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
 .planning-container {
   width: 100%;
   display: flex;

@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import { IEvent } from '../_models/Event';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
+import { Button } from '../../_shared';
 import './planningTable.scss';
 
 interface Props {
@@ -23,6 +24,10 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 
 const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) => {
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
+
+  function showAddEventPopup() {
+    console.log('add event');
+  }
 
   function generateHeader(rooms: IRoom[]): JSX.Element {
     return (
@@ -53,11 +58,18 @@ const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) =
   }
 
   return (
-    <div className="planning-container">
-      {generateHeader(rooms)}
-      {timeArray.map((time: Date) => {
-        return generateRow(time, rooms);
-      })}
+    <div>
+      <div className="actions-header">
+        <Button onClick={showAddEventPopup} theme="warning" type="button">
+          Add event
+        </Button>
+      </div>
+      <div className="planning-container">
+        {generateHeader(rooms)}
+        {timeArray.map((time: Date) => {
+          return generateRow(time, rooms);
+        })}
+      </div>
     </div>
   );
 };
