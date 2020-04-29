@@ -1,17 +1,14 @@
 import React, { FC } from 'react';
 
-import { IEvent } from '../_models/Event';
+import { IProgram } from '../_models';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
 import { Button } from '../../_shared';
 import './planningTable.scss';
 
 interface Props {
-  date: string;
-  endTime: string;
-  events: IEvent[];
+  program: IProgram;
   rooms: IRoom[];
-  startTime: string;
 }
 
 function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[] {
@@ -22,7 +19,9 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
   return dateTimeArray;
 }
 
-const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) => {
+const PlanningTable: FC<Props> = ({ program, rooms }) => {
+  const { startTime, endTime, events, date } = program;
+
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
   function showAddEventPopup() {
@@ -35,7 +34,7 @@ const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) =
         <div className="hour-cell-header"></div>
         {rooms.map((room: IRoom) => {
           return (
-            <div className={`header cols-${rooms.length}`} key={room.id}>
+            <div className="header" key={room.id}>
               <h4>{room.name}</h4>
             </div>
           );
@@ -51,7 +50,7 @@ const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) =
           <p>{formatTime(hour)}</p>
         </div>
         {rooms.map((room: IRoom) => {
-          return <div className={`cell cols-${rooms.length}`} key={`${formatTime(hour)}-${room.id}`}></div>;
+          return <div className="cell" key={`${formatTime(hour)}-${room.id}`}></div>;
         })}
       </div>
     );
