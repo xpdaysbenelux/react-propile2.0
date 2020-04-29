@@ -29,7 +29,7 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
         <div className="hour-cell-header"></div>
         {rooms.map((room: IRoom) => {
           return (
-            <div className={`header cols-${rooms.length}`} key={room.id}>
+            <div className="header" key={room.id}>
               <h4>{room.name}</h4>
             </div>
           );
@@ -45,7 +45,7 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
           <p>{formatTime(hour)}</p>
         </div>
         {rooms.map((room: IRoom) => {
-          return <div className={`cell cols-${rooms.length}`} key={`${formatTime(hour)}-${room.id}`}></div>;
+          return <div className="cell" key={`${formatTime(hour)}-${room.id}`}></div>;
         })}
       </div>
     );

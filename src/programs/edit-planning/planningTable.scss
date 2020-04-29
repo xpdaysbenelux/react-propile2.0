@@ -20,6 +20,7 @@
     }
 
     .header {
+      flex-grow: 1;
       background-color: $primary;
       border-left: 0.2px solid $text-color;
       border-right: 0.2px solid $text-color;
@@ -44,33 +45,9 @@
     }
 
     .cell {
+      flex-grow: 1;
       border-left: 1.2px solid $primary;
       border-bottom: 1px solid $primary;
-    }
-
-    /* Column sizing */
-    .cols-2 {
-      width: 45%;
-    }
-
-    .cols-3 {
-      width: 30%;
-    }
-
-    .cols-4 {
-      width: 22.5%;
-    }
-
-    .cols-5 {
-      width: 18%;
-    }
-
-    .cols-6 {
-      width: 15%;
-    }
-
-    .cols-7 {
-      width: 12.8%;
     }
   }
 }
