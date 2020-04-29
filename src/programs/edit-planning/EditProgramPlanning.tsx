@@ -36,13 +36,7 @@ const EditProgramPlanning: FC = () => {
           <Link to={`/conferences/edit/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </p>
       </div>
-      <PlanningTable
-        date={formatDate(dateFromISOString(program.date))}
-        endTime={program.endTime}
-        events={program.events}
-        rooms={conference.rooms}
-        startTime={program.startTime}
-      />
+      <PlanningTable program={program} rooms={conference.rooms} />
     </Container>
   ) : (
     <LoadingSpinner />

@@ -1,16 +1,13 @@
 import React, { FC } from 'react';
 
-import { IEvent } from '../_models/Event';
+import { IProgram } from '../_models';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
 import './planningTable.scss';
 
 interface Props {
-  date: string;
-  endTime: string;
-  events: IEvent[];
+  program: IProgram;
   rooms: IRoom[];
-  startTime: string;
 }
 
 function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[] {
@@ -21,7 +18,9 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
   return dateTimeArray;
 }
 
-const PlanningTable: FC<Props> = ({ events, startTime, endTime, date, rooms }) => {
+const PlanningTable: FC<Props> = ({ program, rooms }) => {
+  const { startTime, endTime, events, date } = program;
+
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
   function generateHeader(rooms: IRoom[]): JSX.Element {
