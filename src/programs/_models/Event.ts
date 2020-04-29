@@ -18,3 +18,14 @@ export interface IEvent {
   startTime: string;
   title: string;
 }
+
+export interface IEventForm {
+  comment?: string;
+  endTime: string;
+  programId: string;
+  roomId?: string;
+  sessionId?: string;
+  spanRow: boolean;
+  startTime: string;
+  title: string;
+}
