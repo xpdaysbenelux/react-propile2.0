@@ -11,6 +11,7 @@ import Timestamps from './timestamps/Timestamps';
 import Toggle from './toggle/Toggle';
 import DateSelector from './dateSelector/DateSelector';
 import TimeSelector from './timeSelector/TimeSelector';
+import ErrorMessage from './errorMessage/ErrorMessage';
 
 export {
   Icon,
@@ -26,4 +27,5 @@ export {
   Toggle,
   DateSelector,
   TimeSelector,
+  ErrorMessage,
 };
