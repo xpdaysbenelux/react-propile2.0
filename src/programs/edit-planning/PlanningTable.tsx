@@ -23,7 +23,7 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 }
 
 const PlanningTable: FC<Props> = ({ program, rooms }) => {
-  const { startTime, endTime, events, date } = program;
+  const { startTime, endTime } = program;
   const selectedEvent: IEvent = null;
   const [renderEventModal, showEventModal] = useModal(modalProps => (
     <EventModal closeModal={modalProps.hideModal} event={selectedEvent} program={program} />
