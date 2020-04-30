@@ -1,4 +1,4 @@
-import { IEvent } from './Event';
+import { IEvent } from '../../events/_models/';
 
 export const programTimeIntervals = 30;
 export const programDefaultStartTime = '08:00';
