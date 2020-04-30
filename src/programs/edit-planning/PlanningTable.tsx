@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
 
+import { useModal } from '../../_hooks';
 import { IProgram } from '../_models';
+import { IEvent } from '../../events/_models';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
 import { Button } from '../../_shared';
+import EventModal from '../../events/event-modal/EventModal';
 import './planningTable.scss';
 
 interface Props {
@@ -21,12 +24,12 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 
 const PlanningTable: FC<Props> = ({ program, rooms }) => {
   const { startTime, endTime, events, date } = program;
+  const selectedEvent: IEvent = null;
+  const [renderEventModal, showEventModal] = useModal(modalProps => (
+    <EventModal closeModal={modalProps.hideModal} event={selectedEvent} program={program} />
+  ));
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
-
-  function showAddEventPopup() {
-    console.log('add event');
-  }
 
   function generateHeader(rooms: IRoom[]): JSX.Element {
     return (
@@ -59,7 +62,7 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
   return (
     <div>
       <div className="actions-header">
-        <Button onClick={showAddEventPopup} theme="warning" type="button">
+        <Button onClick={() => showEventModal()} theme="warning" type="button">
           Add event
         </Button>
       </div>
@@ -69,6 +72,7 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
           return generateRow(time, rooms);
         })}
       </div>
+      {renderEventModal()}
     </div>
   );
 };
