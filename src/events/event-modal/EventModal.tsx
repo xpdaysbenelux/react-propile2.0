@@ -26,7 +26,6 @@ interface Props {
 
 function getRoomsDropdownData(rooms: IRoom[]): DropdownOption[] {
   const roomsDropdownData: DropdownOption[] = [];
-
   rooms.forEach(room => {
     roomsDropdownData.push({ key: room.id, text: room.name, value: room.id });
   });
@@ -36,7 +35,6 @@ function getRoomsDropdownData(rooms: IRoom[]): DropdownOption[] {
 
 function getSessionsTitlesDropDownData(sessions: ISession[]): DropdownOption[] {
   const titleDropdownData: DropdownOption[] = [];
-
   sessions.forEach(session => {
     titleDropdownData.push({ key: session.id, text: session.title, value: session.id });
   });

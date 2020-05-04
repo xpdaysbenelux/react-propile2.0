@@ -3,7 +3,6 @@ export interface IEvent {
   endTime: string;
   id: string;
   program: {
-    date: string;
     id: string;
   };
   room?: {

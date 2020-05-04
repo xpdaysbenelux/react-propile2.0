@@ -1,6 +1,7 @@
 import { ApiError, HttpMetadataPagingResponse, HttpMetadataQuery } from '../../_http';
 import { IEvent } from '../_models';
-import { EventsAction } from './actions';
+import { insertUpdatedData } from '../../_utils/objectHelpers';
+import { EventsAction, EventsActionType } from './actions';
 
 export interface EventsState {
   errorCrudEvent?: ApiError;
@@ -16,5 +17,26 @@ const initialState: EventsState = {
 };
 
 export default function reducer(state = initialState, action: EventsAction): EventsState {
-  return initialState;
+  switch (action.type) {
+    case EventsActionType.CreateEvent:
+      return {
+        ...state,
+        errorCrudEvent: null,
+        isLoading: true,
+      };
+    case EventsActionType.CreateEventSuccess:
+      return {
+        ...state,
+        events: insertUpdatedData(state.events || [], [action.payload.createdEvent]),
+        isLoading: false,
+      };
+    case EventsActionType.CreateEventError:
+      return {
+        ...state,
+        errorCrudEvent: action.payload.error,
+        isLoading: false,
+      };
+    default:
+      return state;
+  }
 }

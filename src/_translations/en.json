@@ -336,7 +336,7 @@
     "EDIT_EVENT": {
       "TITLE": "Edit \"{{eventTitle}}\""
     },
-    "EVENT_TITLE": {
+    "EVENT_TITLES": {
       "WELCOME": "Welcome",
       "REGISTRATION": "Registration",
       "REGISTRATION_AND_COFFEE": "Registration & coffee",
