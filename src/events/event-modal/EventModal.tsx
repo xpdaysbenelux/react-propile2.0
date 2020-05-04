@@ -149,6 +149,8 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
           />
           <TimeSelector
             label={translations.getLabel('EVENTS.STARTS_AT')}
+            maxTime={program.endTime}
+            minTime={program.startTime}
             name="startTime"
             onChange={form.setAttribute}
             timeFormat="h:mm aa"
@@ -157,6 +159,8 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
           />
           <TimeSelector
             label={translations.getLabel('EVENTS.ENDS_AT')}
+            maxTime={program.endTime}
+            minTime={program.startTime}
             name="endTime"
             onChange={form.setAttribute}
             timeFormat="h:mm aa"

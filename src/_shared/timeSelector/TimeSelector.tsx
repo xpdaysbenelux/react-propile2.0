@@ -12,6 +12,8 @@ export interface DatePickerProps {
   className?: string;
   errorMessage?: string;
   label: string;
+  maxTime?: string;
+  minTime?: string;
   name: string;
   onChange: (value: string, name: string) => void;
   showPopperArrow?: boolean;
@@ -30,6 +32,8 @@ const TimeSelector: FC<DatePickerProps> = ({
   showPopperArrow,
   timeFormat,
   timeIntervals,
+  maxTime,
+  minTime,
 }) => {
   const { showError } = useInputError(errorMessage);
   const selectedDate = new Date(value);
@@ -41,6 +45,8 @@ const TimeSelector: FC<DatePickerProps> = ({
       </label>
       <DatePicker
         dateFormat={timeFormat}
+        maxTime={new Date(maxTime)}
+        minTime={new Date(minTime)}
         onChange={newDate => {
           onChange(newDate.toISOString(), name);
         }}
