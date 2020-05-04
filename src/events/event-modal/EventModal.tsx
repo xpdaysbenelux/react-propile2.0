@@ -14,6 +14,7 @@ import { eventsActions } from '../../_store/actions';
 import { IRoom } from '../../conferences/_models';
 import { DropdownOption } from '../../_shared/dropdown/Dropdown';
 import { ISession } from '../../sessions/_models';
+import { eventTitleOptions } from './enumOptions';
 import './eventModal.scss';
 
 interface Props {
@@ -27,7 +28,7 @@ function getRoomsDropdownData(rooms: IRoom[]): DropdownOption[] {
   const roomsDropdownData: DropdownOption[] = [];
 
   rooms.forEach(room => {
-    roomsDropdownData.push({ key: room.id, text: room.name, value: room.name });
+    roomsDropdownData.push({ key: room.id, text: room.name, value: room.id });
   });
 
   return roomsDropdownData;
@@ -37,25 +38,8 @@ function getSessionsTitlesDropDownData(sessions: ISession[]): DropdownOption[] {
   const titleDropdownData: DropdownOption[] = [];
 
   sessions.forEach(session => {
-    titleDropdownData.push({ key: session.id, text: session.title, value: session.title });
+    titleDropdownData.push({ key: session.id, text: session.title, value: session.id });
   });
-
-  return titleDropdownData;
-}
-
-function getReturningTitlesDropDownData(): DropdownOption[] {
-  const titleDropdownData: DropdownOption[] = [];
-
-  titleDropdownData.push({ key: 'Welcome', text: 'Welcome', value: 'Welcome' });
-  titleDropdownData.push({ key: 'Registration', text: 'Registration', value: 'Registration' });
-  titleDropdownData.push({ key: 'Refistration & Coffee', text: 'Refistration & Coffee', value: 'Refistration & Coffee' });
-  titleDropdownData.push({ key: 'Coffee break', text: 'Coffee break', value: 'Coffee break' });
-  titleDropdownData.push({ key: 'Lunch', text: 'Lunch', value: 'Lunch' });
-  titleDropdownData.push({ key: 'Plenary', text: 'Plenary session', value: 'Plenary' });
-  titleDropdownData.push({ key: 'Closing', text: 'Closing', value: 'Closing' });
-  titleDropdownData.push({ key: 'Drinks at the bar', text: 'Drinks at the bar', value: 'Drinks at the bar' });
-  titleDropdownData.push({ key: 'Conference dinner', text: 'Conference dinner', value: 'Conference dinner' });
-  titleDropdownData.push({ key: 'Evening programme', text: 'Evening programme', value: 'Evening programme' });
 
   return titleDropdownData;
 }
@@ -69,15 +53,37 @@ function getInitialForm(program: IProgram, event?: IEvent): IEventForm {
     endTime: event ? event.endTime : defaultEndTime.toISOString(),
     programId: program.id,
     roomId: event?.room.id || '',
+    sessionId: event?.session.id || '',
     spanRow: event?.spanRow || false,
     startTime: event ? event.startTime : program.startTime,
     title: event?.title || '',
   };
 }
 
+function handleRoomAndSession(givenValues: IEventForm): IEventForm {
+  if (givenValues.spanRow) {
+    givenValues.roomId = '';
+    givenValues.sessionId = '';
+  } else {
+    givenValues.title = '';
+  }
+
+  return givenValues;
+}
+
 function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
   const errors: FormValidationErrors<IEventForm> = {};
-  errors.title = formValidator.isRequired(values.title);
+
+  if (values.spanRow) {
+    errors.title = formValidator.isRequired(values.title);
+  } else {
+    errors.sessionId = formValidator.isRequired(values.sessionId);
+    errors.roomId = formValidator.isRequired(values.roomId);
+  }
+
+  if (Date.parse(values.startTime) > Date.parse(values.endTime)) {
+    errors.endTime = translations.getLabel('EVENTS.ERRORS.END_TIME_LATER_THEN_START_TIME');
+  }
 
   return errors;
 }
@@ -98,9 +104,42 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
   const form = useForm<IEventForm>({
     error,
     initialForm,
-    submitForm: values => dispatch(new eventsActions.CreateEvent({ onSuccess: closeModal, values })),
+    submitForm: values =>
+      dispatch(new eventsActions.CreateEvent({ onSuccess: closeModal, values: handleRoomAndSession(values) })),
     validateForm,
   });
+
+  const renderSessionPart = () => (
+    <>
+      <Dropdown
+        errorMessage={form.validationErrors.sessionId}
+        label={translations.getLabel('EVENTS.SESSION_TITLE')}
+        name="sessionId"
+        onChange={form.setAttribute}
+        options={getSessionsTitlesDropDownData(sessions)}
+        value={form.values.sessionId}
+      />
+      <Dropdown
+        errorMessage={form.validationErrors.roomId}
+        label={translations.getLabel('EVENTS.ROOM')}
+        name="roomId"
+        onChange={form.setAttribute}
+        options={getRoomsDropdownData(rooms)}
+        value={form.values.roomId}
+      />
+    </>
+  );
+
+  const renderTitlePart = () => (
+    <Dropdown
+      errorMessage={form.validationErrors.title}
+      label={translations.getLabel('EVENTS.TITLE')}
+      name="title"
+      onChange={form.setAttribute}
+      options={eventTitleOptions}
+      value={form.values.title}
+    />
+  );
 
   return (
     <Modal onClose={closeModal} open>
@@ -120,24 +159,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
             rightValue={translations.getLabel('SHARED.TOGGLE.YES')}
             value={form.values.spanRow}
           />
-          <Dropdown
-            errorMessage={form.validationErrors.title}
-            label={translations.getLabel(form.values.spanRow ? 'EVENTS.TITLE' : 'EVENTS.SESSION_TITLE')}
-            name="title"
-            onChange={form.setAttribute}
-            options={form.values.spanRow ? getReturningTitlesDropDownData() : getSessionsTitlesDropDownData(sessions)}
-            value={form.values.title}
-          />
-          {!form.values.spanRow && (
-            <Dropdown
-              errorMessage={form.validationErrors.roomId}
-              label={translations.getLabel('EVENTS.ROOM')}
-              name="roomId"
-              onChange={form.setAttribute}
-              options={getRoomsDropdownData(rooms)}
-              value={form.values.roomId}
-            />
-          )}
+          {form.values.spanRow ? renderTitlePart() : renderSessionPart()}
           <InputTextArea
             errorMessage={form.validationErrors.comment}
             label={translations.getLabel('EVENTS.COMMENT')}
@@ -167,6 +189,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
             timeIntervals={programTimeIntervals}
             value={form.values.endTime}
           />
+          {form.validationErrors.endTime && <ErrorMessage isVisible>{form.validationErrors.endTime}</ErrorMessage>}
         </Modal.Content>
         <ErrorMessage isGlobal isVisible={!!errorMessage}>
           {errorMessage}

@@ -17,7 +17,7 @@ export interface IEvent {
   };
   spanRow: boolean;
   startTime: string;
-  title: string;
+  title?: EventTitle;
 }
 
 export interface IEventForm {
@@ -28,5 +28,20 @@ export interface IEventForm {
   sessionId?: string;
   spanRow: boolean;
   startTime: string;
-  title: string;
+  title?: string;
+}
+
+export enum EventTitle {
+  Break = 'BREAK',
+  Closing = 'CLOSING',
+  CoffeeBreak = 'COFFEE_BREAK',
+  ConferenceDinner = 'CONFERENCE_DINNER',
+  Dinner = 'DINNER',
+  Drinks = 'DRINKS',
+  EveningProgramme = 'EVENING_PROGRAMME',
+  Lunch = 'LUNCH',
+  Plenary = 'PLENARY',
+  Registration = 'REGISTRATION',
+  RegistrationAndCoffee = 'REGISTRATION_AND_COFFEE',
+  Welcome = 'WELCOME',
 }

@@ -325,7 +325,7 @@
   "EVENTS": {
     "SPAN_ROW": "Entire row",
     "TITLE": "Title",
-    "SESSION_TITLE": "Session title",
+    "SESSION_TITLE": "Session",
     "ROOM": "Room",
     "COMMENT": "Comment",
     "STARTS_AT": "Starts at",
@@ -335,6 +335,23 @@
     },
     "EDIT_EVENT": {
       "TITLE": "Edit \"{{eventTitle}}\""
+    },
+    "EVENT_TITLE": {
+      "WELCOME": "Welcome",
+      "REGISTRATION": "Registration",
+      "REGISTRATION_AND_COFFEE": "Registration & coffee",
+      "COFFEE_BREAK": "Coffee break",
+      "BREAK": "Break",
+      "LUNCH": "Lunch",
+      "PLENARY": "Plenary session",
+      "CLOSING": "Closing",
+      "DINNER": "Dinner",
+      "CONFERENCE_DINNER": "Conference dinner",
+      "DRINKS": "Drinks at the bar",
+      "EVENING_PROGRAMME": "Evening programme"
+    },
+    "ERRORS": {
+      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"
     }
   },
   "ERRORS": {
