@@ -1,0 +1,22 @@
+.base-modal {
+  form {
+    .header {
+      padding: 1.5rem 3.2rem 0 3.2rem;
+    }
+  }
+}
+
+.event-modal {
+  .content {
+    > div {
+      margin: 2.5rem 0;
+    }
+
+    .span-row-toggle {
+      flex-direction: row;
+      .toggle-input {
+        margin-top: 0;
+      }
+    }
+  }
+}

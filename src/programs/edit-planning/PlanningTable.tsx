@@ -26,7 +26,7 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
   const { startTime, endTime } = program;
   const selectedEvent: IEvent = null;
   const [renderEventModal, showEventModal] = useModal(modalProps => (
-    <EventModal closeModal={modalProps.hideModal} event={selectedEvent} program={program} />
+    <EventModal closeModal={modalProps.hideModal} event={selectedEvent} program={program} rooms={rooms} />
   ));
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);

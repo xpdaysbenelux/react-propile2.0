@@ -100,6 +100,10 @@
       "TITLE": "Details",
       "CREATED_AT_BY": "Created at {{date}} by {{name}}",
       "UPDATED_AT_BY": "Last updated at {{date}} by {{name}}"
+    },
+    "TOGGLE": {
+      "NO": "No",
+      "YES": "Yes"
     }
   },
   "USERS": {
@@ -319,7 +323,13 @@
     }
   },
   "EVENTS": {
+    "SPAN_ROW": "Entire row",
     "TITLE": "Title",
+    "SESSION_TITLE": "Session title",
+    "ROOM": "Room",
+    "COMMENT": "Comment",
+    "STARTS_AT": "Starts at",
+    "ENDS_AT": "Ends at",
     "ADD_EVENT": {
       "TITLE": "Add event"
     },
