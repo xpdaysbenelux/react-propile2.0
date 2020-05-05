@@ -11,7 +11,7 @@ import * as eventsApi from './api';
 const createEventEpic$: Epic = actions$ =>
   actions$.ofType(EventsActionType.CreateEvent).pipe(
     switchMap(({ payload }: eventsActions.CreateEvent) =>
-      from(eventsApi.createEvent(payload.values)).pipe(
+      from(eventsApi.createEvent(payload.programId, payload.values)).pipe(
         tap(() => toast.success(translations.getLabel('EVENTS.TOASTER.EVENT_CREATED'))),
         map(createdEvent => new eventsActions.CreateEventSuccess({ createdEvent })),
         catchError(error => of(new eventsActions.CreateEventError({ error }))),

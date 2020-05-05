@@ -11,7 +11,7 @@ export enum EventsActionType {
 
 export class CreateEvent implements Action<EventsActionType> {
   readonly type = EventsActionType.CreateEvent;
-  constructor(public payload: { onSuccess?: () => void; values: IEventForm }) {}
+  constructor(public payload: { onSuccess?: () => void; programId: string; values: IEventForm }) {}
 }
 
 export class CreateEventSuccess implements Action<EventsActionType> {

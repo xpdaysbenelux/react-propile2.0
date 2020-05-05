@@ -79,7 +79,10 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
   const form = useForm<IEventForm>({
     error,
     initialForm,
-    submitForm: values => dispatch(new eventsActions.CreateEvent({ onSuccess: hideModal, values: handleRoomAndSession(values) })),
+    submitForm: values =>
+      dispatch(
+        new eventsActions.CreateEvent({ onSuccess: hideModal, programId: program.id, values: handleRoomAndSession(values) }),
+      ),
     validateForm,
   });
 
