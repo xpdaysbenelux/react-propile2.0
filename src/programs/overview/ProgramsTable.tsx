@@ -45,7 +45,7 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
           <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>
-          <Link to={`/programs/edit/planning/${program.id}`}>{translations.getLabel('PROGRAMS.PLANNING.EDIT')}</Link>
+          <Link to={`/programs/${program.id}/planning`}>{translations.getLabel('PROGRAMS.PLANNING.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>
           <Link
