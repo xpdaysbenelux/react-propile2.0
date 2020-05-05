@@ -12,8 +12,6 @@ import { IProgram, programTimeIntervals } from '../../programs/_models';
 import { translations } from '../../_translations';
 import { eventsActions } from '../../_store/actions';
 import { IRoom } from '../../conferences/_models';
-import { DropdownOption } from '../../_shared/dropdown/Dropdown';
-import { ISession } from '../../sessions/_models';
 import { eventTitleOptions } from './enumOptions';
 import './eventModal.scss';
 
@@ -22,24 +20,6 @@ interface Props {
   event?: IEvent;
   program: IProgram;
   rooms: IRoom[];
-}
-
-function getRoomsDropdownData(rooms: IRoom[]): DropdownOption[] {
-  const roomsDropdownData: DropdownOption[] = [];
-  rooms.forEach(room => {
-    roomsDropdownData.push({ key: room.id, text: room.name, value: room.id });
-  });
-
-  return roomsDropdownData;
-}
-
-function getSessionsTitlesDropDownData(sessions: ISession[]): DropdownOption[] {
-  const titleDropdownData: DropdownOption[] = [];
-  sessions.forEach(session => {
-    titleDropdownData.push({ key: session.id, text: session.title, value: session.id });
-  });
-
-  return titleDropdownData;
 }
 
 function getInitialForm(program: IProgram, event?: IEvent): IEventForm {
@@ -114,7 +94,9 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
         label={translations.getLabel('EVENTS.SESSION_TITLE')}
         name="sessionId"
         onChange={form.setAttribute}
-        options={getSessionsTitlesDropDownData(sessions)}
+        options={sessions.map(session => {
+          return { key: session.id, text: session.title, value: session.id };
+        })}
         value={form.values.sessionId}
       />
       <Dropdown
@@ -122,7 +104,9 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
         label={translations.getLabel('EVENTS.ROOM')}
         name="roomId"
         onChange={form.setAttribute}
-        options={getRoomsDropdownData(rooms)}
+        options={rooms.map(room => {
+          return { key: room.id, text: room.name, value: room.id };
+        })}
         value={form.values.roomId}
       />
     </>
