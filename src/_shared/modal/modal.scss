@@ -21,6 +21,10 @@
     }
     .content {
       padding: 0 3.2rem;
+
+      > div {
+        margin: 2.5rem 0;
+      }
     }
     .actions {
       margin-top: 0;
