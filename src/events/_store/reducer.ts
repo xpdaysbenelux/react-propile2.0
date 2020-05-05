@@ -1,4 +1,4 @@
-import { ApiError, HttpMetadataPagingResponse, HttpMetadataQuery } from '../../_http';
+import { ApiError } from '../../_http';
 import { IEvent } from '../_models';
 import { insertUpdatedData } from '../../_utils/objectHelpers';
 import { EventsAction, EventsActionType } from './actions';
@@ -7,8 +7,6 @@ export interface EventsState {
   errorCrudEvent?: ApiError;
   events: IEvent[];
   isLoading: boolean;
-  metadata?: HttpMetadataPagingResponse;
-  query?: HttpMetadataQuery;
 }
 
 const initialState: EventsState = {

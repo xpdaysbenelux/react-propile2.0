@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { addHours } from 'date-fns';
 
 import { Modal, Button, ErrorMessage, Dropdown, InputTextArea, Toggle, TimeSelector } from '../../_shared';
 import { FormValidationErrors } from '../../_hooks/useForm';
@@ -7,46 +8,42 @@ import { formValidator } from '../../_utils/formValidation';
 import { eventsSelectors, sessionsSelectors } from '../../_store/selectors';
 import { useForm } from '../../_hooks';
 import { ApiError } from '../../_http';
-import { IEvent, IEventForm } from '../_models';
+import { IEvent, IEventForm, EventTitle } from '../_models';
 import { IProgram, programTimeIntervals } from '../../programs/_models';
 import { translations } from '../../_translations';
 import { eventsActions } from '../../_store/actions';
 import { IRoom } from '../../conferences/_models';
-import { eventTitleOptions } from './enumOptions';
 import './eventModal.scss';
 
 interface Props {
-  closeModal: () => void;
   event?: IEvent;
+  hideModal: () => void;
   program: IProgram;
   rooms: IRoom[];
 }
 
 function getInitialForm(program: IProgram, event?: IEvent): IEventForm {
-  const defaultEndTime = new Date(program.startTime);
-  defaultEndTime.setHours(defaultEndTime.getHours() + 1);
-
   return {
     comment: event?.comment || '',
-    endTime: event ? event.endTime : defaultEndTime.toISOString(),
+    endTime: event ? event.endTime : addHours(new Date(program.startTime), 1).toISOString(),
     programId: program.id,
-    roomId: event?.room.id || '',
-    sessionId: event?.session.id || '',
+    roomId: event?.room?.id || '',
+    sessionId: event?.session?.id || '',
     spanRow: event?.spanRow || false,
     startTime: event ? event.startTime : program.startTime,
     title: event?.title || '',
   };
 }
 
-function handleRoomAndSession(givenValues: IEventForm): IEventForm {
-  if (givenValues.spanRow) {
-    givenValues.roomId = '';
-    givenValues.sessionId = '';
+function handleRoomAndSession(values: IEventForm): IEventForm {
+  if (values.spanRow) {
+    values.roomId = '';
+    values.sessionId = '';
   } else {
-    givenValues.title = '';
+    values.title = '';
   }
 
-  return givenValues;
+  return values;
 }
 
 function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
@@ -68,10 +65,10 @@ function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
 
 function errorAsString(error?: ApiError): string {
   // TODO handle possible BE errors
-  if (error) return null;
+  return null;
 }
 
-const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
+const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
   const dispatch = useDispatch();
   const sessions = useSelector(sessionsSelectors.sessions);
   const isSubmitting = useSelector(eventsSelectors.isLoading);
@@ -82,8 +79,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
   const form = useForm<IEventForm>({
     error,
     initialForm,
-    submitForm: values =>
-      dispatch(new eventsActions.CreateEvent({ onSuccess: closeModal, values: handleRoomAndSession(values) })),
+    submitForm: values => dispatch(new eventsActions.CreateEvent({ onSuccess: hideModal, values: handleRoomAndSession(values) })),
     validateForm,
   });
 
@@ -118,13 +114,17 @@ const EventModal: FC<Props> = ({ event, program, rooms, closeModal }) => {
       label={translations.getLabel('EVENTS.TITLE')}
       name="title"
       onChange={form.setAttribute}
-      options={eventTitleOptions}
+      options={Object.values(EventTitle).map(value => ({
+        key: value,
+        text: translations.getLabel(`EVENTS.EVENT_TITLES.${value}`),
+        value,
+      }))}
       value={form.values.title}
     />
   );
 
   return (
-    <Modal onClose={closeModal} open>
+    <Modal onClose={hideModal} open>
       <form className="ui form event-modal" onSubmit={form.submit}>
         <Modal.Header>
           {event

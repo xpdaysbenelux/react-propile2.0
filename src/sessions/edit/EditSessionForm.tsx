@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
-import { IUpdateSessionForm } from '../_models';
+
+import { IUpdateSessionForm, SessionTopic, SessionType, SessionState, SessionDuration, SessionExpierenceLevel } from '../_models';
+import { roomMaxParticipants } from '../../conferences/_models';
 import { InputField, InputTextArea, Dropdown, Toggle, Button } from '../../_shared';
 import { ApiError } from '../../_http';
 import { useForm } from '../../_hooks';
@@ -9,11 +11,9 @@ import { FormValidationErrors, SubmitFormFunction } from '../../_hooks/useForm';
 import { translations } from '../../_translations';
 import { hasSessionsAdminPermissions } from '../../profile/_utils';
 import { profileSelectors } from '../../_store/selectors';
-import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
 import { formValidator } from '../../_utils/formValidation';
-import { stateOptions, typeOptions, topicOptions, durationOptions, experienceLevelOptions } from './enumOptions';
+import ErrorMessage from '../../_shared/errorMessage/ErrorMessage';
 import './editSessionForm.scss';
-import { roomMaxParticipants } from '../../conferences/_models';
 
 interface Props {
   buttons?: JSX.Element | JSX.Element[];
@@ -143,7 +143,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
             label={translations.getLabel('SESSIONS.STATE')}
             name="sessionState"
             onChange={form.setAttribute}
-            options={stateOptions}
+            options={Object.values(SessionState).map(value => ({
+              key: value,
+              text: translations.getLabel(`SESSIONS.ENUMS.STATE.${value}`),
+              value,
+            }))}
             value={form.values.sessionState}
           />
         )}
@@ -159,7 +163,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           label={translations.getLabel('SESSIONS.TYPE')}
           name="type"
           onChange={form.setAttribute}
-          options={typeOptions}
+          options={Object.values(SessionType).map(value => ({
+            key: value,
+            text: translations.getLabel(`SESSIONS.ENUMS.TYPE.${value}`),
+            value,
+          }))}
           value={form.values.type}
         />
         <Dropdown
@@ -167,7 +175,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           label={translations.getLabel('SESSIONS.TOPIC')}
           name="topic"
           onChange={form.setAttribute}
-          options={topicOptions}
+          options={Object.values(SessionTopic).map(value => ({
+            key: value,
+            text: translations.getLabel(`SESSIONS.ENUMS.TOPIC.${value}`),
+            value,
+          }))}
           value={form.values.topic}
         />
       </div>
@@ -177,7 +189,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           label={translations.getLabel('SESSIONS.DURATION')}
           name="duration"
           onChange={form.setAttribute}
-          options={durationOptions}
+          options={Object.values(SessionDuration).map(value => ({
+            key: value,
+            text: translations.getLabel(`SESSIONS.ENUMS.DURATION.${value}`),
+            value,
+          }))}
           value={form.values.duration}
         />
         <InputField
@@ -195,7 +211,11 @@ const UpdateSessionForm: FC<Props> = ({ sessionId, initialForm, submitForm, isSu
           label={translations.getLabel('SESSIONS.EXPERIENCE_LEVEL')}
           name="expierenceLevel"
           onChange={form.setAttribute}
-          options={experienceLevelOptions}
+          options={Object.values(SessionExpierenceLevel).map(value => ({
+            key: value,
+            text: translations.getLabel(`SESSIONS.ENUMS.EXPERIENCE_LEVEL.${value}`),
+            value,
+          }))}
           value={form.values.expierenceLevel}
         />
         <Toggle

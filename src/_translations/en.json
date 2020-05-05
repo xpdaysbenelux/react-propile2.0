@@ -206,17 +206,17 @@
         "OTHER": "Other"
       },
       "TOPIC": {
-        "TECHNOLOGIE_TECHNIQUE": "Technology and Technique",
-        "TEAM_INDIVIDUAL": "Team and Individual",
-        "PROCESS_IMPROVEMENT": "Process and Improvement",
-        "CUSTOMER_PLANNING": "Customer and Planning",
-        "CASES_INTROS": "Cases and Intros"
+        "TECHNOLOGY_AND_TECHNIQUE": "Technology and Technique",
+        "TEAM_AND_INDIVIDUAL": "Team and Individual",
+        "PROCESS_AND_IMPROVEMENT": "Process and Improvement",
+        "CUSTOMER_AND_PLANNING": "Customer and Planning",
+        "CASES_AND_INTROS": "Cases and Intros"
       },
       "DURATION": {
-        "HALF_HOUR": "30 min",
-        "ONE_HOUR": "60 min",
-        "ONE_AND_A_HALF_HOUR": "90 min",
-        "TWO_AND_A_HALF_HOUR": "150 min"
+        "30": "30 min",
+        "60": "60 min",
+        "90": "90 min",
+        "150": "150 min"
       },
       "EXPERIENCE_LEVEL": {
         "NOVICE": "Novice",

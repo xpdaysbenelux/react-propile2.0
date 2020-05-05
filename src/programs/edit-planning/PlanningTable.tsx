@@ -2,10 +2,10 @@ import React, { FC } from 'react';
 
 import { useModal } from '../../_hooks';
 import { IProgram } from '../_models';
-import { IEvent } from '../../events/_models';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
 import { Button } from '../../_shared';
+import { translations } from '../../_translations';
 import EventModal from '../../events/event-modal/EventModal';
 import './planningTable.scss';
 
@@ -24,9 +24,8 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 
 const PlanningTable: FC<Props> = ({ program, rooms }) => {
   const { startTime, endTime } = program;
-  const selectedEvent: IEvent = null;
   const [renderEventModal, showEventModal] = useModal(modalProps => (
-    <EventModal closeModal={modalProps.hideModal} event={selectedEvent} program={program} rooms={rooms} />
+    <EventModal {...modalProps} program={program} rooms={rooms} />
   ));
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
@@ -63,7 +62,7 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
     <div>
       <div className="actions-header">
         <Button onClick={() => showEventModal()} theme="warning" type="button">
-          Add event
+          {translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
         </Button>
       </div>
       <div className="planning-container">
