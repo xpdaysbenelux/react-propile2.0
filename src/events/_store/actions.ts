@@ -7,6 +7,9 @@ export enum EventsActionType {
   CreateEvent = '[Events] CreateEvent',
   CreateEventError = '[Events] CreateEventError',
   CreateEventSuccess = '[Events] CreateEventSuccess',
+  GetEvents = '[Events] GetEvents',
+  GetEventsError = '[Events] GetEventsError',
+  GetEventsSuccess = '[Events] GetEventsSuccess',
 }
 
 export class CreateEvent implements Action<EventsActionType> {
@@ -24,4 +27,19 @@ export class CreateEventError implements Action<EventsActionType> {
   constructor(public payload: { error: ApiError }) {}
 }
 
-export type EventsAction = CreateEvent | CreateEventSuccess | CreateEventError;
+export class GetEvents implements Action<EventsActionType> {
+  readonly type = EventsActionType.GetEvents;
+  constructor(public payload: { programId: string }) {}
+}
+
+export class GetEventsSuccess implements Action<EventsActionType> {
+  readonly type = EventsActionType.GetEventsSuccess;
+  constructor(public payload: { events: IEvent[] }) {}
+}
+
+export class GetEventsError implements Action<EventsActionType> {
+  readonly type = EventsActionType.GetEventsError;
+  constructor(public payload: { error: ApiError }) {}
+}
+
+export type EventsAction = CreateEvent | CreateEventSuccess | CreateEventError | GetEvents | GetEventsSuccess | GetEventsError;

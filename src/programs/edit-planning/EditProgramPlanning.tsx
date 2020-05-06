@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 
-import { programsSelectors, conferencesSelectors } from '../../_store/selectors';
+import { programsSelectors, conferencesSelectors, eventsSelectors } from '../../_store/selectors';
 import { formatTime, formatDate, dateFromISOString } from '../../_utils/timeHelpers';
-import { sessionsActions } from '../../_store/actions';
+import { sessionsActions, eventsActions } from '../../_store/actions';
 import { translations } from '../../_translations';
 import { GoBackLink } from '../../_shared';
 import LoadingSpinner from '../../_shared/loadingSpinner/LoadingSpinner';
@@ -17,10 +17,17 @@ const EditProgramPlanning: FC = () => {
   const dispatch = useDispatch();
   const program = useSelector(programsSelectors.program(id));
   const conference = useSelector(conferencesSelectors.conference(program.conference.id));
+  const events = useSelector(eventsSelectors.events);
+
+  console.log(events);
 
   useEffect(() => {
     dispatch(new sessionsActions.GetSessions());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(new eventsActions.GetEvents({ programId: program.id }));
+  }, [dispatch, program.id]);
 
   return program ? (
     <Container as="main">

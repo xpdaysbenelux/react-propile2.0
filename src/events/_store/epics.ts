@@ -19,4 +19,14 @@ const createEventEpic$: Epic = actions$ =>
     ),
   );
 
-export default [createEventEpic$];
+const getEventsEpic$: Epic = actions$ =>
+  actions$.ofType(EventsActionType.GetEvents).pipe(
+    switchMap(({ payload }: eventsActions.GetEvents) =>
+      from(eventsApi.getEvents(payload.programId)).pipe(
+        map(events => new eventsActions.GetEventsSuccess({ events })),
+        catchError(error => of(new eventsActions.GetEventsError({ error }))),
+      ),
+    ),
+  );
+
+export default [createEventEpic$, getEventsEpic$];
