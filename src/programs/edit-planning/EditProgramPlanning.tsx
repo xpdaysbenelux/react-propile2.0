@@ -19,8 +19,6 @@ const EditProgramPlanning: FC = () => {
   const conference = useSelector(conferencesSelectors.conference(program.conference.id));
   const events = useSelector(eventsSelectors.events);
 
-  console.log(events);
-
   useEffect(() => {
     dispatch(new sessionsActions.GetSessions());
   }, [dispatch]);
@@ -49,7 +47,7 @@ const EditProgramPlanning: FC = () => {
           <Link to={`/conferences/edit/${conference.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </p>
       </div>
-      <PlanningTable program={program} rooms={conference.rooms} />
+      <PlanningTable events={events} program={program} rooms={conference.rooms} />
     </Container>
   ) : (
     <LoadingSpinner />
