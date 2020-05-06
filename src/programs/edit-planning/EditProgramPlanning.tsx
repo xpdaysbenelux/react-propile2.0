@@ -35,7 +35,7 @@ const EditProgramPlanning: FC = () => {
             programEndTime: formatTime(program.endTime),
             programStartTime: formatTime(program.startTime),
           })}{' '}
-          <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
+          <Link to={`/programs/${program.id}/edit`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </p>
         <p>
           {translations.getLabel('PROGRAMS.PLANNING.PROGRAM_ROOMS_AMOUNT', { programRoomAmount: conference.rooms.length })}{' '}

@@ -15,7 +15,7 @@ const Programs: React.FC = () => {
     <Switch>
       <Route component={ProgramDetail} exact path={`${url}/:programId`} />
       {permissions?.programs.edit && <Route component={EditProgramPlanning} exact path={`${url}/:id/planning`} />}
-      {permissions?.programs.edit && <Route component={EditProgram} exact path={`${url}/edit/:id`} />}
+      {permissions?.programs.edit && <Route component={EditProgram} exact path={`${url}/:id/edit`} />}
       <Redirect to="/conferences" />
     </Switch>
   );
