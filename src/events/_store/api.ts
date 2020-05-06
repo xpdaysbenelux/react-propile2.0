@@ -7,5 +7,5 @@ export function createEvent(programId: string, body: IEventForm): Promise<IEvent
 }
 
 export function getEvents(programId: string): Promise<IEvent[]> {
-  return HttpClient.get<IEvent[]>(`programs/${programId}/events/${programId}`);
+  return HttpClient.get<IEvent[]>(`programs/${programId}/events`);
 }
