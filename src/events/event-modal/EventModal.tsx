@@ -64,7 +64,11 @@ function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
 }
 
 function errorAsString(error?: ApiError): string {
-  // TODO handle possible BE errors
+  if (error?.error === 'PROGRAM_NOT_FOUND') return translations.getLabel('PROGRAMS.ERRORS.PROGRAM_NOT_FOUND');
+  if (error?.error === 'SESSION_NOT_FOUND') return translations.getLabel('SESSIONS.ERRORS.SESSION_NOT_FOUND');
+  if (error?.error === 'CONFERENCE_ROOM_NOT_FOUND') return translations.getLabel('CONFERENCES.ERRORS.CONFERENCE_ROOM_NOT_FOUND');
+  if (error?.error === 'END_TIME_LATER_THEN_START_TIME')
+    return translations.getLabel('EVENTS.ERRORS.END_TIME_LATER_THEN_START_TIME');
   return null;
 }
 

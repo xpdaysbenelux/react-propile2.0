@@ -284,7 +284,8 @@
       "CONFERENCE_NAME_ALREADY_IN_USE": "A conference with this name already exists.",
       "CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS": "A conference must have at least two rooms.",
       "END_DATE_LATER_THAN_START_DATE": "The end date must be later than the start date!",
-      "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in."
+      "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in.",
+      "CONFERENCE_ROOM_NOT_FOUND": "The room was not found."
     }
   },
   "PROGRAMS": {
@@ -317,6 +318,7 @@
       "PROGRAM_DELETED": "The program was deleted successfully."
     },
     "ERRORS": {
+      "PROGRAM_NOT_FOUND": "The program was not found.",
       "PROGRAM_TITLE_ALREADY_IN_USE": "A program with this title already exists.",
       "PROGRAM_DATE_MUST_BE_BETWEEN_CONFERENCE_DATES": "The program date must be one of or between the conference dates.",
       "START_END_TIME_DATES_MUST_BE_SAME_AS_PROGRAM_DATE": "The start and end time dates must be the same as the program date."
@@ -349,6 +351,9 @@
       "CONFERENCE_DINNER": "Conference dinner",
       "DRINKS": "Drinks at the bar",
       "EVENING_PROGRAMME": "Evening programme"
+    },
+    "TOASTER": {
+      "EVENT_CREATED": "The event was created successfully."
     },
     "ERRORS": {
       "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"
