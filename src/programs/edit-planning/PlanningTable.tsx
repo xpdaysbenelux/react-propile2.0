@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
 
+import { useModal } from '../../_hooks';
 import { IProgram } from '../_models';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
+import { Button } from '../../_shared';
+import { translations } from '../../_translations';
+import EventModal from '../../events/event-modal/EventModal';
 import './planningTable.scss';
 
 interface Props {
@@ -20,6 +24,9 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 
 const PlanningTable: FC<Props> = ({ program, rooms }) => {
   const { startTime, endTime } = program;
+  const [renderEventModal, showEventModal] = useModal(modalProps => (
+    <EventModal {...modalProps} program={program} rooms={rooms} />
+  ));
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
@@ -52,11 +59,19 @@ const PlanningTable: FC<Props> = ({ program, rooms }) => {
   }
 
   return (
-    <div className="planning-container">
-      {generateHeader(rooms)}
-      {timeArray.map((time: Date) => {
-        return generateRow(time, rooms);
-      })}
+    <div>
+      <div className="actions-header">
+        <Button onClick={() => showEventModal()} theme="warning" type="button">
+          {translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
+        </Button>
+      </div>
+      <div className="planning-container">
+        {generateHeader(rooms)}
+        {timeArray.map((time: Date) => {
+          return generateRow(time, rooms);
+        })}
+      </div>
+      {renderEventModal()}
     </div>
   );
 };

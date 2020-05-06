@@ -100,6 +100,10 @@
       "TITLE": "Details",
       "CREATED_AT_BY": "Created at {{date}} by {{name}}",
       "UPDATED_AT_BY": "Last updated at {{date}} by {{name}}"
+    },
+    "TOGGLE": {
+      "NO": "No",
+      "YES": "Yes"
     }
   },
   "USERS": {
@@ -202,17 +206,17 @@
         "OTHER": "Other"
       },
       "TOPIC": {
-        "TECHNOLOGIE_TECHNIQUE": "Technology and Technique",
-        "TEAM_INDIVIDUAL": "Team and Individual",
-        "PROCESS_IMPROVEMENT": "Process and Improvement",
-        "CUSTOMER_PLANNING": "Customer and Planning",
-        "CASES_INTROS": "Cases and Intros"
+        "TECHNOLOGY_AND_TECHNIQUE": "Technology and Technique",
+        "TEAM_AND_INDIVIDUAL": "Team and Individual",
+        "PROCESS_AND_IMPROVEMENT": "Process and Improvement",
+        "CUSTOMER_AND_PLANNING": "Customer and Planning",
+        "CASES_AND_INTROS": "Cases and Intros"
       },
       "DURATION": {
-        "HALF_HOUR": "30 min",
-        "ONE_HOUR": "60 min",
-        "ONE_AND_A_HALF_HOUR": "90 min",
-        "TWO_AND_A_HALF_HOUR": "150 min"
+        "30": "30 min",
+        "60": "60 min",
+        "90": "90 min",
+        "150": "150 min"
       },
       "EXPERIENCE_LEVEL": {
         "NOVICE": "Novice",
@@ -280,7 +284,8 @@
       "CONFERENCE_NAME_ALREADY_IN_USE": "A conference with this name already exists.",
       "CONFERENCE_MUST_HAVE_AT_LEAST_TWO_ROOMS": "A conference must have at least two rooms.",
       "END_DATE_LATER_THAN_START_DATE": "The end date must be later than the start date!",
-      "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in."
+      "ALL_ROOM_VALUES_MUST_BE_FILLED_IN": "All the rooms their values must be filled in.",
+      "CONFERENCE_ROOM_NOT_FOUND": "The room was not found."
     }
   },
   "PROGRAMS": {
@@ -313,9 +318,45 @@
       "PROGRAM_DELETED": "The program was deleted successfully."
     },
     "ERRORS": {
+      "PROGRAM_NOT_FOUND": "The program was not found.",
       "PROGRAM_TITLE_ALREADY_IN_USE": "A program with this title already exists.",
       "PROGRAM_DATE_MUST_BE_BETWEEN_CONFERENCE_DATES": "The program date must be one of or between the conference dates.",
       "START_END_TIME_DATES_MUST_BE_SAME_AS_PROGRAM_DATE": "The start and end time dates must be the same as the program date."
+    }
+  },
+  "EVENTS": {
+    "SPAN_ROW": "Entire row",
+    "TITLE": "Title",
+    "SESSION_TITLE": "Session",
+    "ROOM": "Room",
+    "COMMENT": "Comment",
+    "STARTS_AT": "Starts at",
+    "ENDS_AT": "Ends at",
+    "ADD_EVENT": {
+      "TITLE": "Add event"
+    },
+    "EDIT_EVENT": {
+      "TITLE": "Edit \"{{eventTitle}}\""
+    },
+    "EVENT_TITLES": {
+      "WELCOME": "Welcome",
+      "REGISTRATION": "Registration",
+      "REGISTRATION_AND_COFFEE": "Registration & coffee",
+      "COFFEE_BREAK": "Coffee break",
+      "BREAK": "Break",
+      "LUNCH": "Lunch",
+      "PLENARY": "Plenary session",
+      "CLOSING": "Closing",
+      "DINNER": "Dinner",
+      "CONFERENCE_DINNER": "Conference dinner",
+      "DRINKS": "Drinks at the bar",
+      "EVENING_PROGRAMME": "Evening programme"
+    },
+    "TOASTER": {
+      "EVENT_CREATED": "The event was created successfully."
+    },
+    "ERRORS": {
+      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"
     }
   },
   "ERRORS": {

@@ -7,6 +7,7 @@ import * as usersSelectors from '../users/_store/selectors';
 import * as sessionsSelectors from '../sessions/_store/selectors';
 import * as conferencesSelectors from '../conferences/_store/selectors';
 import * as programsSelectors from '../programs/_store/selectors';
+import * as eventsSelectors from '../events/_store/selectors';
 
 export {
   authSelectors,
@@ -18,4 +19,5 @@ export {
   sessionsSelectors,
   conferencesSelectors,
   programsSelectors,
+  eventsSelectors,
 };

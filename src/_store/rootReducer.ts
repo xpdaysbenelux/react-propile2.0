@@ -9,11 +9,13 @@ import authReducer, { AuthState } from '../auth/_store/reducer';
 import modalReducer, { ModalState } from '../modal/_store/reducer';
 import profileReducer, { ProfileState } from '../profile/_store/reducer';
 import programsReducer, { ProgramsState } from '../programs/_store/reducer';
+import eventsReducer, { EventsState } from '../events/_store/reducer';
 import { AuthActionType } from '../auth/_store/actions';
 
 export interface AppState {
   auth: AuthState;
   conferences: ConferencesState;
+  events: EventsState;
   modal: ModalState;
   profile: ProfileState;
   programs: ProgramsState;
@@ -27,6 +29,7 @@ function appReducer(history: History): Reducer {
   return combineReducers<AppState>({
     auth: authReducer,
     conferences: conferencesReducer,
+    events: eventsReducer,
     modal: modalReducer,
     profile: profileReducer,
     programs: programsReducer,

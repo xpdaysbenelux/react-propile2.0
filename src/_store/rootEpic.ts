@@ -5,6 +5,7 @@ import usersEpics from '../users/_store/epics';
 import sessionsEpics from '../sessions/_store/epics';
 import conferencesEpics from '../conferences/_store/epics';
 import programsEpics from '../programs/_store/epics';
+import eventsEpic from '../events/_store/epics';
 import modalEpics from '../modal/_store/epics';
 
 const rootEpic = combineEpics(
@@ -15,6 +16,7 @@ const rootEpic = combineEpics(
   ...sessionsEpics,
   ...conferencesEpics,
   ...programsEpics,
+  ...eventsEpic,
 );
 
 export default rootEpic;

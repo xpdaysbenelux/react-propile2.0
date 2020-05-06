@@ -42,10 +42,10 @@ const ProgramsTable: FC<Props> = ({ data, isLoading, setQuery }) => {
         <Table.Cell>{formatTime(program.startTime)}</Table.Cell>
         <Table.Cell>{formatTime(program.endTime)}</Table.Cell>
         <Table.Cell>
-          <Link to={`/programs/edit/${program.id}`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
+          <Link to={`/programs/${program.id}/edit`}>{translations.getLabel('SHARED.BUTTONS.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>
-          <Link to={`/programs/edit/planning/${program.id}`}>{translations.getLabel('PROGRAMS.PLANNING.EDIT')}</Link>
+          <Link to={`/programs/${program.id}/planning`}>{translations.getLabel('PROGRAMS.PLANNING.EDIT')}</Link>
         </Table.Cell>
         <Table.Cell>
           <Link

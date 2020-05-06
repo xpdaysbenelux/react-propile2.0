@@ -12,6 +12,20 @@
     font-size: 1.2rem;
     margin-bottom: 1rem;
   }
+
+  &.global {
+    background-color: $red-light;
+    padding: 0.8rem 1.6rem;
+    display: flex;
+    align-items: center;
+
+    span {
+      font-weight: bold;
+      font-size: 1.4rem;
+      margin-bottom: 0;
+      margin-left: 0.6rem;
+    }
+  }
 }
 
 @keyframes fadeInDown {
