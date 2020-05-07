@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 
+import { differenceInMinutes } from 'date-fns';
 import { useModal } from '../../_hooks';
 import { IProgram } from '../_models';
 import { IRoom } from '../../conferences/_models';
 import { dateFromISOString, formatTime } from '../../_utils/timeHelpers';
 import { Button } from '../../_shared';
 import { translations } from '../../_translations';
+import { IEvent } from '../../events/_models';
 import EventModal from '../../events/event-modal/EventModal';
 import './planningTable.scss';
-import { IEvent } from '../../events/_models';
-import { differenceInMinutes } from 'date-fns';
 
 interface Props {
   events: IEvent[];
@@ -19,7 +19,7 @@ interface Props {
 
 function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[] {
   const dateTimeArray: Date[] = [];
-  for (let dateTime = new Date(startTime); dateTime <= new Date(endTime); dateTime.setMinutes(dateTime.getMinutes() + interval)) {
+  for (let dateTime = new Date(startTime); dateTime < new Date(endTime); dateTime.setMinutes(dateTime.getMinutes() + interval)) {
     dateTimeArray.push(new Date(dateTime));
   }
   return dateTimeArray;

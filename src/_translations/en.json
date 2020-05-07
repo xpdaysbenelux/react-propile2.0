@@ -356,7 +356,8 @@
       "EVENT_CREATED": "The event was created successfully."
     },
     "ERRORS": {
-      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"
+      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!",
+      "EVENT_OVERLAPS": "The event overlaps with an already existing event."
     }
   },
   "ERRORS": {
@@ -375,7 +376,8 @@
       "TOO_HIGH": "The value must be lower then or equal to {{max}}.",
       "TOO_LOW": "The value must be higher then or equal to {{min}}.",
       "NOT_A_NUMBER": "Value is not a number",
-      "EMPTY_ARRAY": "Choose at least one"
+      "EMPTY_ARRAY": "Choose at least one",
+      "DURATION_NOT_LONGER_THAN": "The duration of an event with a session can't be longer then {{durationInMinutes}} minutes."
     }
   }
 }

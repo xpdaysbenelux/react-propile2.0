@@ -1,4 +1,7 @@
+import { differenceInMinutes } from 'date-fns';
+
 import { translations } from '../_translations';
+import { dateFromISOString } from './timeHelpers';
 
 /**
  * All form validators return an error message if they validated to false.
@@ -71,7 +74,15 @@ function isNotEmptyArray(array: unknown[]): string {
   return !isValid && translations.getLabel('ERRORS.VALIDATION.EMPTY_ARRAY');
 }
 
+function durationNotLongerThan(startTime: string, endTime: string, durationInMinutes: number): string {
+  const eventDuration = differenceInMinutes(dateFromISOString(endTime), dateFromISOString(startTime));
+
+  const isValid = eventDuration < durationInMinutes;
+  return !isValid && translations.getLabel('ERRORS.VALIDATION.DURATION_NOT_LONGER_THAN', { durationInMinutes });
+}
+
 export const formValidator = {
+  durationNotLongerThan,
   hasMaxLength,
   hasMinLength,
   isBetween,
