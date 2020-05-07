@@ -1,3 +1,5 @@
+import { SessionDuration } from '../../sessions/_models';
+
 export interface IEvent {
   comment?: string;
   endTime: string;
@@ -10,6 +12,7 @@ export interface IEvent {
     maxParticipants: number;
   };
   session?: {
+    duration: SessionDuration;
     id: string;
     maxParticipants: number;
     title: string;

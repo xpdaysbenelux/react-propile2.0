@@ -9,6 +9,7 @@ import { translations } from '../../_translations';
 import EventModal from '../../events/event-modal/EventModal';
 import './planningTable.scss';
 import { IEvent } from '../../events/_models';
+import { differenceInMinutes } from 'date-fns';
 
 interface Props {
   events: IEvent[];
@@ -32,12 +33,22 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
-  function handleEvent(event: IEvent, room: IRoom, hour: string): JSX.Element {
+  function handleEvent(event: IEvent, room: IRoom, hour: string, roomAmount: number, roomIndex: number): JSX.Element {
+    const eventDuration = differenceInMinutes(dateFromISOString(event.endTime), dateFromISOString(event.startTime));
     if (!event.spanRow && event.room.id === room.id && formatTime(dateFromISOString(event.startTime)) === hour) {
-      return <p key={event.id}>{event.session.title}</p>;
-    } else if (event.spanRow && formatTime(dateFromISOString(event.startTime)) === hour) {
-      console.log(event);
-      return <p key={event.id}>{translations.getLabel(`EVENTS.EVENT_TITLES.${event.title}`)}</p>;
+      console.log(event.session.title);
+      return (
+        <div className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`} key={event.id}>
+          <p>{event.session.title}</p>
+          {eventDuration > 30 ? <p>presenters</p> : null}
+        </div>
+      );
+    } else if (event.spanRow && formatTime(dateFromISOString(event.startTime)) === hour && roomIndex === 0) {
+      return (
+        <div className={`event title-event cell-height-${eventDuration}`} key={event.id}>
+          <p>{translations.getLabel(`EVENTS.EVENT_TITLES.${event.title}`)}</p>
+        </div>
+      );
     }
   }
 
@@ -62,10 +73,10 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
         <div className="hour-cell">
           <p>{formatTime(hour)}</p>
         </div>
-        {rooms.map((room: IRoom) => {
+        {rooms.map((room: IRoom, roomIndex: number) => {
           return (
             <div className="cell" key={`${formatTime(hour)}-${room.id}`}>
-              {events.map((event: IEvent) => handleEvent(event, room, formatTime(hour)))}
+              {events.map((event: IEvent) => handleEvent(event, room, formatTime(hour), rooms.length, roomIndex))}
             </div>
           );
         })}
