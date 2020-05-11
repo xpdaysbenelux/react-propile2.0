@@ -336,7 +336,7 @@
       "TITLE": "Add event"
     },
     "EDIT_EVENT": {
-      "TITLE": "Edit \"{{eventTitle}}\""
+      "TITLE": "Edit event"
     },
     "EVENT_TITLES": {
       "WELCOME": "Welcome",
@@ -353,7 +353,8 @@
       "EVENING_PROGRAMME": "Evening programme"
     },
     "TOASTER": {
-      "EVENT_CREATED": "The event was created successfully."
+      "EVENT_CREATED": "The event was created successfully.",
+      "EVENT_UPDATED": "The event was updated successfully."
     },
     "ERRORS": {
       "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"

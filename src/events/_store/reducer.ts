@@ -52,6 +52,24 @@ export default function reducer(state = initialState, action: EventsAction): Eve
         errorCrudEvent: action.payload.error,
         isLoading: false,
       };
+    case EventsActionType.UpdateEvent:
+      return {
+        ...state,
+        errorCrudEvent: null,
+        isLoading: true,
+      };
+    case EventsActionType.UpdateEventSuccess:
+      return {
+        ...state,
+        events: insertUpdatedData(state.events, [action.payload.updatedEvent]),
+        isLoading: false,
+      };
+    case EventsActionType.UpdateEventError:
+      return {
+        ...state,
+        errorCrudEvent: action.payload.error,
+        isLoading: false,
+      };
     default:
       return state;
   }

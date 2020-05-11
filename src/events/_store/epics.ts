@@ -13,7 +13,10 @@ const createEventEpic$: Epic = actions$ =>
     switchMap(({ payload }: eventsActions.CreateEvent) =>
       from(eventsApi.createEvent(payload.programId, payload.values)).pipe(
         tap(() => toast.success(translations.getLabel('EVENTS.TOASTER.EVENT_CREATED'))),
-        map(createdEvent => new eventsActions.CreateEventSuccess({ createdEvent })),
+        map(createdEvent => {
+          payload.onSuccess?.();
+          return new eventsActions.CreateEventSuccess({ createdEvent });
+        }),
         catchError(error => of(new eventsActions.CreateEventError({ error }))),
       ),
     ),
@@ -29,4 +32,18 @@ const getEventsEpic$: Epic = actions$ =>
     ),
   );
 
-export default [createEventEpic$, getEventsEpic$];
+const updateEventEpic$: Epic = action$ =>
+  action$.ofType(EventsActionType.UpdateEvent).pipe(
+    switchMap(({ payload }: eventsActions.UpdateEvent) =>
+      from(eventsApi.updateEvent(payload.programId, payload.eventId, payload.values)).pipe(
+        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.EVENT_UPDATED'))),
+        map(updatedEvent => {
+          payload.onSuccess?.();
+          return new eventsActions.UpdateEventSuccess({ updatedEvent });
+        }),
+        catchError(error => of(new eventsActions.UpdateEventError({ error }))),
+      ),
+    ),
+  );
+
+export default [createEventEpic$, getEventsEpic$, updateEventEpic$];

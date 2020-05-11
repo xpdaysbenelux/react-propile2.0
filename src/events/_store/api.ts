@@ -9,3 +9,8 @@ export function createEvent(programId: string, body: IEventForm): Promise<IEvent
 export function getEvents(programId: string): Promise<IEvent[]> {
   return HttpClient.get<IEvent[]>(`programs/${programId}/events`);
 }
+
+export function updateEvent(programId: string, eventId: string, body: IEventForm): Promise<IEvent> {
+  console.log(body);
+  return HttpClient.put<IEvent>(`programs/${programId}/events/${eventId}`, body);
+}
