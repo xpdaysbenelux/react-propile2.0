@@ -85,9 +85,18 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
     error,
     initialForm,
     submitForm: values =>
-      dispatch(
-        new eventsActions.CreateEvent({ onSuccess: hideModal, programId: program.id, values: handleRoomAndSession(values) }),
-      ),
+      event
+        ? dispatch(
+            new eventsActions.UpdateEvent({
+              eventId: event.id,
+              onSuccess: hideModal,
+              programId: program.id,
+              values: handleRoomAndSession(values),
+            }),
+          )
+        : dispatch(
+            new eventsActions.CreateEvent({ onSuccess: hideModal, programId: program.id, values: handleRoomAndSession(values) }),
+          ),
     validateForm,
   });
 
@@ -135,9 +144,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
     <Modal onClose={hideModal} open>
       <form className="ui form event-modal" onSubmit={form.submit}>
         <Modal.Header>
-          {event
-            ? translations.getLabel('EVENTS.EDIT_EVENT.TITLE', { eventTitle: event.title })
-            : translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
+          {event ? translations.getLabel('EVENTS.EDIT_EVENT.TITLE') : translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
         </Modal.Header>
         <Modal.Content>
           <Toggle

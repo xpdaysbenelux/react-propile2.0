@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-
+import React, { FC, useState } from 'react';
 import { differenceInMinutes } from 'date-fns';
+
 import { useModal } from '../../_hooks';
 import { IProgram } from '../_models';
 import { IRoom } from '../../conferences/_models';
@@ -27,8 +27,9 @@ function getHoursArray(startTime: Date, endTime: Date, interval: number): Date[]
 
 const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
   const { startTime, endTime } = program;
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const [renderEventModal, showEventModal] = useModal(modalProps => (
-    <EventModal {...modalProps} program={program} rooms={rooms} />
+    <EventModal {...modalProps} event={selectedEvent} program={program} rooms={rooms} />
   ));
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
@@ -37,14 +38,28 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
     const eventDuration = differenceInMinutes(dateFromISOString(event.endTime), dateFromISOString(event.startTime));
     if (!event.spanRow && event.room.id === room.id && formatTime(dateFromISOString(event.startTime)) === hour) {
       return (
-        <div className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`} key={event.id}>
+        <div
+          className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`}
+          key={event.id}
+          onClick={() => {
+            setSelectedEvent(event);
+            showEventModal();
+          }}
+        >
           <p>{event.session.title}</p>
           <p>firstPresenter@mail.com</p>
         </div>
       );
     } else if (event.spanRow && formatTime(dateFromISOString(event.startTime)) === hour && roomIndex === 0) {
       return (
-        <div className={`event title-event cell-height-${eventDuration}`} key={event.id}>
+        <div
+          className={`event title-event cell-height-${eventDuration}`}
+          key={event.id}
+          onClick={() => {
+            setSelectedEvent(event);
+            showEventModal();
+          }}
+        >
           <p>{translations.getLabel(`EVENTS.EVENT_TITLES.${event.title}`)}</p>
         </div>
       );
@@ -86,7 +101,14 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
   return (
     <div>
       <div className="actions-header">
-        <Button onClick={() => showEventModal()} theme="warning" type="button">
+        <Button
+          onClick={() => {
+            setSelectedEvent(null);
+            showEventModal();
+          }}
+          theme="warning"
+          type="button"
+        >
           {translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
         </Button>
       </div>
