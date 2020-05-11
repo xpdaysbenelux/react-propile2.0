@@ -36,7 +36,7 @@ const updateEventEpic$: Epic = action$ =>
   action$.ofType(EventsActionType.UpdateEvent).pipe(
     switchMap(({ payload }: eventsActions.UpdateEvent) =>
       from(eventsApi.updateEvent(payload.programId, payload.eventId, payload.values)).pipe(
-        tap(() => toast.success(translations.getLabel('PROGRAMS.TOASTER.EVENT_UPDATED'))),
+        tap(() => toast.success(translations.getLabel('EVENTS.TOASTER.EVENT_UPDATED'))),
         map(updatedEvent => {
           payload.onSuccess?.();
           return new eventsActions.UpdateEventSuccess({ updatedEvent });
