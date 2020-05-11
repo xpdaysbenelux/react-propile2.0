@@ -356,8 +356,7 @@
       "EVENT_CREATED": "The event was created successfully."
     },
     "ERRORS": {
-      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!",
-      "EVENT_OVERLAPS": "The event overlaps with an already existing event."
+      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"
     }
   },
   "ERRORS": {
