@@ -1,5 +1,7 @@
 import { SessionDuration, IPresenter } from '../../sessions/_models';
 
+export const eventMaxDuration = 150;
+
 export interface IEvent {
   comment?: string;
   endTime: string;

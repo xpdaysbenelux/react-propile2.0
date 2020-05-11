@@ -8,7 +8,7 @@ import { formValidator } from '../../_utils/formValidation';
 import { eventsSelectors, sessionsSelectors } from '../../_store/selectors';
 import { useForm } from '../../_hooks';
 import { ApiError } from '../../_http';
-import { IEvent, IEventForm, EventTitle } from '../_models';
+import { IEvent, IEventForm, EventTitle, eventMaxDuration } from '../_models';
 import { IProgram, programTimeIntervals } from '../../programs/_models';
 import { translations } from '../../_translations';
 import { eventsActions } from '../../_store/actions';
@@ -54,7 +54,7 @@ function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
   } else {
     errors.sessionId = formValidator.isRequired(values.sessionId);
     errors.roomId = formValidator.isRequired(values.roomId);
-    errors.endTime = formValidator.durationNotLongerThan(values.startTime, values.endTime, 150);
+    errors.endTime = formValidator.durationNotLongerThan(values.startTime, values.endTime, eventMaxDuration);
   }
 
   if (Date.parse(values.startTime) > Date.parse(values.endTime)) {
