@@ -33,22 +33,24 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
-  function handleEvent(event: IEvent, room: IRoom, hour: string, roomAmount: number, roomIndex: number): JSX.Element {
+  function renderEvent(event: IEvent, room: IRoom, hour: string, roomAmount: number, roomIndex: number): JSX.Element {
     const eventDuration = differenceInMinutes(dateFromISOString(event.endTime), dateFromISOString(event.startTime));
-    if (!event.spanRow && event.room.id === room.id && formatTime(dateFromISOString(event.startTime)) === hour) {
+    const eventStartHour = formatTime(dateFromISOString(event.startTime));
+    if (!event.spanRow && event.room.id === room.id && eventStartHour === hour) {
       return (
         <div className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`} key={event.id}>
           <p>{event.session.title}</p>
           <p>firstPresenter@mail.com</p>
         </div>
       );
-    } else if (event.spanRow && formatTime(dateFromISOString(event.startTime)) === hour && roomIndex === 0) {
+    } else if (event.spanRow && eventStartHour === hour && roomIndex === 0) {
       return (
         <div className={`event title-event cell-height-${eventDuration}`} key={event.id}>
           <p>{translations.getLabel(`EVENTS.EVENT_TITLES.${event.title}`)}</p>
         </div>
       );
     }
+    return null;
   }
 
   function generateHeader(rooms: IRoom[]): JSX.Element {
@@ -75,7 +77,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
         {rooms.map((room: IRoom, roomIndex: number) => {
           return (
             <div className="cell" key={`${formatTime(hour)}-${room.id}`}>
-              {events.map((event: IEvent) => handleEvent(event, room, formatTime(hour), rooms.length, roomIndex))}
+              {events.map((event: IEvent) => renderEvent(event, room, formatTime(hour), rooms.length, roomIndex))}
             </div>
           );
         })}
