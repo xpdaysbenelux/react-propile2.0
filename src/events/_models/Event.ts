@@ -1,4 +1,4 @@
-import { SessionDuration } from '../../sessions/_models';
+import { SessionDuration, IPresenter } from '../../sessions/_models';
 
 export interface IEvent {
   comment?: string;
@@ -13,8 +13,10 @@ export interface IEvent {
   };
   session?: {
     duration: SessionDuration;
+    firstPresenter: IPresenter;
     id: string;
     maxParticipants: number;
+    secondPresenter: IPresenter;
     title: string;
   };
   spanRow: boolean;

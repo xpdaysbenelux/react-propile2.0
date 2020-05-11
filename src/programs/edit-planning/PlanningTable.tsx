@@ -36,11 +36,10 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
   function handleEvent(event: IEvent, room: IRoom, hour: string, roomAmount: number, roomIndex: number): JSX.Element {
     const eventDuration = differenceInMinutes(dateFromISOString(event.endTime), dateFromISOString(event.startTime));
     if (!event.spanRow && event.room.id === room.id && formatTime(dateFromISOString(event.startTime)) === hour) {
-      console.log(event.session.title);
       return (
         <div className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`} key={event.id}>
           <p>{event.session.title}</p>
-          {eventDuration > 30 ? <p>presenters</p> : null}
+          <p>firstPresenter@mail.com</p>
         </div>
       );
     } else if (event.spanRow && formatTime(dateFromISOString(event.startTime)) === hour && roomIndex === 0) {

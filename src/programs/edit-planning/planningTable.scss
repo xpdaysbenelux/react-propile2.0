@@ -18,6 +18,7 @@
 
   .row {
     width: 100%;
+    height: 10rem;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -33,6 +34,7 @@
       border-left: 0.2px solid $text-color;
       border-right: 0.2px solid $text-color;
       border-bottom: 0.2px solid $text-color;
+      height: 4rem;
       h4 {
         color: $white;
         margin: 0 auto;
@@ -40,6 +42,7 @@
     }
 
     .hour-cell-header {
+      height: 4rem;
       width: 10%;
     }
 
@@ -128,5 +131,9 @@
         height: 500%;
       }
     }
+  }
+
+  .row:first-of-type {
+    height: 4rem;
   }
 }

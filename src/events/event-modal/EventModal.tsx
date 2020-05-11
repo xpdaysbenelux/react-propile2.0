@@ -14,7 +14,6 @@ import { translations } from '../../_translations';
 import { eventsActions } from '../../_store/actions';
 import { IRoom } from '../../conferences/_models';
 import './eventModal.scss';
-import { dateFromISOString } from '../../_utils/timeHelpers';
 
 interface Props {
   event?: IEvent;
@@ -47,14 +46,6 @@ function handleRoomAndSession(values: IEventForm): IEventForm {
   return values;
 }
 
-function checkForOverlap(startTime1: Date, endTime1: Date, startTime2: Date, endTime2: Date): string {
-  if (startTime1 < endTime2 && startTime2 < endTime1) {
-    console.log('overlappen?');
-    return translations.getLabel('EVENTS.ERRORS.EVENT_OVERLAPS');
-  }
-  return null;
-}
-
 function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
   const errors: FormValidationErrors<IEventForm> = {};
 
@@ -69,12 +60,6 @@ function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
   if (Date.parse(values.startTime) > Date.parse(values.endTime)) {
     errors.endTime = translations.getLabel('EVENTS.ERRORS.END_TIME_LATER_THEN_START_TIME');
   }
-  errors.endTime = checkForOverlap(
-    dateFromISOString(values.startTime),
-    dateFromISOString(values.endTime),
-    dateFromISOString('2020-04-02T10:00:00'),
-    dateFromISOString('2020-04-02T11:30:00'),
-  );
 
   return errors;
 }
