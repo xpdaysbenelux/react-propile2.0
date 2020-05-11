@@ -1,3 +1,7 @@
+import { SessionDuration, IPresenter } from '../../sessions/_models';
+
+export const eventMaxDuration = 150;
+
 export interface IEvent {
   comment?: string;
   endTime: string;
@@ -10,8 +14,11 @@ export interface IEvent {
     maxParticipants: number;
   };
   session?: {
+    duration: SessionDuration;
+    firstPresenter: IPresenter;
     id: string;
     maxParticipants: number;
+    secondPresenter: IPresenter;
     title: string;
   };
   spanRow: boolean;
