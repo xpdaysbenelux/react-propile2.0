@@ -47,9 +47,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
         <div
           className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`}
           key={event.id}
-          onClick={() => {
-            openEventModal(event);
-          }}
+          onClick={() => openEventModal(event)}
         >
           <p>{event.session.title}</p>
           <p>firstPresenter@mail.com</p>
@@ -57,13 +55,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
       );
     } else if (event.spanRow && eventStartHour === hour && roomIndex === 0) {
       return (
-        <div
-          className={`event title-event cell-height-${eventDuration}`}
-          key={event.id}
-          onClick={() => {
-            openEventModal(event);
-          }}
-        >
+        <div className={`event title-event cell-height-${eventDuration}`} key={event.id} onClick={() => openEventModal(event)}>
           <p>{translations.getLabel(`EVENTS.EVENT_TITLES.${event.title}`)}</p>
         </div>
       );
@@ -106,13 +98,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
   return (
     <div>
       <div className="actions-header">
-        <Button
-          onClick={() => {
-            openEventModal(null);
-          }}
-          theme="warning"
-          type="button"
-        >
+        <Button onClick={() => openEventModal(null)} theme="warning" type="button">
           {translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
         </Button>
       </div>
