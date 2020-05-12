@@ -70,6 +70,26 @@ export default function reducer(state = initialState, action: EventsAction): Eve
         errorCrudEvent: action.payload.error,
         isLoading: false,
       };
+    case EventsActionType.DeleteEvent:
+      return {
+        ...state,
+        errorCrudEvent: null,
+        isLoading: true,
+      };
+    case EventsActionType.DeleteEventSuccess:
+      return {
+        ...state,
+        events: state.events.filter(event => {
+          return event.id !== action.payload.eventId;
+        }),
+        isLoading: false,
+      };
+    case EventsActionType.DeleteEventError:
+      return {
+        ...state,
+        errorCrudEvent: action.payload.error,
+        isLoading: false,
+      };
     default:
       return state;
   }

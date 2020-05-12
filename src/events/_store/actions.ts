@@ -7,6 +7,9 @@ export enum EventsActionType {
   CreateEvent = '[Events] CreateEvent',
   CreateEventError = '[Events] CreateEventError',
   CreateEventSuccess = '[Events] CreateEventSuccess',
+  DeleteEvent = '[Events] DeleteEvent',
+  DeleteEventError = '[Events] DeleteEventError',
+  DeleteEventSuccess = '[Events] DeleteEventSuccess',
   GetEvents = '[Events] GetEvents',
   GetEventsError = '[Events] GetEventsError',
   GetEventsSuccess = '[Events] GetEventsSuccess',
@@ -60,6 +63,21 @@ export class UpdateEventError implements Action<EventsActionType> {
   constructor(public payload: { error: ApiError }) {}
 }
 
+export class DeleteEvent implements Action<EventsActionType> {
+  readonly type = EventsActionType.DeleteEvent;
+  constructor(public payload: { eventId: string; onSuccess?: () => void; programId: string }) {}
+}
+
+export class DeleteEventSuccess implements Action<EventsActionType> {
+  readonly type = EventsActionType.DeleteEventSuccess;
+  constructor(public payload: { eventId: string }) {}
+}
+
+export class DeleteEventError implements Action<EventsActionType> {
+  readonly type = EventsActionType.DeleteEventError;
+  constructor(public payload: { error: ApiError }) {}
+}
+
 export type EventsAction =
   | CreateEvent
   | CreateEventSuccess
@@ -69,4 +87,7 @@ export type EventsAction =
   | GetEventsError
   | UpdateEvent
   | UpdateEventSuccess
-  | UpdateEventError;
+  | UpdateEventError
+  | DeleteEvent
+  | DeleteEventSuccess
+  | DeleteEventError;

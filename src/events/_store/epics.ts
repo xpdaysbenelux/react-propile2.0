@@ -46,4 +46,18 @@ const updateEventEpic$: Epic = action$ =>
     ),
   );
 
-export default [createEventEpic$, getEventsEpic$, updateEventEpic$];
+const deleteEventEpic$: Epic = action$ =>
+  action$.ofType(EventsActionType.DeleteEvent).pipe(
+    switchMap(({ payload }: eventsActions.DeleteEvent) =>
+      from(eventsApi.deleteEvent(payload.eventId, payload.programId)).pipe(
+        tap(() => toast.success(translations.getLabel('EVENTS.TOASTER.EVENT_DELETED'))),
+        map(eventId => {
+          payload.onSuccess?.();
+          return new eventsActions.DeleteEventSuccess({ eventId });
+        }),
+        catchError(error => of(new eventsActions.DeleteEventError({ error }))),
+      ),
+    ),
+  );
+
+export default [createEventEpic$, getEventsEpic$, updateEventEpic$, deleteEventEpic$];
