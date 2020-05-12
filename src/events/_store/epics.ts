@@ -49,7 +49,7 @@ const updateEventEpic$: Epic = action$ =>
 const deleteEventEpic$: Epic = action$ =>
   action$.ofType(EventsActionType.DeleteEvent).pipe(
     switchMap(({ payload }: eventsActions.DeleteEvent) =>
-      from(eventsApi.deleteEvent(payload.eventId, payload.programId)).pipe(
+      from(eventsApi.deleteEvent(payload.programId, payload.eventId)).pipe(
         tap(() => toast.success(translations.getLabel('EVENTS.TOASTER.EVENT_DELETED'))),
         map(eventId => {
           payload.onSuccess?.();

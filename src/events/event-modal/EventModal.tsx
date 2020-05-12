@@ -67,6 +67,7 @@ function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
 function errorAsString(error?: ApiError): string {
   if (error?.error === 'PROGRAM_NOT_FOUND') return translations.getLabel('PROGRAMS.ERRORS.PROGRAM_NOT_FOUND');
   if (error?.error === 'SESSION_NOT_FOUND') return translations.getLabel('SESSIONS.ERRORS.SESSION_NOT_FOUND');
+  if (error?.error === 'EVENT_NOT_FOUND') return translations.getLabel('EVENTS.ERRORS.EVENT_NOT_FOUND');
   if (error?.error === 'CONFERENCE_ROOM_NOT_FOUND') return translations.getLabel('CONFERENCES.ERRORS.CONFERENCE_ROOM_NOT_FOUND');
   if (error?.error === 'END_TIME_LATER_THEN_START_TIME')
     return translations.getLabel('EVENTS.ERRORS.END_TIME_LATER_THEN_START_TIME');
@@ -192,6 +193,17 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
           {errorMessage}
         </ErrorMessage>
         <Modal.Actions>
+          {event?.id && (
+            <Button
+              onClick={() =>
+                dispatch(new eventsActions.DeleteEvent({ eventId: event?.id, onSuccess: hideModal, programId: program.id }))
+              }
+              theme="warning"
+              type="button"
+            >
+              {translations.getLabel('SHARED.BUTTONS.DELETE')}
+            </Button>
+          )}
           <Button loading={isSubmitting} primary type="submit">
             {translations.getLabel(event?.id ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
           </Button>

@@ -358,7 +358,8 @@
       "EVENT_DELETED": "The event was deleted successfully."
     },
     "ERRORS": {
-      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!"
+      "END_TIME_LATER_THEN_START_TIME": "The end time of an event must be later than the start time!",
+      "EVENT_NOT_FOUND": "The event was not found."
     }
   },
   "ERRORS": {
