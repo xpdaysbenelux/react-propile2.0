@@ -34,6 +34,11 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
 
   const timeArray = getHoursArray(dateFromISOString(startTime), dateFromISOString(endTime), 30);
 
+  function openEventModal(event?: IEvent): void {
+    setSelectedEvent(event);
+    showEventModal();
+  }
+
   function renderEvent(event: IEvent, room: IRoom, hour: string, roomAmount: number, roomIndex: number): JSX.Element {
     const eventDuration = differenceInMinutes(dateFromISOString(event.endTime), dateFromISOString(event.startTime));
     const eventStartHour = formatTime(dateFromISOString(event.startTime));
@@ -43,8 +48,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
           className={`event session-event cell-width-${roomAmount} cell-height-${eventDuration}`}
           key={event.id}
           onClick={() => {
-            setSelectedEvent(event);
-            showEventModal();
+            openEventModal(event);
           }}
         >
           <p>{event.session.title}</p>
@@ -57,8 +61,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
           className={`event title-event cell-height-${eventDuration}`}
           key={event.id}
           onClick={() => {
-            setSelectedEvent(event);
-            showEventModal();
+            openEventModal(event);
           }}
         >
           <p>{translations.getLabel(`EVENTS.EVENT_TITLES.${event.title}`)}</p>
@@ -105,8 +108,7 @@ const PlanningTable: FC<Props> = ({ program, rooms, events }) => {
       <div className="actions-header">
         <Button
           onClick={() => {
-            setSelectedEvent(null);
-            showEventModal();
+            openEventModal(null);
           }}
           theme="warning"
           type="button"

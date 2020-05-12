@@ -85,7 +85,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
     error,
     initialForm,
     submitForm: values =>
-      event
+      event?.id
         ? dispatch(
             new eventsActions.UpdateEvent({
               eventId: event.id,
@@ -144,7 +144,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
     <Modal onClose={hideModal} open>
       <form className="ui form event-modal" onSubmit={form.submit}>
         <Modal.Header>
-          {event ? translations.getLabel('EVENTS.EDIT_EVENT.TITLE') : translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
+          {event?.id ? translations.getLabel('EVENTS.EDIT_EVENT.TITLE') : translations.getLabel('EVENTS.ADD_EVENT.TITLE')}
         </Modal.Header>
         <Modal.Content>
           <Toggle
@@ -193,7 +193,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
         </ErrorMessage>
         <Modal.Actions>
           <Button loading={isSubmitting} primary type="submit">
-            {translations.getLabel(event ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
+            {translations.getLabel(event?.id ? 'SHARED.BUTTONS.SAVE' : 'SHARED.BUTTONS.CREATE')}
           </Button>
         </Modal.Actions>
       </form>
