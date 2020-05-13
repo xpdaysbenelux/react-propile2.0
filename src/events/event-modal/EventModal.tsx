@@ -70,27 +70,16 @@ function validateForm(values: IEventForm, events: IEvent[], eventId?: string): F
   }
 
   errors.endTime = events
-    .map(existingEvent => {
-      if (existingEvent.id !== eventId) {
-        if (existingEvent.spanRow) {
-          return checkForOverlap(
-            dateFromISOString(values.startTime),
-            dateFromISOString(values.endTime),
-            dateFromISOString(existingEvent.startTime),
-            dateFromISOString(existingEvent.endTime),
-          );
-        } else {
-          if (existingEvent.room?.id === values.roomId) {
-            return checkForOverlap(
-              dateFromISOString(values.startTime),
-              dateFromISOString(values.endTime),
-              dateFromISOString(existingEvent.startTime),
-              dateFromISOString(existingEvent.endTime),
-            );
-          }
-        }
-      }
-    })
+    .filter(event => event.id !== eventId)
+    .filter(event => event.spanRow || event.room?.id === values.roomId)
+    .map(existingEvent =>
+      checkForOverlap(
+        dateFromISOString(values.startTime),
+        dateFromISOString(values.endTime),
+        dateFromISOString(existingEvent.startTime),
+        dateFromISOString(existingEvent.endTime),
+      ),
+    )
     .find(error => !!error);
 
   return errors;
