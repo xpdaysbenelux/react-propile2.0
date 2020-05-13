@@ -40,6 +40,7 @@ function checkForOverlap(startTime1: Date, endTime1: Date, startTime2: Date, end
   if (startTime1 < endTime2 && endTime1 > startTime2) {
     return translations.getLabel('EVENTS.ERRORS.EVENT_OVERLAPS');
   }
+  return null;
 }
 
 function handleRoomAndSession(values: IEventForm): IEventForm {
