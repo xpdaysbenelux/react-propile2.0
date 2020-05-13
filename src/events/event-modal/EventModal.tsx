@@ -5,6 +5,7 @@ import { addHours } from 'date-fns';
 import { Modal, Button, ErrorMessage, Dropdown, InputTextArea, Toggle, TimeSelector } from '../../_shared';
 import { FormValidationErrors } from '../../_hooks/useForm';
 import { formValidator } from '../../_utils/formValidation';
+import { dateFromISOString } from '../../_utils/timeHelpers';
 import { eventsSelectors, sessionsSelectors } from '../../_store/selectors';
 import { useForm } from '../../_hooks';
 import { ApiError } from '../../_http';
@@ -35,6 +36,13 @@ function getInitialForm(program: IProgram, event?: IEvent): IEventForm {
   };
 }
 
+function checkForOverlap(startTime1: Date, endTime1: Date, startTime2: Date, endTime2: Date): string {
+  if (startTime1 < endTime2 && endTime1 > startTime2) {
+    console.log('event overlaps');
+    return translations.getLabel('EVENTS.ERRORS.EVENT_OVERLAPS');
+  }
+}
+
 function handleRoomAndSession(values: IEventForm): IEventForm {
   if (values.spanRow) {
     values.roomId = '';
@@ -46,7 +54,7 @@ function handleRoomAndSession(values: IEventForm): IEventForm {
   return values;
 }
 
-function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
+function validateForm(values: IEventForm, events: IEvent[], eventId?: string): FormValidationErrors<IEventForm> {
   const errors: FormValidationErrors<IEventForm> = {};
 
   if (values.spanRow) {
@@ -60,6 +68,19 @@ function validateForm(values: IEventForm): FormValidationErrors<IEventForm> {
   if (Date.parse(values.startTime) > Date.parse(values.endTime)) {
     errors.endTime = translations.getLabel('EVENTS.ERRORS.END_TIME_LATER_THEN_START_TIME');
   }
+
+  // Check dat zelfde event is uitgefilterd
+  errors.endTime = events
+    .map(existingEvent => {
+      if (existingEvent.id !== eventId)
+        return checkForOverlap(
+          dateFromISOString(values.startTime),
+          dateFromISOString(values.endTime),
+          dateFromISOString(existingEvent.startTime),
+          dateFromISOString(existingEvent.endTime),
+        );
+    })
+    .find(error => !!error);
 
   return errors;
 }
@@ -77,6 +98,7 @@ function errorAsString(error?: ApiError): string {
 const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
   const dispatch = useDispatch();
   const sessions = useSelector(sessionsSelectors.sessions);
+  const events = useSelector(eventsSelectors.events);
   const isSubmitting = useSelector(eventsSelectors.isLoading);
   const error = useSelector(eventsSelectors.errorCrudEvent);
   const errorMessage = errorAsString(error);
@@ -98,7 +120,7 @@ const EventModal: FC<Props> = ({ event, program, rooms, hideModal }) => {
         : dispatch(
             new eventsActions.CreateEvent({ onSuccess: hideModal, programId: program.id, values: handleRoomAndSession(values) }),
           ),
-    validateForm,
+    validateForm: values => validateForm(values, events, event?.id),
   });
 
   const renderSessionPart = () => (
