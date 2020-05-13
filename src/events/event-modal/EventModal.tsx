@@ -38,7 +38,6 @@ function getInitialForm(program: IProgram, event?: IEvent): IEventForm {
 
 function checkForOverlap(startTime1: Date, endTime1: Date, startTime2: Date, endTime2: Date): string {
   if (startTime1 < endTime2 && endTime1 > startTime2) {
-    console.log('event overlaps');
     return translations.getLabel('EVENTS.ERRORS.EVENT_OVERLAPS');
   }
 }
@@ -69,16 +68,27 @@ function validateForm(values: IEventForm, events: IEvent[], eventId?: string): F
     errors.endTime = translations.getLabel('EVENTS.ERRORS.END_TIME_LATER_THEN_START_TIME');
   }
 
-  // Check dat zelfde event is uitgefilterd
   errors.endTime = events
     .map(existingEvent => {
-      if (existingEvent.id !== eventId)
-        return checkForOverlap(
-          dateFromISOString(values.startTime),
-          dateFromISOString(values.endTime),
-          dateFromISOString(existingEvent.startTime),
-          dateFromISOString(existingEvent.endTime),
-        );
+      if (existingEvent.id !== eventId) {
+        if (existingEvent.spanRow) {
+          return checkForOverlap(
+            dateFromISOString(values.startTime),
+            dateFromISOString(values.endTime),
+            dateFromISOString(existingEvent.startTime),
+            dateFromISOString(existingEvent.endTime),
+          );
+        } else {
+          if (existingEvent.room?.id === values.roomId) {
+            return checkForOverlap(
+              dateFromISOString(values.startTime),
+              dateFromISOString(values.endTime),
+              dateFromISOString(existingEvent.startTime),
+              dateFromISOString(existingEvent.endTime),
+            );
+          }
+        }
+      }
     })
     .find(error => !!error);
 
